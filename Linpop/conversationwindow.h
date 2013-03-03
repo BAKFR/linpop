@@ -17,6 +17,9 @@ public:
     
 private:
     Ui::ConversationWindow *ui;
+
+public slots:
+    void    on_uploadButton_clicked();
 };
 
 #endif // CONVERSATIONWINDOW_H

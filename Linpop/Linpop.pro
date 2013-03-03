@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     uploadwindow.cpp \
     downloadwindow.cpp \
     conversationwindow.cpp \
-    addcontactchatwindow.cpp
+    addcontactchatwindow.cpp \
+    filetransfertupload.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -29,7 +30,8 @@ HEADERS  += loginwindow.h \
     uploadwindow.h \
     downloadwindow.h \
     conversationwindow.h \
-    addcontactchatwindow.h
+    addcontactchatwindow.h \
+    filetransfertupload.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
