@@ -1,5 +1,5 @@
 #include "networkobject.h"
-#include "ProtocolCommandType.h"
+#include "protocolcommandtype.h"
 #include "protocolcommandparamconv.h"
 
 NetworkObject::NetworkObject(ContactWindow *ptrContactWindow)

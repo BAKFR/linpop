@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'historywindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.0.1
+** Created: Mon Mar 4 15:55:35 2013
+**      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,14 +11,14 @@
 #define UI_HISTORYWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAction>
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QHeaderView>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QWidget>
+#include <QtGui/QAction>
+#include <QtGui/QApplication>
+#include <QtGui/QButtonGroup>
+#include <QtGui/QHeaderView>
+#include <QtGui/QMainWindow>
+#include <QtGui/QMenuBar>
+#include <QtGui/QStatusBar>
+#include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -31,16 +32,16 @@ public:
     void setupUi(QMainWindow *HistoryWindow)
     {
         if (HistoryWindow->objectName().isEmpty())
-            HistoryWindow->setObjectName(QStringLiteral("HistoryWindow"));
+            HistoryWindow->setObjectName(QString::fromUtf8("HistoryWindow"));
         HistoryWindow->resize(800, 600);
         menubar = new QMenuBar(HistoryWindow);
-        menubar->setObjectName(QStringLiteral("menubar"));
+        menubar->setObjectName(QString::fromUtf8("menubar"));
         HistoryWindow->setMenuBar(menubar);
         centralwidget = new QWidget(HistoryWindow);
-        centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         HistoryWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(HistoryWindow);
-        statusbar->setObjectName(QStringLiteral("statusbar"));
+        statusbar->setObjectName(QString::fromUtf8("statusbar"));
         HistoryWindow->setStatusBar(statusbar);
 
         retranslateUi(HistoryWindow);
@@ -50,7 +51,7 @@ public:
 
     void retranslateUi(QMainWindow *HistoryWindow)
     {
-        HistoryWindow->setWindowTitle(QApplication::translate("HistoryWindow", "MainWindow", 0));
+        HistoryWindow->setWindowTitle(QApplication::translate("HistoryWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

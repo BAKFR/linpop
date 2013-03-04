@@ -5,7 +5,7 @@ class NetworkClient;
 class NetworkObject;
 class ProtocolCommand;
 //enum ProtocolCommandType;
-#include "ProtocolCommandType.h"
+#include "protocolcommandtype.h"
 
 class ProtocolOutputCommandFactory
 {

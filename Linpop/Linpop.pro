@@ -43,7 +43,8 @@ SOURCES += main.cpp\
     outputcommandmessageping.cpp \
     outputcommandmessagepong.cpp \
     outputcommandmessagesend.cpp \
-    filetransfertupload.cpp
+    filetransfertupload.cpp \
+    mainwindow.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -58,8 +59,6 @@ HEADERS  += loginwindow.h \
     networkclient.h \
     circularbuffer.h \
     protocolinterpretor.h \
-    ProtocolCommandType.h \
-    ProtocolCommandExecutionMode.h \
     protocolcommandparamconv.h \
     protocolcommandparamuser.h \
     protocolcommandparamtext.h \
@@ -78,7 +77,10 @@ HEADERS  += loginwindow.h \
     outputcommandmessageinvitation.h \
     outputcommandmessagepong.h \
     outputcommandmessageping.h \
-    filetransfertupload.h
+    filetransfertupload.h \
+    protocolcommandtype.h \
+    protocolcommandexecutionmode.h \
+    mainwindow.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
@@ -87,4 +89,5 @@ FORMS    += loginwindow.ui \
     uploadwindow.ui \
     downloadwindow.ui \
     conversationwindow.ui \
-    addcontactchatwindow.ui
+    addcontactchatwindow.ui \
+    mainwindow.ui
