@@ -44,7 +44,8 @@ SOURCES += main.cpp\
     outputcommandmessagepong.cpp \
     outputcommandmessagesend.cpp \
     filetransfertupload.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    contextualmenupopup.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -80,7 +81,8 @@ HEADERS  += loginwindow.h \
     filetransfertupload.h \
     protocolcommandtype.h \
     protocolcommandexecutionmode.h \
-    mainwindow.h
+    mainwindow.h \
+    contextualmenupopup.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
@@ -90,4 +92,5 @@ FORMS    += loginwindow.ui \
     downloadwindow.ui \
     conversationwindow.ui \
     addcontactchatwindow.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    contextualmenupopup.ui

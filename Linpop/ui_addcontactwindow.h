@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addcontactwindow.ui'
 **
-** Created: Mon Mar 4 15:54:59 2013
-**      by: Qt User Interface Compiler version 4.8.4
+** Created: Mon Mar 4 01:00:47 2013
+**      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,38 +14,66 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
-#include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLabel>
+#include <QtGui/QLineEdit>
+#include <QtGui/QMainWindow>
+#include <QtGui/QPushButton>
+#include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_AddContactWindow
 {
 public:
-    QDialogButtonBox *buttonBox;
+    QWidget *centralwidget;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
+    QLineEdit *user_name;
+    QLineEdit *ip;
+    QPushButton *addContact;
 
-    void setupUi(QDialog *AddContactWindow)
+    void setupUi(QMainWindow *AddContactWindow)
     {
         if (AddContactWindow->objectName().isEmpty())
             AddContactWindow->setObjectName(QString::fromUtf8("AddContactWindow"));
-        AddContactWindow->resize(400, 300);
-        buttonBox = new QDialogButtonBox(AddContactWindow);
-        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-        buttonBox->setGeometry(QRect(290, 20, 81, 241));
-        buttonBox->setOrientation(Qt::Vertical);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        AddContactWindow->resize(299, 157);
+        centralwidget = new QWidget(AddContactWindow);
+        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(70, 0, 221, 31));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(20, 50, 66, 17));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(20, 80, 66, 17));
+        user_name = new QLineEdit(centralwidget);
+        user_name->setObjectName(QString::fromUtf8("user_name"));
+        user_name->setGeometry(QRect(80, 50, 201, 27));
+        ip = new QLineEdit(centralwidget);
+        ip->setObjectName(QString::fromUtf8("ip"));
+        ip->setGeometry(QRect(80, 80, 201, 27));
+        addContact = new QPushButton(centralwidget);
+        addContact->setObjectName(QString::fromUtf8("addContact"));
+        addContact->setGeometry(QRect(130, 120, 98, 27));
+        AddContactWindow->setCentralWidget(centralwidget);
 
         retranslateUi(AddContactWindow);
-        QObject::connect(buttonBox, SIGNAL(accepted()), AddContactWindow, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), AddContactWindow, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(AddContactWindow);
     } // setupUi
 
-    void retranslateUi(QDialog *AddContactWindow)
+    void retranslateUi(QMainWindow *AddContactWindow)
     {
-        AddContactWindow->setWindowTitle(QApplication::translate("AddContactWindow", "Dialog", 0, QApplication::UnicodeUTF8));
+        AddContactWindow->setWindowTitle(QApplication::translate("AddContactWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("AddContactWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600; text-decoration: underline;\">Add Contact</span></p></body></html>", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("AddContactWindow", "Name:", 0, QApplication::UnicodeUTF8));
+        label_3->setText(QApplication::translate("AddContactWindow", "Ip:", 0, QApplication::UnicodeUTF8));
+        user_name->setText(QString());
+        addContact->setText(QApplication::translate("AddContactWindow", "Add Contact", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

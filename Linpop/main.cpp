@@ -5,10 +5,13 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-   ContactWindow w;
-   w.show();
-   NetworkObject no(&w);
-    no.initialize(5000);
+    LoginWindow  lw;
+
+    lw.show();
+   //ContactWindow w;
+  // w.show();
+   //NetworkObject no(&w);
+    //no.initialize(5000);
 
 
     return a.exec();
