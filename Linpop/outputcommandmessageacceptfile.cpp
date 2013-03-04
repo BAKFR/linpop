@@ -11,6 +11,10 @@ OutputCommandMessageAcceptFile::OutputCommandMessageAcceptFile(const OutputComma
 
 bool OutputCommandMessageAcceptFile::execute()
 {
+    return ptrOutputNetworkClient->getTcpSocket()->write((QString("ACCEPTFILE\01") + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()
+                                                          + "\01" + QString::number(protocolCommandParameter.getListProtocolCommandParamText().at(0).getText()))
+                                                         .toUtf8()) > 0;
+
     return true;
 }
 
