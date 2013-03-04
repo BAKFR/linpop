@@ -7,7 +7,7 @@ CORCommandMessageInvitation::CORCommandMessageInvitation()
 
 bool CORCommandMessageInvitation::predicate(QByteArray query)
 {
-    return true;
+    return false;
 }
 
 ProtocolCommand *CORCommandMessageInvitation::build(QByteArray query)

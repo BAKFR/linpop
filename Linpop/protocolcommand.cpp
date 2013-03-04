@@ -3,6 +3,7 @@
 
 
 ProtocolCommand::ProtocolCommand()
+    : validity(true)
 {
   this->ptrContactWindow = NULL;
 }
