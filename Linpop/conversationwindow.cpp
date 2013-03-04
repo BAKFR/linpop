@@ -51,8 +51,7 @@ void    ConversationWindow::broadcast(ProtocolCommand *cmd)
 
     for (;false;)   //TODO: pour chaque NetworkClient !
     {
-        ProtocolCommand *cmdCopy = cmd;
-        //TODO: clone !!!
+        ProtocolCommand *cmdCopy = cmd->clone();
 
         cmdCopy->setOutputNetworkClient(NULL);
         _contact_window->getNetworkObject()->getProtocolInterpretor().executeCommand(cmdCopy);

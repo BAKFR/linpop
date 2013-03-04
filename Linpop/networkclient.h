@@ -33,6 +33,8 @@ public slots:
     void onReceivedData();
     void onSendData(qint64 bytes);
     void onDisconnected();
+
+    QTcpSocket *getTcpSocket();
 };
 
 #endif // NETWORKCLIENT_H

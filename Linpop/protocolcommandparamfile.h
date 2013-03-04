@@ -9,9 +9,9 @@ class ProtocolCommandParamFile
 public:
     ProtocolCommandParamFile(const QString &string, int size);
     void setName(QString name);
-    QString getName();
+    QString getName() const;
     void setSize(int size);
-    int getSize();
+    int getSize() const;
 };
 
 #endif // PROTOCOLCOMMANDPARAMFILE_H

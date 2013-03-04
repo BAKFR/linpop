@@ -12,7 +12,7 @@ void ProtocolCommandParamFile::setName(QString name)
     this->name = name;
 }
 
-QString ProtocolCommandParamFile::getName()
+QString ProtocolCommandParamFile::getName() const
 {
     return name;
 }
@@ -22,7 +22,7 @@ void ProtocolCommandParamFile::setSize(int size)
     this->size = size;
 }
 
-int ProtocolCommandParamFile::getSize()
+int ProtocolCommandParamFile::getSize() const
 {
     return this->size;
 }

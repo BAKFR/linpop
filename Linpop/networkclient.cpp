@@ -68,3 +68,8 @@ void NetworkClient::setUsername(QString username)
 {
     this->username = username;
 }
+
+QTcpSocket *NetworkClient::getTcpSocket()
+{
+    return client;
+}

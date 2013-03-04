@@ -10,7 +10,7 @@ protected:
 public:
     ProtocolCommandParamConv(QString string);
     void setConvID(QString stringID);
-    QString getConvID();
+    QString getConvID() const;
 };
 
 #endif // PROTOCOLCOMMANDPARAMCONV_H
