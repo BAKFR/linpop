@@ -1,7 +1,9 @@
 #include "downloadwindow.h"
 #include "ui_downloadwindow.h"
 
-DownloadWindow::DownloadWindow(QWidget *parent) :
+#include "conversationwindow.h"
+
+DownloadWindow::DownloadWindow(ConversationWindow *parent) :
     QDialog(parent),
     ui(new Ui::DownloadWindow)
 {

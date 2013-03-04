@@ -23,3 +23,9 @@ NetworkObject *ContactWindow::getNetworkObject()
 {
     return _network_object;
 }
+
+ConversationWindow *ContactWindow::getConvById(const QString &id)
+{
+    //TODO !!!!
+    return NULL;
+}

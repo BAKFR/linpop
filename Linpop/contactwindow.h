@@ -22,7 +22,8 @@ public:
     ~ContactWindow();
 
     NetworkObject *getNetworkObject();
-    
+    ConversationWindow *getConvById(const QString &id);
+
 private:
     Ui::ContactWindow   *ui;
     NetworkObject       *_network_object;
