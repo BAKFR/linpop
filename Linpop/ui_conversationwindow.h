@@ -16,6 +16,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -24,8 +25,9 @@ QT_BEGIN_NAMESPACE
 class Ui_ConversationWindow
 {
 public:
-    QMenuBar *menubar;
     QWidget *centralwidget;
+    QPushButton *uploadButton;
+    QMenuBar *menubar;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *ConversationWindow)
@@ -33,12 +35,19 @@ public:
         if (ConversationWindow->objectName().isEmpty())
             ConversationWindow->setObjectName(QStringLiteral("ConversationWindow"));
         ConversationWindow->resize(800, 600);
-        menubar = new QMenuBar(ConversationWindow);
-        menubar->setObjectName(QStringLiteral("menubar"));
-        ConversationWindow->setMenuBar(menubar);
         centralwidget = new QWidget(ConversationWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        uploadButton = new QPushButton(centralwidget);
+        uploadButton->setObjectName(QStringLiteral("uploadButton"));
+        uploadButton->setGeometry(QRect(250, 210, 321, 131));
+        QFont font;
+        font.setPointSize(36);
+        uploadButton->setFont(font);
         ConversationWindow->setCentralWidget(centralwidget);
+        menubar = new QMenuBar(ConversationWindow);
+        menubar->setObjectName(QStringLiteral("menubar"));
+        menubar->setGeometry(QRect(0, 0, 800, 22));
+        ConversationWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(ConversationWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
         ConversationWindow->setStatusBar(statusbar);
@@ -51,6 +60,7 @@ public:
     void retranslateUi(QMainWindow *ConversationWindow)
     {
         ConversationWindow->setWindowTitle(QApplication::translate("ConversationWindow", "MainWindow", 0));
+        uploadButton->setText(QApplication::translate("ConversationWindow", "UPLOAD", 0));
     } // retranslateUi
 
 };

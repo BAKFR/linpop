@@ -10,6 +10,5 @@ int main(int argc, char *argv[])
    NetworkObject no(&w);
     no.initialize(5000);
 
-
     return a.exec();
 }
