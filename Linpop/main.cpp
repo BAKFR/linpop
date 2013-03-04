@@ -6,11 +6,15 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-   ContactWindow w;
-   w.show();
-   NetworkObject no(&w);
+    NetworkObject no;
     no.initialize(5000);
-    ConversationWindow cw;
+
+
+    ContactWindow w(&no);
+    no.setContactWindow(&w);
+    w.show();
+
+    ConversationWindow cw(&w);
     cw.show();
 
     return a.exec();

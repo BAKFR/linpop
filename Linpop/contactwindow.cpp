@@ -2,9 +2,9 @@
 #include "conversationwindow.h"
 #include "ui_contactwindow.h"
 
-ContactWindow::ContactWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::ContactWindow)
+ContactWindow::ContactWindow(NetworkObject *obj) :
+    ui(new Ui::ContactWindow),
+    _network_object(obj)
 {
     ui->setupUi(this);
 }
@@ -17,4 +17,9 @@ ConversationWindow *ContactWindow::createEmptyConversationWindow()
 ContactWindow::~ContactWindow()
 {
     delete ui;
+}
+
+NetworkObject *ContactWindow::getNetworkObject()
+{
+    return _network_object;
 }

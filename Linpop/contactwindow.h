@@ -8,17 +8,24 @@ namespace Ui {
 class ContactWindow;
 }
 
+class NetworkObject;
+
+
+
 class ContactWindow : public QMainWindow
 {
     Q_OBJECT
     
 public:
-    explicit ContactWindow(QWidget *parent = 0);
+    ContactWindow(NetworkObject *obj);
     ConversationWindow *createEmptyConversationWindow();
     ~ContactWindow();
+
+    NetworkObject *getNetworkObject();
     
 private:
-    Ui::ContactWindow *ui;
+    Ui::ContactWindow   *ui;
+    NetworkObject       *_network_object;
 };
 
 #endif // CONTACTWINDOW_H

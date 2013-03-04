@@ -1,9 +1,8 @@
 #include "protocolcommandparamfile.h"
 
-ProtocolCommandParamFile::ProtocolCommandParamFile(QString string, int size, int port)
+ProtocolCommandParamFile::ProtocolCommandParamFile(const QString &string, int size)
 {
     this->name = name;
-    this->port = port;
     this->size = size;
 }
 
@@ -26,14 +25,4 @@ void ProtocolCommandParamFile::setSize(int size)
 int ProtocolCommandParamFile::getSize()
 {
     return this->size;
-}
-
-void ProtocolCommandParamFile::setPort(int port)
-{
-    this->port = port;
-}
-
-int ProtocolCommandParamFile::getPort()
-{
-    return this->port;
 }

@@ -35,6 +35,7 @@ public:
     ProtocolCommandParameter& getProtocolCommandParameter();
     void setProtocolCommandParameter(ProtocolCommandParameter p);
     virtual ~ProtocolCommand(){}
+
 };
 
 #endif // PROTOCOLCOMMAND_H

@@ -8,5 +8,3 @@ bool OutputCommandMessageDeconnection::execute()
 {
     return true;
 }
-
-

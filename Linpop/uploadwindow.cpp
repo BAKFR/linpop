@@ -1,16 +1,22 @@
 #include "uploadwindow.h"
 #include "ui_uploadwindow.h"
+#include "conversationwindow.h"
+
+#include "contactwindow.h"
 
 #include <QFileInfo>
 #include <QDebug>
 
-UploadWindow::UploadWindow(QWidget *parent, const QString &file) :
+UploadWindow::UploadWindow(ConversationWindow *parent, const QString &file) :
     QDialog(parent),
     ui(new Ui::UploadWindow)
 {
     QFileInfo   info(file);
 
-    ft_upload = new FileTransfertUpload(info);
+
+
+
+    ft_upload = new FileTransfertUpload(info, parent->getContactWindow()->getNetworkObject(), parent);
     ui->setupUi(this);
     ui->label_fileName->setText(info.fileName() + " (" + QString::number(info.size()) + " octets)");
     ui->label_success->setVisible(false);

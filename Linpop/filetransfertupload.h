@@ -3,10 +3,13 @@
 
 #include <QFileInfo>
 
+class NetworkObject;
+class ConversationWindow;
+
 class FileTransfertUpload
 {
 public:
-    FileTransfertUpload(const QFileInfo &info);
+    FileTransfertUpload(const QFileInfo &info, NetworkObject *interpretor, ConversationWindow *conv);
     ~FileTransfertUpload();
 
     void stop();
