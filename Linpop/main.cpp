@@ -11,11 +11,10 @@ int main(int argc, char *argv[])
 
 
     ContactWindow w(&no);
+    ConversationWindow conv;
     no.setContactWindow(&w);
     w.show();
-
-    ConversationWindow cw(&w);
-    cw.show();
+    conv.show();
 
     return a.exec();
 }

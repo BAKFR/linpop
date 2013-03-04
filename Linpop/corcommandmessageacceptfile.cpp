@@ -7,7 +7,7 @@ CORCommandMessageAcceptFile::CORCommandMessageAcceptFile()
 
 bool CORCommandMessageAcceptFile::predicate(QByteArray query)
 {
-    return true;
+    return false;
 }
 
 ProtocolCommand* CORCommandMessageAcceptFile::build(QByteArray query)

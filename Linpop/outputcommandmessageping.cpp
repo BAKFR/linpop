@@ -11,6 +11,10 @@ OutputCommandMessagePing::OutputCommandMessagePing(const OutputCommandMessagePin
 
 bool OutputCommandMessagePing::execute()
 {
+    if (this->ptrOutputNetworkClient != NULL)
+    {
+        this->ptrOutputNetworkClient->getTcpSocket()->write("PING");
+    }
     return true;
 }
 

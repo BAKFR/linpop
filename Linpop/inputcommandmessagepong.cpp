@@ -12,6 +12,7 @@ InputCommandMessagePong::InputCommandMessagePong(const InputCommandMessagePong &
 
 bool InputCommandMessagePong::execute()
 {
+    qDebug()<<"Une commande pong vient d'etre recue !";
  return true;
 }
 
