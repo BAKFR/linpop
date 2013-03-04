@@ -7,7 +7,7 @@ CORCommandMessageSend::CORCommandMessageSend()
 
 bool CORCommandMessageSend::predicate(QByteArray query)
 {
-    return true;
+    return false;
 }
 
 ProtocolCommand *CORCommandMessageSend::build(QByteArray query)

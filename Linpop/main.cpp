@@ -6,14 +6,19 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    LoginWindow  lw;
+    //LoginWindow  lw;
 
-    lw.show();
+    //lw.show();
    //ContactWindow w;
   // w.show();
    //NetworkObject no(&w);
     //no.initialize(5000);
 
+    ContactWindow w(&no);
+    ConversationWindow conv;
+    no.setContactWindow(&w);
+    w.show();
+    conv.show();
    // NetworkObject no;
    // no.initialize(5000);
 

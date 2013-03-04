@@ -11,6 +11,10 @@ OutputCommandMessagePong::OutputCommandMessagePong(const OutputCommandMessagePon
 
 bool OutputCommandMessagePong::execute()
 {
+    if (this->ptrInputNetworkClient != NULL)
+    {
+        this->ptrInputNetworkClient->getTcpSocket()->write("PONG");
+    }
     return true;
 }
 
