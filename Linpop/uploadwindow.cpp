@@ -33,7 +33,11 @@ void    UploadWindow::onUploadComplete(int nb_ok, int nb_error, int nb_total)
 
 void    UploadWindow::onUploadProgress(int nb_ok, int nb_error, int nb_total)
 {
-    //TODO MAJ
+    QString text = QString::number(nb_ok) + " / " + QString::number(nb_total);
+    if (nb_error) {
+        text += " (" + QString::number(nb_error) + " upload fails)";
+    }
+    ui->label_data->setText(text);
 }
 
 void    UploadWindow::onUploadError(const QString &error)
@@ -44,9 +48,9 @@ void    UploadWindow::onUploadError(const QString &error)
     ui->buttonBox->setStandardButtons(QDialogButtonBox::Close);
 }
 
-void    UploadWindow::onClientError(const QString &error)
+void    UploadWindow::onClientError(const QString &)
 {
-    //TODO MAJ
+    //TODO display error ?
 }
 
 void UploadWindow::on_buttonBox_rejected()
