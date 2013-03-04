@@ -1,5 +1,5 @@
 #include "protocoloutputcommandfactory.h"
-#include "ProtocolCommandType.h"
+#include "protocolcommandtype.h"
 #include "networkobject.h"
 #include "outputcommandmessagetransfertfile.h"
 #include "outputcommandmessageacceptfile.h"

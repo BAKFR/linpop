@@ -59,7 +59,8 @@ SOURCES += main.cpp\
     inputcommandmessagesend.cpp \
     inputcommandmessagedeconnection.cpp \
     inputcommandmessageinvitation.cpp \
-    inputcommandmessagepong.cpp
+    inputcommandmessagepong.cpp \
+    mainwindow.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -74,8 +75,6 @@ HEADERS  += loginwindow.h \
     networkclient.h \
     circularbuffer.h \
     protocolinterpretor.h \
-    ProtocolCommandType.h \
-    ProtocolCommandExecutionMode.h \
     protocolcommandparamconv.h \
     protocolcommandparamuser.h \
     protocolcommandparamtext.h \
@@ -111,6 +110,9 @@ HEADERS  += loginwindow.h \
     inputcommandmessagedeconnection.h \
     inputcommandmessageinvitation.h \
     inputcommandmessagepong.h
+    protocolcommandtype.h \
+    protocolcommandexecutionmode.h \
+    mainwindow.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
@@ -119,4 +121,5 @@ FORMS    += loginwindow.ui \
     uploadwindow.ui \
     downloadwindow.ui \
     conversationwindow.ui \
-    addcontactchatwindow.ui
+    addcontactchatwindow.ui \
+    mainwindow.ui
