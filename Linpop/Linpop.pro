@@ -60,7 +60,8 @@ SOURCES += main.cpp\
     inputcommandmessagedeconnection.cpp \
     inputcommandmessageinvitation.cpp \
     inputcommandmessagepong.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    filetransfertdownload.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -112,7 +113,8 @@ HEADERS  += loginwindow.h \
     inputcommandmessagepong.h \
     protocolcommandtype.h \
     protocolcommandexecutionmode.h \
-    mainwindow.h
+    mainwindow.h \
+    filetransfertdownload.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
