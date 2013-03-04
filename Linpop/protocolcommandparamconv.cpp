@@ -11,6 +11,7 @@ void ProtocolCommandParamConv::setConvID(QString stringID)
     this->convID = stringID;
 }
 
-QString ProtocolCommandParamConv::getConvID(){
+QString ProtocolCommandParamConv::getConvID() const
+{
     return this->convID;
 }

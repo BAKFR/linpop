@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+class ContactWindow;
+class ProtocolCommand;
+
 namespace Ui {
 class ConversationWindow;
 }
@@ -11,11 +14,16 @@ class ConversationWindow : public QMainWindow
 {
     Q_OBJECT
 protected:
-    QString IDConv;
+    QString         IDConv;
+    ContactWindow   *_contact_window;
 public:
     QString getIDConv();
-    explicit ConversationWindow(QWidget *parent = 0);
+    explicit ConversationWindow(ContactWindow *parent = 0);
     ~ConversationWindow();
+
+    ContactWindow *getContactWindow();
+
+    void    broadcast(ProtocolCommand *cmd);
     
 private:
     Ui::ConversationWindow *ui;

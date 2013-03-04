@@ -1,6 +1,7 @@
 #include "networkobject.h"
 #include "protocolcommandtype.h"
 #include "protocolcommandparamconv.h"
+#include "contactwindow.h"
 
 NetworkObject::NetworkObject(ContactWindow *ptrContactWindow)
 {
@@ -84,4 +85,14 @@ NetworkClient *NetworkObject::getNetworkClientByUsername(QString username)
 void NetworkObject::addNetworkClient(NetworkClient *networkClient)
 {
     this->listNetworkClient.append(networkClient);
+}
+
+void NetworkObject::setContactWindow(ContactWindow *win)
+{
+    ptrContactWindow = win;
+}
+
+ProtocolInterpretor &NetworkObject::getProtocolInterpretor()
+{
+    return protocolInterpretor;
 }

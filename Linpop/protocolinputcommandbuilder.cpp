@@ -2,11 +2,38 @@
 #include "networkclient.h"
 #include "corprotocolinputcommandbuilder.h"
 #include "networkobject.h"
+#include "corcommandmessagedeconnection.h"
+#include "corcommandmessagepong.h"
+#include "corcommandmessagejoin.h"
+#include "corcommandmessageacceptfile.h"
+#include "corcommandmessageinvitation.h"
+#include "corcommandmessageping.h"
+#include "corcommandmessagesend.h"
+#include "corcommandmessagetransfertfile.h"
+
 #include <QByteArray>
 
 ProtocolInputCommandBuilder::ProtocolInputCommandBuilder()
 {
     this->ptrCORProtocolInputCommandBuilder = NULL;
+    CORProtocolInputCommandBuilder *maillon;
+
+    maillon = new CORCommandMessageDeconnection();
+    this->addCOR(maillon);
+    maillon = new CORCommandMessagePong();
+    this->addCOR(maillon);
+    maillon = new CORCommandMessageJoin();
+    this->addCOR(maillon);
+    maillon = new CORCommandMessageAcceptFile();
+    this->addCOR(maillon);
+    maillon = new CORCommandMessageInvitation();
+    this->addCOR(maillon);
+    maillon = new CORCommandMessagePing();
+    this->addCOR(maillon);
+    maillon = new CORCommandMessageSend();
+    this->addCOR(maillon);
+    maillon = new CORCommandMessageTransfertFile();
+    this->addCOR(maillon);
 }
 
 ProtocolCommand *ProtocolInputCommandBuilder::build(QByteArray query, NetworkClient *client)

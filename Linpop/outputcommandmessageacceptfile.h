@@ -6,7 +6,9 @@ class OutputCommandMessageAcceptFile : public ProtocolCommand
 {
 public:
     OutputCommandMessageAcceptFile();
+    OutputCommandMessageAcceptFile(const OutputCommandMessageAcceptFile &ref);
     virtual bool execute();
+    virtual ProtocolCommand* clone();
 };
 
 #endif // OUTPUTCOMMANDMESSAGEACCEPTFILE_H

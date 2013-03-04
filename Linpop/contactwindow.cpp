@@ -4,8 +4,7 @@
 #include "addcontactwindow.h"
 #include "contextualmenupopup.h"
 
-ContactWindow::ContactWindow(QWidget *parent) :
-    QMainWindow(parent),
+ContactWindow::ContactWindow(NetworkObject *obj) :
     ui(new Ui::ContactWindow)
 {
     ui->setupUi(this);
@@ -66,4 +65,15 @@ void ContactWindow::on_listContact_customContextMenuRequested(const QPoint &pos)
     QPoint globalpos = this->mapToGlobal(pos);
     ContextualMenuPopup cmp;
     cmp.InitMenu(globalpos, this);
+}
+
+NetworkObject *ContactWindow::getNetworkObject()
+{
+    return _network_object;
+}
+
+ConversationWindow *ContactWindow::getConvById(const QString &id)
+{
+    //TODO !!!!
+    return NULL;
 }

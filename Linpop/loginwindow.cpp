@@ -39,8 +39,9 @@ void    LoginWindow::InitLogin()
 {
     //Initialise les ptr
     //this->db = new Database;
-    //this->ns = new NetworkServer;
-    this->cw = new ContactWindow;
+    this->no = new NetworkObject;
+    this->no->initialize(5000);
+    this->cw = new ContactWindow(no);
     //Masque l'affichage du champ password
     ui->password->setEchoMode(QLineEdit::Password);
 }

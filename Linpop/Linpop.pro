@@ -44,8 +44,24 @@ SOURCES += main.cpp\
     outputcommandmessagepong.cpp \
     outputcommandmessagesend.cpp \
     filetransfertupload.cpp \
-    mainwindow.cpp \
-    contextualmenupopup.cpp
+    contextualmenupopup.cpp \
+    corcommandmessagedeconnection.cpp \
+    corcommandmessagepong.cpp \
+    corcommandmessagejoin.cpp \
+    corcommandmessageacceptfile.cpp \
+    corcommandmessageinvitation.cpp \
+    corcommandmessageping.cpp \
+    corcommandmessagesend.cpp \
+    corcommandmessagetransfertfile.cpp \
+    inputcommandmessageacceptfile.cpp \
+    inputcommandmessagetransfertfile.cpp \
+    inputcommandmessageping.cpp \
+    inputcommandmessagejoin.cpp \
+    inputcommandmessagesend.cpp \
+    inputcommandmessagedeconnection.cpp \
+    inputcommandmessageinvitation.cpp \
+    inputcommandmessagepong.cpp \
+    mainwindow.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -79,6 +95,22 @@ HEADERS  += loginwindow.h \
     outputcommandmessagepong.h \
     outputcommandmessageping.h \
     filetransfertupload.h \
+    corcommandmessagedeconnection.h \
+    corcommandmessagepong.h \
+    corcommandmessagejoin.h \
+    corcommandmessageacceptfile.h \
+    corcommandmessageinvitation.h \
+    corcommandmessageping.h \
+    corcommandmessagesend.h \
+    corcommandmessagetransfertfile.h \
+    inputcommandmessageacceptfile.h \
+    inputcommandmessagetransfertfile.h \
+    inputcommandmessageping.h \
+    inputcommandmessagejoin.h \
+    inputcommandmessagesend.h \
+    inputcommandmessagedeconnection.h \
+    inputcommandmessageinvitation.h \
+    inputcommandmessagepong.h \
     protocolcommandtype.h \
     protocolcommandexecutionmode.h \
     mainwindow.h \

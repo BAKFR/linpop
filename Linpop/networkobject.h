@@ -16,7 +16,7 @@ protected:
     NetworkServer networkServer;
     ContactWindow *ptrContactWindow;
 public:
-    NetworkObject(ContactWindow *ptrContactWindow);
+    NetworkObject(ContactWindow *ptrContactWindow = NULL);
     bool initialize(int port);
     NetworkServer &getNetworkServer();
     QList<NetworkClient *>& getListNetworkClient();
@@ -27,6 +27,10 @@ public:
     NetworkClient *getNetworkClientByIP(QString ip);
     NetworkClient *getNetworkClientByUsername(QString username);
     void addNetworkClient(NetworkClient *networkClient);
+
+    void setContactWindow(ContactWindow *win);
+
+    ProtocolInterpretor &getProtocolInterpretor();
 };
 
 #endif // NETWORKOBJECT_H

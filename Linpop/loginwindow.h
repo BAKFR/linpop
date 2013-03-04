@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "contactwindow.h"
+#include "networkobject.h"
 
 namespace Ui {
 class LoginWindow;
@@ -14,7 +15,7 @@ class LoginWindow : public QMainWindow
 
     //DatabaseObject    *db
     ContactWindow     *cw;
-    //NetworkServer     *ns
+    NetworkObject     *no;
 
 public:
     explicit LoginWindow(QWidget *parent = 0);

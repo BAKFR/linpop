@@ -6,13 +6,14 @@
 namespace Ui {
 class DownloadWindow;
 }
+class ConversationWindow;
 
 class DownloadWindow : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit DownloadWindow(QWidget *parent = 0);
+    explicit DownloadWindow(ConversationWindow *parent = 0);
     ~DownloadWindow();
     
 private:
