@@ -33,8 +33,11 @@ void NetworkClient::onReceivedData()
     QString query = circularBuffer.tryToGetCompleteCommand();
     if (query != "")
     {
-        client->write(QByteArray("You just sended a query "));
-        qDebug()<<"client just sended query "<<query;
+        ProtocolCommand *command = this->ptrNetworkdObject->getProtocolInterpretor().createInputCommand(query.toUtf8(), this);
+        if (command != NULL)
+        {
+            this->ptrNetworkdObject->getProtocolInterpretor().executeCommand(command);
+        }
     }
 }
 
