@@ -10,8 +10,10 @@ class ConversationWindow;
 class ConversationWindow : public QMainWindow
 {
     Q_OBJECT
-    
+protected:
+    QString IDConv;
 public:
+    QString getIDConv();
     explicit ConversationWindow(QWidget *parent = 0);
     ~ConversationWindow();
     

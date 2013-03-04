@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,7 +20,29 @@ SOURCES += main.cpp\
     uploadwindow.cpp \
     downloadwindow.cpp \
     conversationwindow.cpp \
-    addcontactchatwindow.cpp
+    addcontactchatwindow.cpp \
+    networkserver.cpp \
+    networkobject.cpp \
+    networkclient.cpp \
+    circularbuffer.cpp \
+    protocolinterpretor.cpp \
+    protocolcommandparamconv.cpp \
+    protocolcommandparamuser.cpp \
+    protocolcommandparamtext.cpp \
+    protocolcommandparamfile.cpp \
+    protocolcommandparameter.cpp \
+    protocolcommand.cpp \
+    corprotocolinputcommandbuilder.cpp \
+    protocolinputcommandbuilder.cpp \
+    protocoloutputcommandfactory.cpp \
+    outputcommandmessagetransfertfile.cpp \
+    outputcommandmessageacceptfile.cpp \
+    outputcommandmessagedeconnection.cpp \
+    outputcommandmessagejoin.cpp \
+    outputcommandmessageinvitation.cpp \
+    outputcommandmessageping.cpp \
+    outputcommandmessagepong.cpp \
+    outputcommandmessagesend.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -29,7 +51,32 @@ HEADERS  += loginwindow.h \
     uploadwindow.h \
     downloadwindow.h \
     conversationwindow.h \
-    addcontactchatwindow.h
+    addcontactchatwindow.h \
+    networkserver.h \
+    networkobject.h \
+    networkclient.h \
+    circularbuffer.h \
+    protocolinterpretor.h \
+    ProtocolCommandType.h \
+    ProtocolCommandExecutionMode.h \
+    protocolcommandparamconv.h \
+    protocolcommandparamuser.h \
+    protocolcommandparamtext.h \
+    protocolcommandparamfile.h \
+    protocolcommandparameter.h \
+    protocolcommand.h \
+    corprotocolinputcommandbuilder.h \
+    protocolinputcommandbuilder.h \
+    protocoloutputcommandfactory.h \
+    outputcommandmessagetransfertfile.h \
+    outputcommandmessageacceptfile.h \
+    outputcommandmessagedeconnection.h \
+    ouputcommandmessagesend.h \
+    outputcommandmessagesend.h \
+    outputcommandmessagejoin.h \
+    outputcommandmessageinvitation.h \
+    outputcommandmessagepong.h \
+    outputcommandmessageping.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \

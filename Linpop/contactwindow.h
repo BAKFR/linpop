@@ -1,6 +1,7 @@
 #ifndef CONTACTWINDOW_H
 #define CONTACTWINDOW_H
 
+#include "conversationwindow.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -13,6 +14,7 @@ class ContactWindow : public QMainWindow
     
 public:
     explicit ContactWindow(QWidget *parent = 0);
+    ConversationWindow *createEmptyConversationWindow();
     ~ContactWindow();
     
 private:

@@ -8,6 +8,11 @@ ConversationWindow::ConversationWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
+QString ConversationWindow::getIDConv()
+{
+    return this->IDConv;
+}
+
 ConversationWindow::~ConversationWindow()
 {
     delete ui;
