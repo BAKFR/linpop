@@ -2,6 +2,7 @@
 #define CONTEXTUALMENUPOPUP_H
 
 #include <QWidget>
+#include "contactwindow.h"
 
 namespace Ui {
 class ContextualMenuPopup;
@@ -15,7 +16,7 @@ public:
     explicit ContextualMenuPopup(QWidget *parent = 0);
     ~ContextualMenuPopup();
 
-    void    InitMenu(QPoint globalpos, QWidget *);
+    void    InitMenu(QPoint globalpos, ContactWindow *);
 
 public Q_SLOTS:
     void    History();
@@ -28,6 +29,7 @@ private:
     QAction *setting;
     QAction *del;
     QPoint  globalpoint;
+    ContactWindow   *cw;
 };
 
 #endif // CONTEXTUALMENUPOPUP_H
