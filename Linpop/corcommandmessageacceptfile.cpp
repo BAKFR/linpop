@@ -10,7 +10,7 @@ bool CORCommandMessageAcceptFile::predicate(QByteArray query)
     return query.startsWith("ACCEPTFILE");
 }
 
-//  ACCEPTFILE:ID_CONV:OK|NO
+//  ACCEPTFILE:ID_CONV:ID_PORT (0 == NO)
 ProtocolCommand* CORCommandMessageAcceptFile::build(QByteArray query)
 {
     ProtocolCommandParameter    p;
