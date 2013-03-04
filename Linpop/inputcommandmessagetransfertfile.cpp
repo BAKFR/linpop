@@ -21,7 +21,9 @@ bool InputCommandMessageTransfertFile::execute()
             ->getConvById(protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID());
 
     if (conv_win) {
-        new DownloadWindow(conv_win);
+        new DownloadWindow(conv_win, ptrContactWindow->getNetworkObject(),
+                           protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName(),
+                           protocolCommandParameter.getListProtocolCommandParamFile().at(0).getSize());
         return true;
     }
     return false;
