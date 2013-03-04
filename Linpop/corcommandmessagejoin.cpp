@@ -7,7 +7,7 @@ CORCommandMessageJoin::CORCommandMessageJoin()
 
 bool CORCommandMessageJoin::predicate(QByteArray array)
 {
-    return true;
+    return false;
 }
 
 ProtocolCommand *CORCommandMessageJoin::build(QByteArray query)

@@ -1,7 +1,13 @@
 #include "protocolinterpretor.h"
 
+
 ProtocolInterpretor::ProtocolInterpretor()
 {
+}
+
+void ProtocolInterpretor::initialize(NetworkObject *net_obj)
+{
+    protocolInputCommandBuilder.initialize(net_obj);
 }
 
 ProtocolCommand *ProtocolInterpretor::createInputCommand(QByteArray query, NetworkClient *networkClient)

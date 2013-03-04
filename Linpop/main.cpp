@@ -9,16 +9,14 @@ int main(int argc, char *argv[])
     //LoginWindow  lw;
 
     //lw.show();
-   //ContactWindow w;
-  // w.show();
-   //NetworkObject no(&w);
-    //no.initialize(5000);
+   NetworkObject no;
+    no.initialize(5000);
 
     ContactWindow w(&no);
-    ConversationWindow conv;
+    //ConversationWindow conv;
     no.setContactWindow(&w);
     w.show();
-    conv.show();
+    //conv.show();
    // NetworkObject no;
    // no.initialize(5000);
 

@@ -8,7 +8,7 @@ CORCommandMessageDeconnection::CORCommandMessageDeconnection()
 bool CORCommandMessageDeconnection::predicate(QByteArray query)
 {
     (void)query;
-    return true;
+    return false;
 }
 
 ProtocolCommand* CORCommandMessageDeconnection::build(QByteArray byteArray)

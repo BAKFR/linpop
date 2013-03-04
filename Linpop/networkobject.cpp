@@ -4,13 +4,14 @@
 #include "contactwindow.h"
 
 NetworkObject::NetworkObject(ContactWindow *ptrContactWindow)
+    : protocolInterpretor()
 {
     this->ptrContactWindow = ptrContactWindow;
 }
 
 bool NetworkObject::initialize(int port)
 {
-
+    protocolInterpretor.initialize(this);
     return networkServer.initialize(port, this);
 }
 
