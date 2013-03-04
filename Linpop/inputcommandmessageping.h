@@ -7,7 +7,9 @@ class InputCommandMessagePing : public ProtocolCommand
 {
 public:
     InputCommandMessagePing();
+    InputCommandMessagePing(const InputCommandMessagePing &ref);
     bool execute();
+    ProtocolCommand *clone();
 };
 
 #endif // INPUTCOMMANDMESSAGEPING_H

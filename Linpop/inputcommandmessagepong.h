@@ -7,7 +7,9 @@ class InputCommandMessagePong : public ProtocolCommand
 {
 public:
     InputCommandMessagePong();
-    bool execute();
+    InputCommandMessagePong(const InputCommandMessagePong &ref);
+    virtual bool execute();
+    virtual ProtocolCommand* clone();
 };
 
 #endif // INPUTCOMMANDMESSAGEPONG_H

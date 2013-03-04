@@ -7,7 +7,9 @@ class InputCommandMessageDeconnection : public ProtocolCommand
 {
 public:
     InputCommandMessageDeconnection();
+    InputCommandMessageDeconnection(const InputCommandMessageDeconnection &ref);
     bool execute();
+    ProtocolCommand *clone();
 };
 
 #endif // INPUTCOMMANDMESSAGEDECONNECTION_H

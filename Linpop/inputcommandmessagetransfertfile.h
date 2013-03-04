@@ -7,7 +7,9 @@ class InputCommandMessageTransfertFile : public ProtocolCommand
 {
 public:
     InputCommandMessageTransfertFile();
+    InputCommandMessageTransfertFile(const InputCommandMessageTransfertFile& ref);
     bool execute();
+    ProtocolCommand *clone();
 };
 
 #endif // INPUTCOMMANDMESSAGETRANSFERTFILE_H

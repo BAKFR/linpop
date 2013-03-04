@@ -7,7 +7,9 @@ class InputCommandMessageSend : public ProtocolCommand
 {
 public:
     InputCommandMessageSend();
+    InputCommandMessageSend(const InputCommandMessageSend &ref);
     bool execute();
+    ProtocolCommand *clone();
 };
 
 #endif // INPUTCOMMANDMESSAGESEND_H
