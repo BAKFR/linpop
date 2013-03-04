@@ -42,7 +42,8 @@ SOURCES += main.cpp\
     outputcommandmessageinvitation.cpp \
     outputcommandmessageping.cpp \
     outputcommandmessagepong.cpp \
-    outputcommandmessagesend.cpp
+    outputcommandmessagesend.cpp \
+    filetransfertupload.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -76,7 +77,8 @@ HEADERS  += loginwindow.h \
     outputcommandmessagejoin.h \
     outputcommandmessageinvitation.h \
     outputcommandmessagepong.h \
-    outputcommandmessageping.h
+    outputcommandmessageping.h \
+    filetransfertupload.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
