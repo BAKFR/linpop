@@ -44,6 +44,7 @@ SOURCES += main.cpp\
     outputcommandmessagepong.cpp \
     outputcommandmessagesend.cpp \
     filetransfertupload.cpp \
+    filetransfertdownload.cpp \
     contextualmenupopup.cpp \
     corcommandmessagedeconnection.cpp \
     corcommandmessagepong.cpp \
@@ -95,6 +96,7 @@ HEADERS  += loginwindow.h \
     outputcommandmessagepong.h \
     outputcommandmessageping.h \
     filetransfertupload.h \
+    filetransfertdownload.h \
     corcommandmessagedeconnection.h \
     corcommandmessagepong.h \
     corcommandmessagejoin.h \
