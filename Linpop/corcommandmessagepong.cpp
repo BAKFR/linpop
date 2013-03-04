@@ -7,7 +7,7 @@ CORCommandMessagePong::CORCommandMessagePong()
 
 bool CORCommandMessagePong::predicate(QByteArray query)
 {
-    return true;
+    return query.startsWith("PONG");
 }
 
 ProtocolCommand *CORCommandMessagePong::build(QByteArray query)

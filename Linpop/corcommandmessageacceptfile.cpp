@@ -7,10 +7,20 @@ CORCommandMessageAcceptFile::CORCommandMessageAcceptFile()
 
 bool CORCommandMessageAcceptFile::predicate(QByteArray query)
 {
-    return false;
+    return query.startsWith("ACCEPTFILE");
 }
 
+//  ACCEPTFILE:ID_CONV:OK|NO
 ProtocolCommand* CORCommandMessageAcceptFile::build(QByteArray query)
 {
-    return new InputCommandMessageAcceptFile();
+    ProtocolCommandParameter    p;
+
+    QList<QByteArray> args = query.split('\01');
+
+    p.addParamCommandConv(ProtocolCommandParamConv(args.at(1)));
+    p.addParamCommandText(ProtocolCommandParamText(args.at(2)));
+
+    InputCommandMessageAcceptFile *icmaf =  new InputCommandMessageAcceptFile();
+    icmaf->setProtocolCommandParameter(p);
+    return icmaf;
 }
