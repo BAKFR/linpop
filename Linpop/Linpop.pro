@@ -109,7 +109,7 @@ HEADERS  += loginwindow.h \
     inputcommandmessagesend.h \
     inputcommandmessagedeconnection.h \
     inputcommandmessageinvitation.h \
-    inputcommandmessagepong.h
+    inputcommandmessagepong.h \
     protocolcommandtype.h \
     protocolcommandexecutionmode.h \
     mainwindow.h
