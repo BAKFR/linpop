@@ -4,19 +4,23 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
+#include <iostream>
 
 class Database
 {
-    QSqlDatabase    bbd;
+    QSqlDatabase    bdd;
     QString         bddname;
     QString         username;
     QString         pwd;
     int             id_user;
 
 public:
-    Database();
-/*    int     initDatabase();
+    Database(QString otherBddname, QString otherUsername,
+             QString otherPwd, int otherId_user);
 
+    int                 openDatabase();
+    int                 closeDatabase();
+/*
     int                 getUser(QString &nickname, QString &pwd);
     QList<Contact>      getListContact(int &user);
     Contact             getContact(int &idUser, int &idContact);
@@ -33,7 +37,7 @@ public:
     int                 addConv(Conversation &conv);
     int                 deleteContact(Contact &contact);
     int                 getUser(Contact &contact, QString &nickname);
-
+*/
 
     QString getBddName();
     QString getUserName();
@@ -42,9 +46,8 @@ public:
 
     void    setBddName(QString &other);
     void    setUserName(QString &other);
-    void    setPwd(QString &pwd);
-    void    setIdUser(int &pwd);
-*/
+    void    setPwd(QString &other);
+    void    setIdUser(int &other);
 };
 
 #endif // DATABASE_H
