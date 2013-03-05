@@ -216,7 +216,7 @@ void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
             ConversationWindow *cw = createEmptyConversationWindow();
             cw->show();
             cw->setIDConv(idConv);
-            cw->addChatContact(client);
+            //cw->addChatContact(client);
             return;
         }
     }
