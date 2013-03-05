@@ -47,7 +47,8 @@ void    DownloadWindow::onDownloadError(const QString &msg)
 void    DownloadWindow::onDownloadProgress(int current_size, int total_size)
 {
     ui->label_question->setVisible(false);
-    ui->progressBar->setValue(100 * current_size / total_size);
+    int v = 100 * current_size / total_size;
+    ui->progressBar->setValue(v > 100 ? 100 : v);
 }
 
 void    DownloadWindow::onDownloadComplete()
