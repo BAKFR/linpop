@@ -11,11 +11,13 @@ OutputCommandMessagePong::OutputCommandMessagePong(const OutputCommandMessagePon
 
 bool OutputCommandMessagePong::execute()
 {
-    if (this->ptrInputNetworkClient != NULL)
+    if (this->ptrOutputNetworkClient != NULL)
     {
-        this->ptrInputNetworkClient->getTcpSocket()->write("PONG");
+        this->ptrOutputNetworkClient->getTcpSocket()->write("PONG\r\n");
+        return true;
     }
-    return true;
+    qDebug() << "We can't send PONG cmd: no output client to send !";
+    return false;
 }
 
 ProtocolCommand *OutputCommandMessagePong::clone()

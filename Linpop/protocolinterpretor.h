@@ -25,6 +25,7 @@ public:
     ProtocolCommand *createInputCommand(QByteArray query, NetworkClient *networkClient);
     ProtocolCommand *createOutputCommand(ProtocolCommandType type, NetworkClient *networkClient);
     bool executeCommand(ProtocolCommand *command);
+    ProtocolInputCommandBuilder &getProtocolInputCommandBuilder();
 };
 
 #endif // PROTOCOLINTERPRETOR_H

@@ -6,7 +6,7 @@
 #include "contextualmenupopup.h"
 
 ContactWindow::ContactWindow(NetworkObject *obj) :
-    ui(new Ui::ContactWindow)
+    ui(new Ui::ContactWindow), _network_object(obj)
 {
     ui->setupUi(this);
     ui->listContact->setContextMenuPolicy(Qt::CustomContextMenu);
