@@ -65,7 +65,9 @@ SOURCES += main.cpp\
     mainwindow.cpp \
     contact.cpp \
     conversation.cpp \
-    member.cpp
+    member.cpp \
+    log.cpp \
+    user.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -122,7 +124,9 @@ HEADERS  += loginwindow.h \
     contextualmenupopup.h \
     contact.h \
     conversation.h \
-    member.h
+    member.h \
+    log.h \
+    user.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
