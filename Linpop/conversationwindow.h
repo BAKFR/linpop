@@ -23,7 +23,7 @@ protected:
 public:
     QString getIDConv();
     NetworkClient *getClientByUsername(QString username);
-    explicit ConversationWindow(ContactWindow *parent = 0);
+    explicit ConversationWindow(ContactWindow *parent);
     void setIDConv(QString IDConv);
     void addChatContact(NetworkClient *client);
     bool isNetworkClientInConversation(NetworkClient *client);

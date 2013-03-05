@@ -14,7 +14,7 @@ ProtocolCommand *CORCommandMessageTransfertFile::build(QByteArray query)
 {
     ProtocolCommandParameter    p;
 
-    QList<QByteArray> args = query.split('\01');
+    QList<QByteArray> args = query.split(ProtocolCommand::separator);
 
     p.addParamCommandConv(ProtocolCommandParamConv(args.at(1)));
     p.addParamCommandFile(ProtocolCommandParamFile(args.at(3), args.at(2).toInt()));

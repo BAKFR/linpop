@@ -21,9 +21,9 @@ ContactWindow::~ContactWindow()
 
 ConversationWindow *ContactWindow::createEmptyConversationWindow()
 {
-    ConversationWindow* cw = new ConversationWindow();
+    ConversationWindow* cw = new ConversationWindow(this);
     this->listConversationWindow.append(cw);
-    return new ConversationWindow();
+    return cw;
 }
 
 void ContactWindow::setLoginWindow(QWidget *login)
@@ -166,3 +166,13 @@ void ContactWindow::on_pushButton_clicked()
     acw->setContactWindow(this);
     acw->show();
 }
+
+void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
+{
+    int i = idx.row();
+
+    // We need a contact, please :(
+    //for starting a conversation !
+    //TODO
+}
+

@@ -7,14 +7,14 @@ CORCommandMessageSend::CORCommandMessageSend()
 
 bool CORCommandMessageSend::predicate(QByteArray query)
 {
-    return false;
+    return query.startsWith("SEND");;
 }
 
 ProtocolCommand *CORCommandMessageSend::build(QByteArray query)
 {
     ProtocolCommandParameter    p;
 
-    QList<QByteArray> args = query.split('\01');
+    QList<QByteArray> args = query.split(ProtocolCommand::separator);
 
     p.addParamCommandConv(ProtocolCommandParamConv(args.at(1)));
     p.addParamCommandText(ProtocolCommandParamText(args.at(2)));

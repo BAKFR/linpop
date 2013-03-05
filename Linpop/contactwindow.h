@@ -4,6 +4,7 @@
 #include "conversationwindow.h"
 #include <QMainWindow>
 #include <QTcpSocket>
+#include <QModelIndex>
 
 namespace Ui {
 class ContactWindow;
@@ -45,6 +46,8 @@ private slots:
     void on_listContact_customContextMenuRequested(const QPoint &pos);
     
     void on_pushButton_clicked();
+
+    void on_listContact_doubleClicked(QModelIndex);
 
 private:
     Ui::ContactWindow *ui;

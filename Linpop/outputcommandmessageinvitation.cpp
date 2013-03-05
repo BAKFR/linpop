@@ -18,12 +18,12 @@ QString OutputCommandMessageInvitation::concatIpAndUsernames(QList<ProtocolComma
     {
         if (first)
         {
-            concat+=list.at(i).getIP()+ProtocolCommand::separator_telnet+list.at(i).getUsername();
+            concat+=list.at(i).getIP()+ProtocolCommand::separator+list.at(i).getUsername();
             first = false;
         }
         else
         {
-            concat+="\01"+list.at(i).getIP()+ProtocolCommand::separator_telnet+list.at(i).getUsername();
+		  concat += ProtocolCommand::separator + list.at(i).getIP()+ProtocolCommand::separator+list.at(i).getUsername();
         }
         i++;
     }
@@ -32,8 +32,8 @@ QString OutputCommandMessageInvitation::concatIpAndUsernames(QList<ProtocolComma
 
 bool OutputCommandMessageInvitation::execute()
 {
-    QString invite = "INVITE"+ProtocolCommand::separator_telnet + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()
-            + ProtocolCommand::separator_telnet + concatIpAndUsernames(protocolCommandParameter.getListProtocolCommandParamUser()) + "\r\n";
+    QString invite = QString("INVITE") + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()
+            + ProtocolCommand::separator + concatIpAndUsernames(protocolCommandParameter.getListProtocolCommandParamUser()) + "\r\n";
     return ptrOutputNetworkClient->getTcpSocket()->write(invite.toUtf8()) > 0;
 }
 

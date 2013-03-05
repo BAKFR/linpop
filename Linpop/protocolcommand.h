@@ -18,8 +18,7 @@ protected:
     bool validity;
     ProtocolCommandParameter protocolCommandParameter;
 public:
-    static QString separator;
-    static QString separator_telnet;
+    static char separator;
     virtual bool execute()=0;
     ProtocolCommand();
     void setExecutionMode(ProtocolCommandExecutionMode executionMode);

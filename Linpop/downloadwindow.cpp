@@ -71,6 +71,7 @@ void DownloadWindow::on_buttonBox_accepted()
         connect(ft_download, SIGNAL(error(QString)), this, SLOT(onDownloadError(QString)));
         connect(ft_download, SIGNAL(progress(int,int)), this, SLOT(onDownloadProgress(int,int)));
 
+        ui->label_question->setVisible(false);
         ui->buttonBox->setStandardButtons(QDialogButtonBox::Abort);
     }
     delete file_window;

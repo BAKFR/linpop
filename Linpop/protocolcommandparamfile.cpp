@@ -1,6 +1,6 @@
 #include "protocolcommandparamfile.h"
 
-ProtocolCommandParamFile::ProtocolCommandParamFile(const QString &string, int size)
+ProtocolCommandParamFile::ProtocolCommandParamFile(const QString &name, int size)
 {
     this->name = name;
     this->size = size;

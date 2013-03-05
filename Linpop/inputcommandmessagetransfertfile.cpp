@@ -21,10 +21,11 @@ bool InputCommandMessageTransfertFile::execute()
             ->getConvById(protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID());
 
     if (conv_win) {
-        new DownloadWindow(conv_win, ptrContactWindow->getNetworkObject(),
-                           ptrInputNetworkClient,
-                           protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName(),
-                           protocolCommandParameter.getListProtocolCommandParamFile().at(0).getSize());
+        DownloadWindow *dl_win = new DownloadWindow(conv_win, ptrContactWindow->getNetworkObject(),
+                                                   ptrInputNetworkClient,
+                                                   protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName(),
+                                                   protocolCommandParameter.getListProtocolCommandParamFile().at(0).getSize());
+        dl_win->show();
         return true;
     }
     return false;

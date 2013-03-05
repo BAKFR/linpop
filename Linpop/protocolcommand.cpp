@@ -1,7 +1,6 @@
 #include "protocolcommand.h"
 
-QString ProtocolCommand::separator = "\01";
-QString ProtocolCommand::separator_telnet = ":";
+char ProtocolCommand::separator = ':';
 
 ProtocolCommand::ProtocolCommand()
     : ptrOutputNetworkClient(NULL), ptrInputNetworkClient(NULL),

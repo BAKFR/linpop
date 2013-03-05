@@ -45,6 +45,8 @@ ProtocolCommand *ProtocolInputCommandBuilder::build(QByteArray query, NetworkCli
     else
     {
         ProtocolCommand *command = this->ptrCORProtocolInputCommandBuilder->find(query);
+        if (!command)
+            return NULL;
         command->setContactWindow(this->networkObject->getContactWindow());
         command->setInputNetworkClient(client);
         return command;

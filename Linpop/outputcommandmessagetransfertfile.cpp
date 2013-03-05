@@ -11,9 +11,9 @@ OutputCommandMessageTransfertFile::OutputCommandMessageTransfertFile(const Outpu
 
 bool OutputCommandMessageTransfertFile::execute()
 {
-    return ptrOutputNetworkClient->getTcpSocket()->write((QString("FILE"+ProtocolCommand::separator_telnet) + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()
-                                                          + ProtocolCommand::separator_telnet + QString::number(protocolCommandParameter.getListProtocolCommandParamFile().at(0).getSize())
-                                                          + ProtocolCommand::separator_telnet + protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName()).toUtf8()) > 0;
+    return ptrOutputNetworkClient->getTcpSocket()->write((QString("FILE") + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()
+                                                          + ProtocolCommand::separator + QString::number(protocolCommandParameter.getListProtocolCommandParamFile().at(0).getSize())
+                                                          + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName()).toUtf8()) > 0;
 }
 
 ProtocolCommand *OutputCommandMessageTransfertFile::clone()

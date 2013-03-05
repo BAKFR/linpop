@@ -90,6 +90,7 @@ void    ConversationWindow::on_sendButton_clicked()
     ProtocolCommandParameter p;
     p.addParamCommandConv(ProtocolCommandParamConv(this->IDConv));
     p.addParamCommandText(ProtocolCommandParamText(this->ui->lineEdit->text()+"\r\n"));
+    command->setProtocolCommandParameter(p);
     broadcast(command);
 }
 
