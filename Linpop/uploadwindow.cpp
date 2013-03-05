@@ -9,6 +9,7 @@
 
 UploadWindow::UploadWindow(ConversationWindow *parent, const QString &file) :
     QDialog(parent),
+    _conv_win(parent),
     ui(new Ui::UploadWindow)
 {
     QFileInfo   info(file);
@@ -27,6 +28,7 @@ UploadWindow::~UploadWindow()
 {
     delete ft_upload;
     delete ui;
+    _conv_win->setUploadWindow(NULL);
 }
 
 void    UploadWindow::onUploadComplete(int nb_ok, int nb_error, int nb_total)
@@ -64,3 +66,15 @@ void UploadWindow::on_buttonBox_rejected()
     if (ft_upload != NULL)
         ft_upload->stop();
 }
+
+
+
+void UploadWindow::onAcceptFile(int port, NetworkClient *client)
+{
+    if (port == 0) {   //NO!
+        //what ?
+        //remove socket ?
+    }
+    //TODO
+}
+

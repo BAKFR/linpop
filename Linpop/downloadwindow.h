@@ -9,6 +9,7 @@ class DownloadWindow;
 
 class ConversationWindow;
 class NetworkObject;
+class NetworkClient;
 class FileTransfertDownload;
 
 class DownloadWindow : public QDialog
@@ -16,7 +17,7 @@ class DownloadWindow : public QDialog
     Q_OBJECT
     
 public:
-    explicit DownloadWindow(ConversationWindow *parent, NetworkObject *net_obj, const QString &filename, int size);
+    explicit DownloadWindow(ConversationWindow *parent, NetworkObject *net_obj, NetworkClient *target, const QString &filename, int size);
     ~DownloadWindow();
     
 public slots:
@@ -31,6 +32,10 @@ public slots:
 private:
     Ui::DownloadWindow      *ui;
     FileTransfertDownload   *ft_download;
+    QString                 _conv_id;
+    NetworkObject           *_net_obj;
+    NetworkClient           *_target;
+    int                     _size;
 };
 
 #endif // DOWNLOADWINDOW_H

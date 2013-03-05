@@ -3,16 +3,19 @@
 #include "filetransfertdownload.h"
 
 #include "conversationwindow.h"
+#include <QFileDialog>
 
 /*
  * When ft_download is NULL, we wait for user choice.
  * When ft_download is set, file is downloading (or waiting for download)
  */
 
-DownloadWindow::DownloadWindow(ConversationWindow *parent, NetworkObject *net_obj, const QString &filename, int size) :
+DownloadWindow::DownloadWindow(ConversationWindow *parent, NetworkObject *net_obj, NetworkClient *target, const QString &filename, int size) :
     QDialog(parent),
-    ui(new Ui::DownloadWindow), ft_download(NULL)
+    ui(new Ui::DownloadWindow), ft_download(NULL), _conv_id(parent->getIDConv()), _net_obj(net_obj), _size(size)
 {
+    _target = target;
+
     ui->setupUi(this);
     ui->label_fileName->setText(filename + " (" + QString::number(size) + " octets)");
     ui->progressBar->setVisible(false);
@@ -57,8 +60,20 @@ void DownloadWindow::on_buttonBox_accepted()
 {
     // user choose to start download !
 
-    ft_download = new FileTransfertDownload();              //TODO: response YES
-    ui->buttonBox->setStandardButtons(QDialogButtonBox::Abort);
+    QFileDialog *file_window = new QFileDialog(this, "Select a file to upload");
+    file_window->setAcceptMode(QFileDialog::AcceptSave);
+    if (file_window->exec() == 1) {
+        //A file is choosen.
+
+        ft_download = new FileTransfertDownload(_net_obj, _conv_id, _target, file_window->selectedFiles().at(0), _size);
+        connect(ft_download, SIGNAL(start()), this, SLOT(onDownloadStart()));
+        connect(ft_download, SIGNAL(complete()), this, SLOT(onDownloadComplete()));
+        connect(ft_download, SIGNAL(error(QString)), this, SLOT(onDownloadError(QString)));
+        connect(ft_download, SIGNAL(progress(int,int)), this, SLOT(onDownloadProgress(int,int)));
+
+        ui->buttonBox->setStandardButtons(QDialogButtonBox::Abort);
+    }
+    delete file_window;
 }
 
 void DownloadWindow::on_buttonBox_rejected()
@@ -69,6 +84,6 @@ void DownloadWindow::on_buttonBox_rejected()
     } else {
         //user refuse download.
 
-                                                            //TODO: response NO
+        FileTransfertDownload::reject(_net_obj, _conv_id, _target);
     }
 }
