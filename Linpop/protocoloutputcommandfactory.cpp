@@ -53,6 +53,7 @@ ProtocolCommand *ProtocolOutputCommandFactory::build(ProtocolCommandType type, N
     if (command != NULL)
     {
         command->setContactWindow(this->networkObject->getContactWindow());
+        command->setOutputNetworkClient(ptrDestinationOutputNetworkClient);
     }
     return command;
 }
