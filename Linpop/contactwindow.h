@@ -23,7 +23,7 @@ public:
     ConversationWindow *getConvById(const QString &id);
     void setLoginWindow(QWidget *);
     void addContact(QString name, QString ip);
-
+    void deleteContact();
 private slots:
 
     void on_actionDisconnect_triggered();
@@ -38,6 +38,8 @@ private slots:
 
     void on_listContact_customContextMenuRequested(const QPoint &pos);
     
+    void on_pushButton_clicked();
+
 private:
     Ui::ContactWindow *ui;
     QWidget           *lw;

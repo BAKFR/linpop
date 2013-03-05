@@ -10,7 +10,7 @@ void ProtocolCommandParamText::setText(QString text)
     this->text = text;
 }
 
-QString ProtocolCommandParamText::getText()
+QString ProtocolCommandParamText::getText() const
 {
     return this->text;
 }

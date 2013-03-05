@@ -1,3 +1,4 @@
+#include <iostream>
 #include "contactwindow.h"
 #include "conversationwindow.h"
 #include "ui_contactwindow.h"
@@ -9,6 +10,7 @@ ContactWindow::ContactWindow(NetworkObject *obj) :
 {
     ui->setupUi(this);
     ui->listContact->setContextMenuPolicy(Qt::CustomContextMenu);
+
 }
 
 ContactWindow::~ContactWindow()
@@ -28,8 +30,24 @@ void ContactWindow::setLoginWindow(QWidget *login)
 
 void ContactWindow::addContact(QString name, QString ip)
 {
-    //db->addContact(name, ip);
-    ui->listContact->addItem(name + "\n" + ip);
+    //if (db->addContact(name, ip) == true)
+    //{
+    ui->listContact->addItem(name + "\t" + ip);
+    //Test ping
+    //if (this->_network_object->Ping(name, ip) == true)
+        ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon("./../Images/rond_vert.png"));
+    //else
+       // ui->listContact->item(0)->setIcon(QIcon("./../Images/rond_rouge.png"));
+    //}
+    //else
+    //Erreur
+ }
+
+void ContactWindow::deleteContact()
+{
+    std::cout << "ERREUR DELETE" << std::endl;
+    ui->listContact->takeItem(ui->listContact->row(ui->listContact->currentItem()));
+
 }
 
 void ContactWindow::on_actionDisconnect_triggered()
@@ -76,4 +94,11 @@ ConversationWindow *ContactWindow::getConvById(const QString &id)
 {
     //TODO !!!!
     return NULL;
+}
+
+void ContactWindow::on_pushButton_clicked()
+{
+    AddContactWindow *acw = new AddContactWindow;
+    acw->setContactWindow(this);
+    acw->show();
 }

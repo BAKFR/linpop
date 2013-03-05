@@ -10,9 +10,10 @@ ContextualMenuPopup::ContextualMenuPopup(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void    ContextualMenuPopup::InitMenu(QPoint globalpos, QWidget *cw)
+void    ContextualMenuPopup::InitMenu(QPoint globalpos, ContactWindow *_cw)
 {
-    QMenu menu(cw);
+    this->cw = _cw;
+    QMenu menu(this->cw);
 
     this->history = new QAction("History", this);
     menu.addAction(this->history);
@@ -22,7 +23,7 @@ void    ContextualMenuPopup::InitMenu(QPoint globalpos, QWidget *cw)
     menu.addAction(this->del);
     connect(this->history, SIGNAL(triggered()), this, SLOT(History()));
     connect(this->setting, SIGNAL(triggered()), this, SLOT(SetContact()));
-    connect(this->setting, SIGNAL(triggered()), this, SLOT(DeleteContact()));
+    connect(this->del, SIGNAL(triggered()), this, SLOT(DeleteContact()));
     menu.exec(globalpos);
 }
 
@@ -38,7 +39,7 @@ void    ContextualMenuPopup::SetContact()
 
 void    ContextualMenuPopup::DeleteContact()
 {
-    std::cout << "Delete" << std::endl;
+    this->cw->deleteContact();
 }
 
 ContextualMenuPopup::~ContextualMenuPopup()

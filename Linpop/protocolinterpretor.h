@@ -8,9 +8,11 @@
 #include "protocolinputcommandbuilder.h"
 #include <QByteArray>
 
+
 class ProtocolCommand;
 enum ProtocolCommandType;
 class NetworkClient;
+class NetworkObject;
 
 class ProtocolInterpretor
 {
@@ -19,6 +21,7 @@ protected:
     ProtocolInputCommandBuilder protocolInputCommandBuilder;
 public:
     ProtocolInterpretor();
+    void initialize(NetworkObject *net_obj);
     ProtocolCommand *createInputCommand(QByteArray query, NetworkClient *networkClient);
     ProtocolCommand *createOutputCommand(ProtocolCommandType type, NetworkClient *networkClient);
     bool executeCommand(ProtocolCommand *command);

@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'contactwindow.ui'
 **
-** Created: Mon Mar 4 00:54:51 2013
-**      by: Qt User Interface Compiler version 4.8.1
+** Created: Tue Mar 5 03:33:30 2013
+**      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -19,6 +19,7 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
+#include <QtGui/QPushButton>
 #include <QtGui/QStatusBar>
 #include <QtGui/QWidget>
 
@@ -34,6 +35,7 @@ public:
     QAction *actionHistory;
     QWidget *centralwidget;
     QListWidget *listContact;
+    QPushButton *boutonAddContact;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuOptions;
@@ -63,7 +65,10 @@ public:
         QListWidgetItem *__qlistwidgetitem = new QListWidgetItem(listContact);
         __qlistwidgetitem->setIcon(icon);
         listContact->setObjectName(QString::fromUtf8("listContact"));
-        listContact->setGeometry(QRect(10, 10, 211, 271));
+        listContact->setGeometry(QRect(40, 10, 181, 271));
+        boutonAddContact = new QPushButton(centralwidget);
+        boutonAddContact->setObjectName(QString::fromUtf8("boutonAddContact"));
+        boutonAddContact->setGeometry(QRect(0, 250, 31, 27));
         ContactWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ContactWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -105,6 +110,7 @@ public:
         ___qlistwidgetitem->setText(QApplication::translate("ContactWindow", "test 127.0.0.1", 0, QApplication::UnicodeUTF8));
         listContact->setSortingEnabled(__sortingEnabled);
 
+        boutonAddContact->setText(QApplication::translate("ContactWindow", "+", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("ContactWindow", "File", 0, QApplication::UnicodeUTF8));
         menuOptions->setTitle(QApplication::translate("ContactWindow", "Options", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
