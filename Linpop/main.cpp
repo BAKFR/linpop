@@ -10,8 +10,11 @@ int main(int argc, char *argv[])
     LoginWindow  lw;
 
     // TEST DATABASE ON
-    Database    db = Database("linpop_bdd_test", "Mirozh", "qwerty", 1);
+    Database    db = Database("./../bdd_linpop_test.bdd", "Mirozh", "qwerty", 1);
+    User        user1 = User(1, "Mirozh", "qwerty");
+
     db.openDatabase();
+    db.addUser(user1);
     db.closeDatabase();
     std::cout << std::flush;
     // TEST DATABASE OFF
