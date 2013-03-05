@@ -3,6 +3,7 @@
 
 #include "conversationwindow.h"
 #include <QMainWindow>
+#include <QTcpSocket>
 
 namespace Ui {
 class ContactWindow;
@@ -25,7 +26,7 @@ public:
     void addContact(QString name, QString ip);
     void deleteContact();
     void setContact(QString name, QString ip);
-    QString TestPing(QString user_name, QString ip);
+    QString TestPing(QString ip);
     QString getName(QString text = "");
     QString getIp(QString text = "");
 

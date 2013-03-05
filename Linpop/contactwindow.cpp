@@ -4,6 +4,7 @@
 #include "ui_contactwindow.h"
 #include "addcontactwindow.h"
 #include "contextualmenupopup.h"
+#include "networkclient.h"
 
 ContactWindow::ContactWindow(NetworkObject *obj) :
     ui(new Ui::ContactWindow), _network_object(obj)
@@ -28,14 +29,20 @@ void ContactWindow::setLoginWindow(QWidget *login)
     lw = login;
 }
 
-QString ContactWindow::TestPing(QString user_name, QString ip)
+QString ContactWindow::TestPing(QString ip)
 {
     //Test ping
-    //if (this->_network_object->Ping(name, ip) == true)
-        return ("./../Images/rond_vert.png");
-    //else
-        //return ("./../Images/rond_rouge.png");
+    QTcpSocket  *client = new QTcpSocket;
+    NetworkClient *newclient = new NetworkClient;
 
+    client->connectToHost(ip, 4242);
+    if (client->waitForConnected(1000))
+    {
+        newclient->initialize(this->_network_object, client);
+        return ("./../Images/rond_vert.png");
+    }
+    else
+        return ("./../Images/rond_rouge.png");
 }
 
 void ContactWindow::addContact(QString name, QString ip)
@@ -43,8 +50,8 @@ void ContactWindow::addContact(QString name, QString ip)
     //if (db->addContact(name, ip) == true)
     //{
     ui->listContact->addItem(name + "\t" + ip);
-
-    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(name, ip)));
+    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon("./../Images/rond_rouge.png"));
+    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
     //}
     //else
     //Erreur
@@ -60,7 +67,8 @@ void ContactWindow::setContact(QString user_name, QString ip)
 {
    // db->setContact(db.getContact(ui->listContact->currentItem()->text()), user_name, ip);
     ui->listContact->currentItem()->setText(user_name + "\t" + ip);
-    ui->listContact->currentItem()->setIcon(QIcon(TestPing(user_name, ip)));
+    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon("./../Images/rond_rouge.png"));
+    ui->listContact->currentItem()->setIcon(QIcon(TestPing(ip)));
 }
 
 QString ContactWindow::getName(QString text)

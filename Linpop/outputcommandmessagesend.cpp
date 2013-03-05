@@ -12,7 +12,13 @@ OutputCommandMessageSend::OutputCommandMessageSend(const OutputCommandMessageSen
 
 bool OutputCommandMessageSend::execute()
 {
-    return true;
+    if (this->ptrOutputNetworkClient != NULL)
+    {
+        this->ptrOutputNetworkClient->getTcpSocket()->write("");
+        return true;
+    }
+    qDebug() << "We can't send SEND cmd: no output client to send !";
+    return false;
 }
 
 ProtocolCommand *OutputCommandMessageSend::clone()

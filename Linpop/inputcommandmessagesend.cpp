@@ -11,6 +11,7 @@ InputCommandMessageSend::InputCommandMessageSend(const InputCommandMessageSend &
 
 bool InputCommandMessageSend::execute()
 {
+    qDebug() << "Une commande Send vient d'etre reçue !";
     return true;
 }
 
