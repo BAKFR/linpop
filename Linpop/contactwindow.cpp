@@ -20,6 +20,8 @@ ContactWindow::~ContactWindow()
 
 ConversationWindow *ContactWindow::createEmptyConversationWindow()
 {
+    ConversationWindow* cw = new ConversationWindow();
+    this->listConversationWindow.append(cw);
     return new ConversationWindow();
 }
 
@@ -41,6 +43,7 @@ void ContactWindow::addContact(QString name, QString ip)
     //}
     //else
     //Erreur
+
  }
 
 void ContactWindow::deleteContact()
@@ -92,7 +95,15 @@ NetworkObject *ContactWindow::getNetworkObject()
 
 ConversationWindow *ContactWindow::getConvById(const QString &id)
 {
-    //TODO !!!!
+    int i = 0;
+    while (i < this->listConversationWindow.size())
+    {
+        if (this->listConversationWindow.at(i)->getIDConv() == id)
+        {
+            return this->listConversationWindow.at(i);
+        }
+        i++;
+    }
     return NULL;
 }
 

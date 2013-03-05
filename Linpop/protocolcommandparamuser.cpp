@@ -11,7 +11,7 @@ void ProtocolCommandParamUser::setUsername(QString username)
     this->username = username;
 }
 
-QString ProtocolCommandParamUser::getUsername()
+QString ProtocolCommandParamUser::getUsername() const
 {
     return this->username;
 }
@@ -21,7 +21,7 @@ void ProtocolCommandParamUser::setIP(QString ip)
     this->ip = ip;
 }
 
-QString ProtocolCommandParamUser::getIP()
+QString ProtocolCommandParamUser::getIP() const
 {
     return this->ip;
 }
