@@ -91,6 +91,7 @@ void NetworkObject::addNetworkClient(NetworkClient *networkClient)
 void NetworkObject::setContactWindow(ContactWindow *win)
 {
     ptrContactWindow = win;
+    protocolInterpretor.getProtocolInputCommandBuilder().initialize(this);
 }
 
 ProtocolInterpretor &NetworkObject::getProtocolInterpretor()

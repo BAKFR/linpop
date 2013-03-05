@@ -3,9 +3,9 @@
 
 
 ProtocolCommand::ProtocolCommand()
-    : validity(true)
+    : ptrOutputNetworkClient(NULL), ptrInputNetworkClient(NULL),
+      ptrContactWindow(NULL), validity(true)
 {
-  this->ptrContactWindow = NULL;
 }
 
 void ProtocolCommand::setExecutionMode(ProtocolCommandExecutionMode executionMode)
