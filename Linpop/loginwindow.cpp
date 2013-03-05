@@ -42,8 +42,8 @@ void    LoginWindow::InitLogin()
     this->cw = new ContactWindow(no);
     no->setContactWindow(this->cw);
     this->no->initialize(5000);
-    this->db = new Database("linpop_bdd_test", "", "", 1);
-    db->openDatabase();
+    //this->db = new Database("linpop_bdd_test", "", "", 1);
+    //db->openDatabase();
     //Masque l'affichage du champ password
     ui->password->setEchoMode(QLineEdit::Password);
 }

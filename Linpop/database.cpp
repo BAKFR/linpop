@@ -15,7 +15,7 @@ int         Database::openDatabase()
 
     this->bdd = QSqlDatabase::addDatabase("QSQLITE");
 //    this->bdd.setDatabaseName(this->bddname);
-    this->bdd.setDatabaseName("TESTINUTILE.bd");
+    this->bdd.setDatabaseName("./../bdd_linpop_test.db");
 
     if (this->bdd.open() == true)
     {
@@ -114,8 +114,8 @@ int                 Database::addUser(User &user)
     int             error = 1;
 
     statement = "INSERT INTO User (Id, Username, Password) VALUES(";
-    statement += QString::number(user.getIdUser()).toStdString() + ", " + user.getUserName().toStdString();
-    statement += ", " + user.getPassword().toStdString() + ");";
+    statement += QString::number(user.getIdUser()).toStdString() + ", '" + user.getUserName().toStdString();
+    statement += "', '" + user.getPassword().toStdString() + "');";
 
 /*    query.prepare("INSERT INTO User (Id, Username, Password)"
                   "VALUES (:id, :username, :password)");
