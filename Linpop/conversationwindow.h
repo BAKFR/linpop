@@ -28,6 +28,9 @@ public:
     void setUploadWindow(UploadWindow *ptr);
 
     void    broadcast(ProtocolCommand *cmd);
+
+    void    AddText(QString message);
+    QString getText();
     
 private:
     Ui::ConversationWindow *ui;

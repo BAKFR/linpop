@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "contactwindow.h"
 #include "networkobject.h"
+#include "database.h"
 
 namespace Ui {
 class LoginWindow;
@@ -13,7 +14,7 @@ class LoginWindow : public QMainWindow
 {
     Q_OBJECT
 
-    //DatabaseObject    *db
+    Database          *db;
     ContactWindow     *cw;
     NetworkObject     *no;
 

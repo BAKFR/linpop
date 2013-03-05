@@ -73,3 +73,13 @@ void ConversationWindow::setUploadWindow(UploadWindow *ptr)
 {
     _upload_window = ptr;
 }
+
+void    ConversationWindow::AddText(QString message)
+{
+    ui->textEdit->setHtml(message + " \r\n" + ui->textEdit->toHtml());
+}
+
+QString    ConversationWindow::getText()
+{
+    return (ui->lineEdit->text());
+}
