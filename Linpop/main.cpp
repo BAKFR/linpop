@@ -2,11 +2,19 @@
 #include "loginwindow.h"
 #include "networkobject.h"
 #include "conversationwindow.h"
+#include "database.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     LoginWindow  lw;
+
+    // TEST DATABASE ON
+    Database    db = Database("linpop_bdd_test", "Mirozh", "qwerty", 1);
+    db.openDatabase();
+    db.closeDatabase();
+    std::cout << std::flush;
+    // TEST DATABASE OFF
 
     lw.show();
    //ContactWindow w;
