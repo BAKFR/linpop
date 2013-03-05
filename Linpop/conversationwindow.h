@@ -24,6 +24,9 @@ public:
     ContactWindow *getContactWindow();
 
     void    broadcast(ProtocolCommand *cmd);
+
+    void    AddText(QString message);
+    QString getText();
     
 private:
     Ui::ConversationWindow *ui;

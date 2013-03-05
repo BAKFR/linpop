@@ -59,3 +59,13 @@ void    ConversationWindow::broadcast(ProtocolCommand *cmd)
 
     delete cmd;
 }
+
+void    ConversationWindow::AddText(QString message)
+{
+    ui->textEdit->setHtml(message + " \r\n" + ui->textEdit->toHtml());
+}
+
+QString    ConversationWindow::getText()
+{
+    return (ui->lineEdit->text());
+}

@@ -11,7 +11,12 @@ InputCommandMessageSend::InputCommandMessageSend(const InputCommandMessageSend &
 
 bool InputCommandMessageSend::execute()
 {
-    qDebug() << "Une commande Send vient d'etre reçue !";
+    QString message;
+
+    ConversationWindow *conv_win = ptrContactWindow
+            ->getConvById(protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID());
+    message = this->ptrInputNetworkClient->getUsername() + " dit : " + protocolCommandParameter.getListProtocolCommandParamText().at(0).getText();
+    conv_win->AddText(message);
     return true;
 }
 
