@@ -130,7 +130,11 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>800</width>
+<<<<<<< HEAD
+     <height>21</height>
+=======
      <height>24</height>
+>>>>>>> e38aade0d35f87b755a6f3cf3ec439c43ccf3e3a
     </rect>
    </property>
   </widget>

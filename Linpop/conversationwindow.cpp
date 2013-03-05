@@ -7,7 +7,9 @@
 #include "networkobject.h"
 
 #include <QFileDialog>
+#include <QListWidget>
 #include <QDebug>
+#include <QLineEdit>
 
 ConversationWindow::ConversationWindow(ContactWindow *parent) :
     QMainWindow(parent), _contact_window(parent),
@@ -50,17 +52,75 @@ ContactWindow *ConversationWindow::getContactWindow()
     return _contact_window;
 }
 
+void ConversationWindow::addChatContact(NetworkClient *client)
+{
+    listClient.append(client);
+    this->ui->contactList->addItem(client->getUsername() + " " + client->getIP());
+}
+
+bool ConversationWindow::isNetworkClientInConversation(NetworkClient *client)
+{
+    int i = 0;
+    while (i < this->listClient.size())
+    {
+        if (listClient.at(i) == client)
+            return true;
+        i++;
+    }
+    return false;
+}
+
+NetworkClient *ConversationWindow::getClientByIP(QString ip)
+{
+    int i = 0;
+    while (i < this->listClient.size())
+    {
+        if (listClient.at(i)->getIP() == ip)
+            return listClient.at(i);
+        i++;
+    }
+    return NULL;
+}
+
+void    ConversationWindow::on_sendButton_clicked()
+{
+    ProtocolInterpretor &refProtocolInterpretor = _contact_window->getNetworkObject()->getProtocolInterpretor();
+
+    ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_SEND, NULL);
+    ProtocolCommandParameter p;
+    p.addParamCommandConv(ProtocolCommandParamConv(this->IDConv));
+    p.addParamCommandText(ProtocolCommandParamText(this->ui->lineEdit->text()+"\r\n"));
+    broadcast(command);
+}
+
+NetworkClient *ConversationWindow::getClientByUsername(QString username)
+{
+    int i = 0;
+    while (i < this->listClient.size())
+    {
+        if (listClient.at(i)->getUsername() == username)
+            return listClient.at(i);
+        i++;
+    }
+    return NULL;
+}
+
+void ConversationWindow::setIDConv(QString IDConv)
+{
+   this->IDConv = IDConv;
+}
+
 void    ConversationWindow::broadcast(ProtocolCommand *cmd)
 {
-
-    for (;false;)   //TODO: pour chaque NetworkClient !
+    int i = 0;
+    while (i < this->listClient.size())
     {
         ProtocolCommand *cmdCopy = cmd->clone();
 
-        cmdCopy->setOutputNetworkClient(NULL);
+        cmdCopy->setOutputNetworkClient(this->listClient.at(i));
         _contact_window->getNetworkObject()->getProtocolInterpretor().executeCommand(cmdCopy);
+        i++;
     }
-
     delete cmd;
 }
 

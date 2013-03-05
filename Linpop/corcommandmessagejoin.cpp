@@ -5,12 +5,20 @@ CORCommandMessageJoin::CORCommandMessageJoin()
 {
 }
 
-bool CORCommandMessageJoin::predicate(QByteArray array)
+bool CORCommandMessageJoin::predicate(QByteArray query)
 {
-    return false;
+    return query.startsWith("JOIN");
 }
 
 ProtocolCommand *CORCommandMessageJoin::build(QByteArray query)
 {
-    return new InputCommandMessageJoin();
+    ProtocolCommandParameter    p;
+
+    QList<QByteArray> args = query.split('\01');
+
+    p.addParamCommandConv(ProtocolCommandParamConv(args.at(1)));
+
+    InputCommandMessageJoin *join =  new InputCommandMessageJoin();
+    join->setProtocolCommandParameter(p);
+    return join;
 }

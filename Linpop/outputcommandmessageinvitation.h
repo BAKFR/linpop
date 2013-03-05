@@ -9,6 +9,7 @@ public:
     OutputCommandMessageInvitation();
     OutputCommandMessageInvitation(const OutputCommandMessageInvitation &ref);
     virtual bool execute();
+    QString concatIpAndUsernames(QList<ProtocolCommandParamUser> &list);
     virtual ProtocolCommand *clone();
 };
 

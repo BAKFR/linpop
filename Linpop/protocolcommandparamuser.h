@@ -10,9 +10,9 @@ class ProtocolCommandParamUser
 public:
     ProtocolCommandParamUser(QString username, QString ip);
     void setUsername(QString username);
-    QString getUsername();
+    QString getUsername() const;
     void setIP(QString ip);
-    QString getIP();
+    QString getIP() const;
 };
 
 #endif // PROTOCOLCOMMANDPARAMUSER_H

@@ -11,7 +11,8 @@ OutputCommandMessageJoin::OutputCommandMessageJoin(const OutputCommandMessageJoi
 
 bool OutputCommandMessageJoin::execute()
 {
-    return true;
+    QString command = "JOIN" + ProtocolCommand::separator_telnet + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()+"\r\n";
+    return ptrOutputNetworkClient->getTcpSocket()->write(command.toAscii()) > 0;
 }
 
 ProtocolCommand *OutputCommandMessageJoin::clone()

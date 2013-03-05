@@ -50,6 +50,7 @@ private:
     Ui::ContactWindow *ui;
     QWidget           *lw;
     NetworkObject       *_network_object;
+    QList<ConversationWindow *> listConversationWindow;
     //DatabaseObject  *db;
 };
 

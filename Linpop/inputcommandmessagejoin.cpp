@@ -11,7 +11,14 @@ InputCommandMessageJoin::InputCommandMessageJoin(const InputCommandMessageJoin& 
 
 bool InputCommandMessageJoin::execute()
 {
-    return true;
+    ConversationWindow *conv_win = ptrContactWindow
+            ->getConvById(protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID());
+
+    if (conv_win) {
+        conv_win->addChatContact(this->ptrInputNetworkClient);
+        return true;
+    }
+    return false;
 }
 
 ProtocolCommand* InputCommandMessageJoin::clone()

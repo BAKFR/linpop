@@ -16,7 +16,6 @@ bool OutputCommandMessagePong::execute()
         this->ptrOutputNetworkClient->getTcpSocket()->write("PONG\r\n");
         return true;
     }
-    qDebug() << "We can't send PONG cmd: no output client to send !";
     return false;
 }
 
