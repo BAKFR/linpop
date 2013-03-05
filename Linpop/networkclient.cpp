@@ -31,13 +31,14 @@ void NetworkClient::onReceivedData()
 {
     circularBuffer.addData(this->client->readAll());
     QString query = circularBuffer.tryToGetCompleteCommand();
-    if (query != "")
+    while (query != "")
     {
         ProtocolCommand *command = this->ptrNetworkdObject->getProtocolInterpretor().createInputCommand(query.toUtf8(), this);
         if (command != NULL)
         {
             this->ptrNetworkdObject->getProtocolInterpretor().executeCommand(command);
         }
+     query = circularBuffer.tryToGetCompleteCommand();
     }
 }
 

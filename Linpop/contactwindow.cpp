@@ -1,10 +1,14 @@
 #include <iostream>
+#include <QString>
+#include <QTcpSocket>
+#include <QMessageBox>
 #include "contactwindow.h"
 #include "conversationwindow.h"
 #include "ui_contactwindow.h"
 #include "addcontactwindow.h"
 #include "contextualmenupopup.h"
 #include "networkclient.h"
+#include "networkobject.h"
 
 ContactWindow::ContactWindow(NetworkObject *obj) :
     ui(new Ui::ContactWindow), _network_object(obj)
@@ -167,12 +171,55 @@ void ContactWindow::on_pushButton_clicked()
     acw->show();
 }
 
+//A rajouter dans le header...
+QString ContactWindow::generateID()
+{
+    int value = rand() % 256;
+    return QString(value);
+}
+
+//A rajouter dans le header et penser a ajouter le port dans NetworkServer aussi.
+NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
+{
+    QTcpSocket  *client = new QTcpSocket;
+    NetworkClient *newclient = new NetworkClient;
+
+    client->connectToHost(ip, 5000);
+    if (client->waitForConnected(1000))
+    {
+        newclient->initialize(this->_network_object, client);
+        return newclient;
+    }
+    delete newclient;
+    return NULL;
+}
+
+
 void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
 {
-    int i = idx.row();
 
-    // We need a contact, please :(
-    //for starting a conversation !
-    //TODO
+    QString name = this->getName();
+    QString ip = this->getIp();
+
+    NetworkClient *client = this->createAndConnectNetworkClientOnIP(ip);
+    if (client != NULL)
+    {
+        ProtocolCommand *command = this->getNetworkObject()->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_INVITATION, client);
+        ProtocolCommandParameter p;
+
+        QString idConv = generateID();
+        p.addParamCommandConv(ProtocolCommandParamConv(idConv));
+        p.addParamCommandUser(ProtocolCommandParamUser(name, ip));
+        command->setProtocolCommandParameter(p);
+        if (this->getNetworkObject()->getProtocolInterpretor().executeCommand(command) == true)
+        {
+            ConversationWindow *cw = createEmptyConversationWindow();
+            cw->show();
+            cw->setIDConv(idConv);
+            cw->addChatContact(client);
+            return;
+        }
+    }
+    QMessageBox::warning(this, "Contact unreachable", "Unable to reach contact. Check the ip adress before trying connecting again.");
 }
 

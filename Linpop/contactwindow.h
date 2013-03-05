@@ -30,7 +30,8 @@ public:
     QString TestPing(QString ip);
     QString getName(QString text = "");
     QString getIp(QString text = "");
-
+    QString generateID();
+    NetworkClient *createAndConnectNetworkClientOnIP(QString ip);
 private slots:
 
     void on_actionDisconnect_triggered();
