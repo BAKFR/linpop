@@ -89,7 +89,7 @@ void    ConversationWindow::on_sendButton_clicked()
     ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_SEND, NULL);
     ProtocolCommandParameter p;
     p.addParamCommandConv(ProtocolCommandParamConv(this->IDConv));
-    p.addParamCommandText(ProtocolCommandParamText(this->ui->lineEdit->text()+"\r\n"));
+    p.addParamCommandText(ProtocolCommandParamText(this->ui->lineEdit->text()));
     command->setProtocolCommandParameter(p);
     broadcast(command);
 }
