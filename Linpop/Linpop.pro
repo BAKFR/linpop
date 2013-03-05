@@ -62,7 +62,10 @@ SOURCES += main.cpp\
     inputcommandmessagedeconnection.cpp \
     inputcommandmessageinvitation.cpp \
     inputcommandmessagepong.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    contact.cpp \
+    conversation.cpp \
+    member.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -116,7 +119,10 @@ HEADERS  += loginwindow.h \
     protocolcommandtype.h \
     protocolcommandexecutionmode.h \
     mainwindow.h \
-    contextualmenupopup.h
+    contextualmenupopup.h \
+    contact.h \
+    conversation.h \
+    member.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
