@@ -11,6 +11,7 @@
 
 ConversationWindow::ConversationWindow(ContactWindow *parent) :
     QMainWindow(parent), _contact_window(parent),
+    _upload_window(NULL),
     ui(new Ui::ConversationWindow)
 {
     ui->setupUi(this);
@@ -24,18 +25,21 @@ QString ConversationWindow::getIDConv()
 ConversationWindow::~ConversationWindow()
 {
     delete ui;
+    delete _upload_window;
 }
 
 void ConversationWindow::on_uploadButton_clicked()
 {
+    if (_upload_window)
+        return;
+
     QFileDialog *file_window = new QFileDialog(this, "Select a file to upload");
     file_window->setFileMode(QFileDialog::ExistingFile);
     if (file_window->exec() == 1) {
         //A file is choosen.
 
-        //TODO: keep ptr on upload ?
-        UploadWindow *up_win = new UploadWindow(this, file_window->selectedFiles().at(0));
-        up_win->show();
+        UploadWindow *_upload_window = new UploadWindow(this, file_window->selectedFiles().at(0));
+        _upload_window->show();
     }
     delete file_window;
 }
@@ -58,4 +62,24 @@ void    ConversationWindow::broadcast(ProtocolCommand *cmd)
     }
 
     delete cmd;
+}
+
+UploadWindow    *ConversationWindow::getUploadWindow()
+{
+    return _upload_window;
+}
+
+void ConversationWindow::setUploadWindow(UploadWindow *ptr)
+{
+    _upload_window = ptr;
+}
+
+void    ConversationWindow::AddText(QString message)
+{
+    ui->textEdit->setHtml(message + " \r\n" + ui->textEdit->toHtml());
+}
+
+QString    ConversationWindow::getText()
+{
+    return (ui->lineEdit->text());
 }

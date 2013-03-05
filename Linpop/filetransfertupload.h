@@ -16,6 +16,9 @@ public:
 
 private:
     QFileInfo   info;
+    int         _total;
+    int         _completed;
+    int         _errors;
 };
 
 #endif // FILETRANSFERTUPLOAD_H

@@ -2,6 +2,7 @@
 #include "ui_contextualmenupopup.h"
 #include <QMenu>
 #include <iostream>
+#include "modifycontactwindow.h"
 
 ContextualMenuPopup::ContextualMenuPopup(QWidget *parent) :
     QWidget(parent),
@@ -34,7 +35,9 @@ void    ContextualMenuPopup::History()
 
 void    ContextualMenuPopup::SetContact()
 {
-    std::cout << "Contact" << std::endl;
+    ModifyContactWindow *mcw = new ModifyContactWindow(this->cw);
+
+    mcw->show();
 }
 
 void    ContextualMenuPopup::DeleteContact()

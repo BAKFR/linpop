@@ -22,6 +22,7 @@ bool InputCommandMessageTransfertFile::execute()
 
     if (conv_win) {
         new DownloadWindow(conv_win, ptrContactWindow->getNetworkObject(),
+                           ptrInputNetworkClient,
                            protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName(),
                            protocolCommandParameter.getListProtocolCommandParamFile().at(0).getSize());
         return true;

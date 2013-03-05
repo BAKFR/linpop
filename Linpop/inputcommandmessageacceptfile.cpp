@@ -1,5 +1,7 @@
 #include "inputcommandmessageacceptfile.h"
 
+#include "uploadwindow.h"
+
 InputCommandMessageAcceptFile::InputCommandMessageAcceptFile()
 {
 }
@@ -16,18 +18,12 @@ bool InputCommandMessageAcceptFile::execute()
 
     int port = protocolCommandParameter.getListProtocolCommandParamText().at(0).getText().toInt();
 
-    //port == 0 -> NO (error ?)
-
-    //TODO
-/*
-
-    if (conv_win) {
-        new DownloadWindow(conv_win, ptrContactWindow->getNetworkObject(),
-                           protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName(),
-                           protocolCommandParameter.getListProtocolCommandParamFile().at(0).getSize());
+    UploadWindow *up_win = conv_win->getUploadWindow();
+    if (up_win) {
+        up_win->onAcceptFile(port, ptrInputNetworkClient);
         return true;
     }
-    */
+    qDebug() << "We receive an ACCEPT FILE, but there are no UploadWindow.";
     return false;
 }
 
