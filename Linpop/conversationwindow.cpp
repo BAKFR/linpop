@@ -17,6 +17,7 @@ ConversationWindow::ConversationWindow(ContactWindow *parent) :
     ui(new Ui::ConversationWindow)
 {
     ui->setupUi(this);
+    connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(on_sendButton_clicked()));
 }
 
 QString ConversationWindow::getIDConv()
@@ -92,6 +93,7 @@ void    ConversationWindow::on_sendButton_clicked()
     p.addParamCommandText(ProtocolCommandParamText(this->ui->lineEdit->text()));
     command->setProtocolCommandParameter(p);
     broadcast(command);
+    this->ui->lineEdit->setText("");
 }
 
 NetworkClient *ConversationWindow::getClientByUsername(QString username)
