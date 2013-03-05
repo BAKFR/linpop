@@ -6,6 +6,7 @@
 
 class ContactWindow;
 class ProtocolCommand;
+class UploadWindow;
 
 namespace Ui {
 class ConversationWindow;
@@ -18,6 +19,7 @@ protected:
     QString         IDConv;
     ContactWindow   *_contact_window;
     QList<NetworkClient *> listClient;
+    UploadWindow    *_upload_window;
 public:
     QString getIDConv();
     NetworkClient *getClientByUsername(QString username);
@@ -29,8 +31,13 @@ public:
     ~ConversationWindow();
 
     ContactWindow *getContactWindow();
+    UploadWindow *getUploadWindow();
+    void setUploadWindow(UploadWindow *ptr);
 
     void    broadcast(ProtocolCommand *cmd);
+
+    void    AddText(QString message);
+    QString getText();
     
 private:
     Ui::ConversationWindow *ui;

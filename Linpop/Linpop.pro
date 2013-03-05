@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -62,7 +62,14 @@ SOURCES += main.cpp\
     inputcommandmessagedeconnection.cpp \
     inputcommandmessageinvitation.cpp \
     inputcommandmessagepong.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    database.cpp \
+    contact.cpp \
+    conversation.cpp \
+    member.cpp \
+    log.cpp \
+    user.cpp \
+    modifycontactwindow.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -116,7 +123,14 @@ HEADERS  += loginwindow.h \
     protocolcommandtype.h \
     protocolcommandexecutionmode.h \
     mainwindow.h \
-    contextualmenupopup.h
+    contextualmenupopup.h \
+    database.h \
+    contact.h \
+    conversation.h \
+    member.h \
+    log.h \
+    user.h \
+    modifycontactwindow.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
@@ -127,4 +141,5 @@ FORMS    += loginwindow.ui \
     conversationwindow.ui \
     addcontactchatwindow.ui \
     mainwindow.ui \
-    contextualmenupopup.ui
+    contextualmenupopup.ui \
+    modifycontactwindow.ui

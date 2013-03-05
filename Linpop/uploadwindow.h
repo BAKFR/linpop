@@ -10,6 +10,7 @@ class UploadWindow;
 }
 
 class ConversationWindow;
+class NetworkClient;
 
 class UploadWindow : public QDialog
 {
@@ -18,6 +19,8 @@ class UploadWindow : public QDialog
 public:
     explicit UploadWindow(ConversationWindow *parent, const QString &file);
     ~UploadWindow();
+
+    void onAcceptFile(int port, NetworkClient *client);
     
 
 public slots:
@@ -35,6 +38,7 @@ public slots:
     void on_buttonBox_rejected();
 
 private:
+    ConversationWindow *_conv_win;
     Ui::UploadWindow *ui;
     FileTransfertUpload *ft_upload;
 };

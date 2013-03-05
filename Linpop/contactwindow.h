@@ -3,6 +3,7 @@
 
 #include "conversationwindow.h"
 #include <QMainWindow>
+#include <QTcpSocket>
 
 namespace Ui {
 class ContactWindow;
@@ -24,6 +25,11 @@ public:
     void setLoginWindow(QWidget *);
     void addContact(QString name, QString ip);
     void deleteContact();
+    void setContact(QString name, QString ip);
+    QString TestPing(QString ip);
+    QString getName(QString text = "");
+    QString getIp(QString text = "");
+
 private slots:
 
     void on_actionDisconnect_triggered();
