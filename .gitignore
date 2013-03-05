@@ -17,4 +17,9 @@
 moc_*.cpp
 qrc_*.cpp
 Makefile
+Makefile*
 *-build-*
+object_script.*
+ui_*
+debug/
+release/

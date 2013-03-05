@@ -14,6 +14,7 @@ public:
     virtual ProtocolCommand *build(QByteArray query) = 0;
     CORProtocolInputCommandBuilder *getNext();
     virtual bool predicate(QByteArray query) = 0;
+    virtual ~CORProtocolInputCommandBuilder(){}
 };
 
 #endif // CORPROTOCOLINPUTCOMMANDBUILDER_H

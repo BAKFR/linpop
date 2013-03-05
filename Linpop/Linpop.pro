@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -44,7 +44,26 @@ SOURCES += main.cpp\
     outputcommandmessagepong.cpp \
     outputcommandmessagesend.cpp \
     filetransfertupload.cpp \
-    ../database.cpp
+    filetransfertdownload.cpp \
+    contextualmenupopup.cpp \
+    corcommandmessagedeconnection.cpp \
+    corcommandmessagepong.cpp \
+    corcommandmessagejoin.cpp \
+    corcommandmessageacceptfile.cpp \
+    corcommandmessageinvitation.cpp \
+    corcommandmessageping.cpp \
+    corcommandmessagesend.cpp \
+    corcommandmessagetransfertfile.cpp \
+    inputcommandmessageacceptfile.cpp \
+    inputcommandmessagetransfertfile.cpp \
+    inputcommandmessageping.cpp \
+    inputcommandmessagejoin.cpp \
+    inputcommandmessagesend.cpp \
+    inputcommandmessagedeconnection.cpp \
+    inputcommandmessageinvitation.cpp \
+    inputcommandmessagepong.cpp \
+    mainwindow.cpp \
+    database.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -59,8 +78,6 @@ HEADERS  += loginwindow.h \
     networkclient.h \
     circularbuffer.h \
     protocolinterpretor.h \
-    ProtocolCommandType.h \
-    ProtocolCommandExecutionMode.h \
     protocolcommandparamconv.h \
     protocolcommandparamuser.h \
     protocolcommandparamtext.h \
@@ -80,7 +97,28 @@ HEADERS  += loginwindow.h \
     outputcommandmessagepong.h \
     outputcommandmessageping.h \
     filetransfertupload.h \
-    ../database.h
+    filetransfertdownload.h \
+    corcommandmessagedeconnection.h \
+    corcommandmessagepong.h \
+    corcommandmessagejoin.h \
+    corcommandmessageacceptfile.h \
+    corcommandmessageinvitation.h \
+    corcommandmessageping.h \
+    corcommandmessagesend.h \
+    corcommandmessagetransfertfile.h \
+    inputcommandmessageacceptfile.h \
+    inputcommandmessagetransfertfile.h \
+    inputcommandmessageping.h \
+    inputcommandmessagejoin.h \
+    inputcommandmessagesend.h \
+    inputcommandmessagedeconnection.h \
+    inputcommandmessageinvitation.h \
+    inputcommandmessagepong.h \
+    protocolcommandtype.h \
+    protocolcommandexecutionmode.h \
+    mainwindow.h \
+    contextualmenupopup.h \
+    database.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
@@ -89,4 +127,6 @@ FORMS    += loginwindow.ui \
     uploadwindow.ui \
     downloadwindow.ui \
     conversationwindow.ui \
-    addcontactchatwindow.ui
+    addcontactchatwindow.ui \
+    mainwindow.ui \
+    contextualmenupopup.ui

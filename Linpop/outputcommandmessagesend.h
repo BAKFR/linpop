@@ -7,7 +7,9 @@ class OutputCommandMessageSend : public ProtocolCommand
 {
 public:
     OutputCommandMessageSend();
+    OutputCommandMessageSend(const OutputCommandMessageSend &ref);
     virtual bool execute();
+    ProtocolCommand *clone();
 };
 
 #endif // OUTPUTCOMMANDMESSAGESEND_H

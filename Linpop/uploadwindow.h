@@ -9,12 +9,14 @@ namespace Ui {
 class UploadWindow;
 }
 
+class ConversationWindow;
+
 class UploadWindow : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit UploadWindow(QWidget *parent, const QString &file);
+    explicit UploadWindow(ConversationWindow *parent, const QString &file);
     ~UploadWindow();
     
 

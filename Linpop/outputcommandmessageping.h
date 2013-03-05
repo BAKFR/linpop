@@ -7,7 +7,9 @@ class OutputCommandMessagePing : public ProtocolCommand
 {
 public:
     OutputCommandMessagePing();
+    OutputCommandMessagePing(const OutputCommandMessagePing &ref);
     virtual bool execute();
+    virtual ProtocolCommand *clone();
 };
 
 #endif // OUPUTCOMMANDMESSAGEPING_H

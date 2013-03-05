@@ -34,7 +34,9 @@ public:
     bool getValidity();
     ProtocolCommandParameter& getProtocolCommandParameter();
     void setProtocolCommandParameter(ProtocolCommandParameter p);
+    virtual ProtocolCommand *clone() = 0;
     virtual ~ProtocolCommand(){}
+
 };
 
 #endif // PROTOCOLCOMMAND_H

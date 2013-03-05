@@ -9,7 +9,7 @@ class ProtocolCommandParamText
 public:
     ProtocolCommandParamText(QString text);
     void setText(QString text);
-    QString getText();
+    QString getText() const;
 };
 
 #endif // PROTOCOLCOMMANDPARAMTEXT_H

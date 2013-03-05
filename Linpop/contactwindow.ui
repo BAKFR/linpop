@@ -1,24 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>ContactWindow</class>
  <widget class="QMainWindow" name="ContactWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>236</width>
+    <height>331</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QListWidget" name="listContact">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>181</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>test 127.0.0.1</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../loginWindow.png</normaloff>../loginWindow.png</iconset>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="boutonAddContact">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>250</y>
+      <width>31</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>236</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionDisconnect"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionAdd_Contact"/>
+    <addaction name="actionSettings"/>
+    <addaction name="actionHistory"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuOptions"/>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionDisconnect">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAdd_Contact">
+   <property name="text">
+    <string>Add Contact</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="text">
+    <string>History</string>
+   </property>
+  </action>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>
