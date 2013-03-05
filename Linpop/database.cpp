@@ -113,8 +113,8 @@ int                 Database::addUser(User &user)
     std::string     statement;
     int             error = 1;
 
-    statement = "INSERT INTO User (Id, Username, Password) VALUES(";
-    statement += QString::number(user.getIdUser()).toStdString() + ", '" + user.getUserName().toStdString();
+    statement = "INSERT INTO User (Username, Password) VALUES(";
+    statement += "'" + user.getUserName().toStdString();
     statement += "', '" + user.getPassword().toStdString() + "');";
 
 /*    query.prepare("INSERT INTO User (Id, Username, Password)"
