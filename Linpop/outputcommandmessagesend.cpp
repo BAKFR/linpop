@@ -15,7 +15,7 @@ bool OutputCommandMessageSend::execute()
     if (this->ptrOutputNetworkClient != NULL)
     {
 	  QString tmp = QString("SEND") + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()
-		+ ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamText().at(0).getText();
+        + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamText().at(0).getText() + "\r\n";
 	  this->ptrOutputNetworkClient->getTcpSocket()->write(tmp.toUtf8());
 	  return true;
     }

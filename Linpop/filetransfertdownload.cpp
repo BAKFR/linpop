@@ -12,7 +12,7 @@ FileTransfertDownload::FileTransfertDownload(NetworkObject *net_obj, const QStri
 
     _server = new QTcpServer();
     _server->listen();
-    connect(_server, SIGNAL(newConnection()), this, SLOT(onSocketOpen));
+    connect(_server, SIGNAL(newConnection()), this, SLOT(onSocketOpen()));
 
 
     ProtocolCommand *cmd = net_obj->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_ACCEPT_FILE, target);
@@ -52,23 +52,24 @@ void FileTransfertDownload::onSocketOpen()
 {
     _socket = _server->nextPendingConnection();
     _socket->setParent(NULL);
-    delete _server;
+    _server->deleteLater();
     _server = NULL;
-    connect(_socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onSocketError()));
+    connect(_socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onSocketError(QAbstractSocket::SocketError)));
     connect(_socket, SIGNAL(disconnected()), this, SLOT(onSocketDisconnected()));
     connect(_socket, SIGNAL(readyRead()), this, SLOT(onSocketReadyRead()));
 
     if (!_file->open( QIODevice::WriteOnly | QIODevice::Truncate)) {
-        delete _socket;
+        _socket->deleteLater();
         _socket = NULL;
         emit error(_file->errorString());
     } else
         emit start();
 }
 
-void FileTransfertDownload::onSocketError()
+void FileTransfertDownload::onSocketError(QAbstractSocket::SocketError err)
 {
-    emit error(_socket->errorString());
+    if (err != QAbstractSocket::RemoteHostClosedError)
+        emit error(_socket->errorString());
 }
 
 void FileTransfertDownload::onSocketDisconnected()
@@ -78,35 +79,35 @@ void FileTransfertDownload::onSocketDisconnected()
     if (_current_size == _total_size)
         emit complete();
     else
-        emit error("Socket disconnected");
+        emit error("Bad size file");
 
-    delete _file;
-    delete _socket;
-    _file = NULL;
+    _socket->deleteLater();
     _socket = NULL;
+    _file->deleteLater();
+    _file = NULL;
 }
 
 void FileTransfertDownload::onSocketReadyRead()
 {
     char data[1024];
-    int readed, result;
+    int readed = -1, result = -1;
 
-    while ((readed = _socket->read(data, 1024)) > 0) {
+    while (_socket->bytesAvailable() > 0 && (readed = _socket->read(data, 1024)) > 0) {
         result = _file->write(data, readed);
         if (result == -1) {
-            delete _socket;
-            delete _file;
+            _socket->deleteLater();
             _socket = NULL;
-            _file = NULL;
             emit error(_file->errorString());
+            _file->deleteLater();
+            _file = NULL;
         }
 
         _current_size += readed;
     }
     if (readed == -1) {
-        delete _socket;
-        delete _file;
+        _socket->deleteLater();
         _socket = NULL;
+        _file->deleteLater();
         _file = NULL;
     }
     emit progress(_current_size, _total_size);

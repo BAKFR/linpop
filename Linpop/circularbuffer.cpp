@@ -24,7 +24,7 @@ QString CircularBuffer::tryToGetCompleteCommand()
         index = byteArray.indexOf("\r\n");
         QByteArray query = byteArray.left(index);
         byteArray.remove(0, index + 2);
-        return QString(query);
+        return QString::fromUtf8(query);
     }
     else
     {

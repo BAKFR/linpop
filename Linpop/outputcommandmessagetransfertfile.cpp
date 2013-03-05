@@ -13,7 +13,8 @@ bool OutputCommandMessageTransfertFile::execute()
 {
     return ptrOutputNetworkClient->getTcpSocket()->write((QString("FILE") + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()
                                                           + ProtocolCommand::separator + QString::number(protocolCommandParameter.getListProtocolCommandParamFile().at(0).getSize())
-                                                          + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName()).toUtf8()) > 0;
+                                                          + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamFile().at(0).getName()
+                                                          + "\r\n").toUtf8()) > 0;
 }
 
 ProtocolCommand *OutputCommandMessageTransfertFile::clone()
