@@ -15,7 +15,7 @@ bool InputCommandMessageSend::execute()
 
     ConversationWindow *conv_win = ptrContactWindow
             ->getConvById(protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID());
-    message = this->ptrInputNetworkClient->getUsername() + " dit : " + protocolCommandParameter.getListProtocolCommandParamText().at(0).getText();
+    message = (this->ptrInputNetworkClient->getUsername() + QString(" dit : ") + protocolCommandParameter.getListProtocolCommandParamText().at(0).getText()).toUtf8();
     conv_win->AddText(message);
     return true;
 }
