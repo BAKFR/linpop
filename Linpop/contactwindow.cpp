@@ -2,6 +2,7 @@
 #include <QString>
 #include <QTcpSocket>
 #include <QMessageBox>
+#include <QTime>
 #include "contactwindow.h"
 #include "conversationwindow.h"
 #include "ui_contactwindow.h"
@@ -13,6 +14,7 @@
 ContactWindow::ContactWindow(NetworkObject *obj) :
     ui(new Ui::ContactWindow), _network_object(obj)
 {
+    srand(QTime::currentTime().msec());
     ui->setupUi(this);
     ui->listContact->setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -174,8 +176,8 @@ void ContactWindow::on_pushButton_clicked()
 //A rajouter dans le header...
 QString ContactWindow::generateID()
 {
-    int value = rand() % 256;
-    return QString(value);
+    int value = rand();
+    return QString::number(value);
 }
 
 //A rajouter dans le header et penser a ajouter le port dans NetworkServer aussi.
