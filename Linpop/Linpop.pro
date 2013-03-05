@@ -62,7 +62,8 @@ SOURCES += main.cpp\
     inputcommandmessagedeconnection.cpp \
     inputcommandmessageinvitation.cpp \
     inputcommandmessagepong.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    modifycontactwindow.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -116,7 +117,8 @@ HEADERS  += loginwindow.h \
     protocolcommandtype.h \
     protocolcommandexecutionmode.h \
     mainwindow.h \
-    contextualmenupopup.h
+    contextualmenupopup.h \
+    modifycontactwindow.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \
@@ -127,4 +129,5 @@ FORMS    += loginwindow.ui \
     conversationwindow.ui \
     addcontactchatwindow.ui \
     mainwindow.ui \
-    contextualmenupopup.ui
+    contextualmenupopup.ui \
+    modifycontactwindow.ui
