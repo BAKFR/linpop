@@ -13,7 +13,7 @@ bool OutputCommandMessagePong::execute()
 {
     if (this->ptrOutputNetworkClient != NULL)
     {
-        this->ptrOutputNetworkClient->getTcpSocket()->write("PONG");
+        this->ptrOutputNetworkClient->getTcpSocket()->write("PONG\r\n");
         return true;
     }
     qDebug() << "We can't send PONG cmd: no output client to send !";

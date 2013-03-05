@@ -13,7 +13,7 @@ bool OutputCommandMessagePing::execute()
 {
     if (this->ptrOutputNetworkClient != NULL)
     {
-        this->ptrOutputNetworkClient->getTcpSocket()->write("PING");
+        this->ptrOutputNetworkClient->getTcpSocket()->write("PING\r\n");
     }
     return true;
 }
