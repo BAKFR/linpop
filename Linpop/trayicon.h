@@ -3,14 +3,21 @@
 
 #include <QSystemTrayIcon>
 #include <QWidget>
+#include <QApplication>
 
 #include <QMenu>
 #include <QCloseEvent>
 
 #include "contactwindow.h"
 
-class Trayicon : public QMainWindow
+namespace Ui{
+    class Trayicon;
+}
+
+class Trayicon : public QWidget
 {
+    Q_OBJECT
+
 private:
     QAction *_open;
     QAction *_close;
@@ -18,7 +25,7 @@ private:
     QSystemTrayIcon *_trayicon;
     QMenu           *_trayiconMenu;
 
-private slots:
+public Q_SLOTS:
     void    trayIconClicked(QSystemTrayIcon::ActivationReason);
 
 public:
