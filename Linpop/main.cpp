@@ -10,11 +10,23 @@ int main(int argc, char *argv[])
     LoginWindow  lw;
 
     // TEST DATABASE ON
-    Database    db = Database("./../bdd_linpop_test.bdd", "Mirozh", "qwerty", 1);
-    User        user1 = User(1, "Mirozh", "qwerty");
+    QString     dbName = "/Users/Siegfried/Projects/PTraining2/newLinpop/linpop/bdd_linpop_test.db";
+    QString     userName = "JP";
+    QString     pwd = "DANUBE";
+    int         id = 1;
+
+    Database    db = Database(dbName, userName, pwd, id);
+    User        user1 = User("Philippe", "PWNEDBYNOOB");
+    Contact     contact = Contact();
+    Member      member = Member();
+
+    contact.setInfo(1, 1, "Maman", "192.168.1.1");
+    member.setInfo(4, 1, "Pauline", "192.168.55.32", 3);
 
     db.openDatabase();
     db.addUser(user1);
+//    db.addContact(contact);
+//    db.addMember(member);
     db.closeDatabase();
     std::cout << std::flush;
     // TEST DATABASE OFF

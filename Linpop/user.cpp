@@ -4,8 +4,7 @@ User::User()
 {
 }
 
-User::User(int idUser, QString userName, QString password):
-    _idUser(idUser),
+User::User(QString userName, QString password):
     _userName(userName),
     _password(password)
 {
@@ -15,11 +14,6 @@ User::User(int idUser, QString userName, QString password):
 User::~User()
 {
 
-}
-
-int     User::getIdUser()
-{
-    return(this->_idUser);
 }
 
 QString User::getUserName()
@@ -32,9 +26,18 @@ QString User::getPassword()
     return(this->_password);
 }
 
-void    User::setInfo(int idUser, QString userName, QString password)
+void    User::setUserName(QString &other)
 {
-    this->_idUser = idUser;
+    this->_userName = other;
+}
+
+void    User::setPassword(QString &other)
+{
+    this->_password = other;
+}
+
+void    User::setInfo(QString &userName, QString &password)
+{
     this->_userName = userName;
     this->_password = password;
 }

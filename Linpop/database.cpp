@@ -1,7 +1,7 @@
 #include "database.h"
 
-Database::Database(QString otherBddname, QString otherUsername,
-                   QString otherPwd, int otherId_user)
+Database::Database(QString &otherBddname, QString &otherUsername,
+                   QString &otherPwd, int &otherId_user)
 {
     this->bddname = otherBddname;
     this->pwd = otherPwd;
@@ -14,8 +14,7 @@ int         Database::openDatabase()
     int     error = 1;
 
     this->bdd = QSqlDatabase::addDatabase("QSQLITE");
-//    this->bdd.setDatabaseName(this->bddname);
-    this->bdd.setDatabaseName("./../bdd_linpop_test.db");
+    this->bdd.setDatabaseName(this->bddname);
 
     if (this->bdd.open() == true)
     {
@@ -110,29 +109,14 @@ int                 Database::updateLog(Conversation &conv)
 int                 Database::addUser(User &user)
 {
     QSqlQuery       query;
-    std::string     statement;
+    QString         statement;
     int             error = 1;
 
     statement = "INSERT INTO User (Username, Password) VALUES(";
-    statement += "'" + user.getUserName().toStdString();
-    statement += "', '" + user.getPassword().toStdString() + "');";
+        statement += "'" + user.getUserName();
+        statement += "', '" + user.getPassword() + "');";
 
-/*    query.prepare("INSERT INTO User (Id, Username, Password)"
-                  "VALUES (:id, :username, :password)");
-    query.bindValue(":id", user.getIdUser());
-    query.bindValue(":username", user.getUserName());
-    query.bindValue(":password", user.getPassword());
-*/
-    QMapIterator<QString, QVariant> i(query.boundValues());
-       while (i.hasNext()) {
-           i.next();
-           std::cout << i.key().toUtf8().data() << ": "
-                << i.value().toString().toUtf8().data() << std::endl;
-       }
-
-    std::cout << statement << std::endl;
-
-    if (query.exec(QString(statement.c_str())) == true)
+    if (query.exec(statement) == true)
     {
         std::cout << "Query [Add user] - Success" << std::endl;
         error = 0;
@@ -150,12 +134,56 @@ int                 Database::addUser(User &user)
 
 int                 Database::addContact(Contact &contact)
 {
-    return (0);
+    QSqlQuery       query;
+    QString         statement;
+    int             error = 1;
+
+    statement = "INSERT INTO Contact (Id_User, Pseudo, IP) VALUES (";
+    statement += QString::number(contact.getIdUser());
+    statement += ", '" + contact.getContactName();
+    statement += "', '" + contact.getIp() + "');";
+
+    if (query.exec(statement) == true)
+    {
+        std::cout << "Query [Add contact] - Success" << std::endl;
+        error = 0;
+    }
+    else
+    {
+        std::cout << "Query [Add contact] - Fail" << std::endl;
+        std::cout << "Error : " << query.lastError().text().toStdString() << std::endl;
+        std::cout << "Query : " << query.lastQuery().toStdString() << std::endl;
+        error = -1;
+    }
+
+    return (error);
 }
 
 int                 Database::addMember(Member &member)
 {
-    return (0);
+    QSqlQuery       query;
+    QString         statement;
+    int             error = 1;
+
+    statement = "INSERT INTO Member (Id_User, Id_Conversation, Name, IP) VALUES (";
+    statement += QString::number(member.getIdUser());
+    statement += ", " + QString::number(member.getIdConversation());
+    statement += ", '" + member.getName();
+    statement += "', '" + member.getIp() + "');";
+
+    if (query.exec(statement) == true)
+    {
+        std::cout << "Query [Add member] - Success" << std::endl;
+        error = 0;
+    }
+    else
+    {
+        std::cout << "Query [Add member] - Fail" << std::endl;
+        std::cout << "Error : " << query.lastError().text().toStdString() << std::endl;
+        std::cout << "Query : " << query.lastQuery().toStdString() << std::endl;
+        error = -1;
+    }
+    return (error);
 }
 
 /*int                 Database::addLog(Log &log)
