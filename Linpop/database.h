@@ -4,9 +4,11 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
+#include <QtSql/QSqlRecord>
 #include <QVariant>
 #include <string>
 #include <iostream>
+#include <ostream>∫
 #include "contact.h"
 #include "user.h"
 #include "conversation.h"
@@ -21,14 +23,13 @@ class Database
     int             id_user;
 
 public:
-    Database(QString otherBddname, QString otherUsername,
-             QString otherPwd, int otherId_user);
+    Database(QString &otherBddname);
 
     int                 openDatabase();
     int                 closeDatabase();
 
-    User                getUser(QString &nickname, QString &pwd);
-    QList<Contact>      getListContact(int &user);
+    User                *getUser(QString &nickname, QString &pwd);
+    QList<Contact>      *getListContact(int &user);
     Contact             getContact(int &idUser, int &idContact);
     QList<Conversation> getListConv(int &idUser);
     Conversation        getConv(int &idUser, int &idConv);

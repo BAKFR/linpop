@@ -4,6 +4,7 @@
 #include <QTcpSocket>
 #include <QDebug>
 #include <QHostAddress>
+#include <iostream>
 
 NetworkClient::NetworkClient()
 {
@@ -18,7 +19,7 @@ void NetworkClient::initialize(NetworkObject *object, QTcpSocket *client)
 
     this->ip = client->peerAddress().toString();
     connect(this->client, SIGNAL(readyRead()), this, SLOT(onReceivedData()));
-    connect(this->client, SIGNAL(bytesWritten(qint64 bytes)), this, SLOT(onSendData(qint64 bytes)));
+    connect(this->client, SIGNAL(bytesWritten(qint64)), this, SLOT(onSendData(qint64)));
     connect(this->client, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
 }
 
@@ -68,9 +69,10 @@ void NetworkClient::setIP(QString ip)
     this->ip = ip;
 }
 
-void NetworkClient::setUsername(QString username)
+void NetworkClient::setUsername(QString test)
 {
-    this->username = username;
+    QString temp = test;
+    this->username = temp;
 }
 
 QTcpSocket *NetworkClient::getTcpSocket()

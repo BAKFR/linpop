@@ -38,6 +38,7 @@ void ContactWindow::setLoginWindow(QWidget *login)
     lw = login;
 }
 
+
 QString ContactWindow::getLogin()
 {
     return (this->login);
@@ -51,18 +52,19 @@ void ContactWindow::setLogin(QString _login)
 QString ContactWindow::TestPing(QString ip)
 {
     //Test ping
-    QTcpSocket  *client = new QTcpSocket;
-    NetworkClient *newclient = new NetworkClient;
+    NetworkClient *newclient = this->createAndConnectNetworkClientOnIP(ip);
 
-    client->connectToHost(ip, 4242);
-    if (client->waitForConnected(1000))
+    if (newclient)
     {
-        newclient->initialize(this->_network_object, client);
         return ("./../Images/rond_vert.png");
     }
     else
+    {
         return ("./../Images/rond_rouge.png");
+    }
 }
+
+
 
 void ContactWindow::addContact(QString name, QString ip)
 {
@@ -100,7 +102,7 @@ QString ContactWindow::getName(QString text)
     if (text == "")
         text = ui->listContact->currentItem()->text();
     tmp = text.toStdString();
-    for (unsigned int i = 0; (tmp[i] != '\t' || tmp[i] != ' ') && i < tmp.size(); i++)
+    for (unsigned int i = 0; tmp[i] != '\t' && tmp[i] != ' ' && i < tmp.size(); i++)
         buf += tmp[i];
     name =  QString(buf.c_str());
     return (name);
@@ -194,21 +196,28 @@ QString ContactWindow::generateID()
 //A rajouter dans le header et penser a ajouter le port dans NetworkServer aussi.
 NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
 {
-    QTcpSocket  *client = new QTcpSocket;
-    NetworkClient *newclient = new NetworkClient;
+    NetworkClient *newclient = this->_network_object->getNetworkClientByIP(ip);
 
-    client->connectToHost(ip, 5000);
-    if (client->waitForConnected(1000))
+    if (newclient != NULL)
     {
-        newclient->initialize(this->_network_object, client);
         return newclient;
     }
-    delete newclient;
-    return NULL;
+    else
+    {
+        QTcpSocket  *client = new QTcpSocket;
+        client->connectToHost(ip, 5000);
+        if (client->waitForConnected(1000))
+        {
+            newclient = new NetworkClient;
+            newclient->initialize(this->_network_object, client);
+            return newclient;
+        }
+        return NULL;
+    }
 }
 
 
-void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
+void ContactWindow::on_listContact_doubleClicked(QModelIndex )
 {
 
     QString name = this->getName();
@@ -217,12 +226,13 @@ void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
     NetworkClient *client = this->createAndConnectNetworkClientOnIP(ip);
     if (client != NULL)
     {
+        client->setUsername(name);
         ProtocolCommand *command = this->getNetworkObject()->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_INVITATION, client);
         ProtocolCommandParameter p;
 
         QString idConv = generateID();
         p.addParamCommandConv(ProtocolCommandParamConv(idConv));
-        p.addParamCommandUser(ProtocolCommandParamUser(name, ip));
+        p.addParamCommandUser(ProtocolCommandParamUser(this->getLogin(), QString("127.0.0.1")));
         command->setProtocolCommandParameter(p);
         if (this->getNetworkObject()->getProtocolInterpretor().executeCommand(command) == true)
         {

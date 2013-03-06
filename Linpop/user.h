@@ -5,20 +5,24 @@
 
 class User
 {
-    int     _idUser;
     QString _userName;
     QString _password;
+    int     _idUser;
 
 public:
     User();
-    User(int idUser, QString userName, QString password);
+    User(QString userName, QString password);
     ~User();
 
 public:
-    int     getIdUser();
     QString getUserName();
     QString getPassword();
-    void    setInfo(int idUser, QString userName, QString password);
+    int     getIdUser();
+    void    setUserName(QString &other);
+    void    setPassword(QString &other);
+    void    setIdUser(int &other);
+    void    setInfo(QString &userName, QString &password);
+
 };
 
 #endif // USER_H

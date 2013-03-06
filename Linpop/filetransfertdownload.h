@@ -14,7 +14,7 @@ class FileTransfertDownload : public QObject
     Q_OBJECT
 
 public:
-    FileTransfertDownload(NetworkObject *net_obj, const QString &conv_id, NetworkClient *target, const QString &file_path, int size);
+    FileTransfertDownload(NetworkObject *net_obj, const QString &conv_id, NetworkClient *target, const QString &file_path, qulonglong size);
     ~FileTransfertDownload();
 
     void stop();
@@ -24,7 +24,7 @@ public:
 signals:
     void start();
     void error(const QString &msg);
-    void progress(int current_size, int total_size);
+    void progress(qulonglong current_size, qulonglong total_size);
     void complete();
 
 private slots:
@@ -37,8 +37,8 @@ private:
     QTcpServer  *_server;
     QTcpSocket  *_socket;
     QFile       *_file;
-    int         _current_size;
-    int         _total_size;
+    qulonglong  _current_size;
+    qulonglong  _total_size;
 };
 
 #endif // FILETRANSFERTDOWNLOAD_H

@@ -2,6 +2,7 @@
 #include "protocolcommandtype.h"
 #include "protocolcommandparamconv.h"
 #include "contactwindow.h"
+#include <iostream>
 
 NetworkObject::NetworkObject(ContactWindow *ptrContactWindow)
     : protocolInterpretor()
@@ -65,6 +66,7 @@ NetworkClient *NetworkObject::getNetworkClientByIP(QString ip)
         {
             return this->listNetworkClient.at(i);
         }
+        i++;
     }
     return NULL;
 }
@@ -79,6 +81,7 @@ NetworkClient *NetworkObject::getNetworkClientByUsername(QString username)
         {
             return this->listNetworkClient.at(i);
         }
+        i++;
     }
     return NULL;
 }

@@ -4,7 +4,7 @@
 #include "protocolinterpretor.h"
 #include "networkobject.h"
 
-FileTransfertDownload::FileTransfertDownload(NetworkObject *net_obj, const QString &conv_id, NetworkClient *target, const QString &path_file, int size)
+FileTransfertDownload::FileTransfertDownload(NetworkObject *net_obj, const QString &conv_id, NetworkClient *target, const QString &path_file, qulonglong size)
     : _server(NULL), _socket(NULL), _file(NULL), _current_size(0), _total_size(size)
 {
 

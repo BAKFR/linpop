@@ -2,6 +2,7 @@
 #include "ui_conversationwindow.h"
 #include "uploadwindow.h"
 #include "contactwindow.h"
+#include "addcontactchatwindow.h"
 
 #include "protocolcommand.h"
 #include "networkobject.h"
@@ -20,7 +21,12 @@ ConversationWindow::ConversationWindow(ContactWindow *parent) :
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(on_sendButton_clicked()));
 }
 
-QString ConversationWindow::getIDConv()
+QList<NetworkClient *> ConversationWindow::getListClient()
+{
+    return this->listClient;
+}
+
+QString ConversationWindow::getIDConv() const
 {
     return this->IDConv;
 }
@@ -41,7 +47,7 @@ void ConversationWindow::on_uploadButton_clicked()
     if (file_window->exec() == 1) {
         //A file is choosen.
 
-        UploadWindow *_upload_window = new UploadWindow(this, file_window->selectedFiles().at(0));
+        _upload_window = new UploadWindow(this, file_window->selectedFiles().at(0));
         _upload_window->show();
     }
     delete file_window;
@@ -85,15 +91,19 @@ NetworkClient *ConversationWindow::getClientByIP(QString ip)
 
 void    ConversationWindow::on_sendButton_clicked()
 {
-    ProtocolInterpretor &refProtocolInterpretor = _contact_window->getNetworkObject()->getProtocolInterpretor();
+    if (ui->lineEdit->text() != "")
+    {
+        this->AddText(this->getContactWindow()->getLogin() +" dit :" + ui->lineEdit->text());
+        ProtocolInterpretor &refProtocolInterpretor = _contact_window->getNetworkObject()->getProtocolInterpretor();
 
-    ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_SEND, NULL);
-    ProtocolCommandParameter p;
-    p.addParamCommandConv(ProtocolCommandParamConv(this->IDConv));
-    p.addParamCommandText(ProtocolCommandParamText(this->ui->lineEdit->text()));
-    command->setProtocolCommandParameter(p);
-    broadcast(command);
-    this->ui->lineEdit->setText("");
+        ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_SEND, NULL);
+        ProtocolCommandParameter p;
+        p.addParamCommandConv(ProtocolCommandParamConv(this->IDConv));
+        p.addParamCommandText(ProtocolCommandParamText(this->ui->lineEdit->text()));
+        command->setProtocolCommandParameter(p);
+        broadcast(command);
+        this->ui->lineEdit->setText("");
+    }
 }
 
 NetworkClient *ConversationWindow::getClientByUsername(QString username)
@@ -139,10 +149,30 @@ void ConversationWindow::setUploadWindow(UploadWindow *ptr)
 
 void    ConversationWindow::AddText(QString message)
 {
-    ui->textEdit->setHtml(message + " \r\n" + ui->textEdit->toHtml());
+    if (ui->textEdit->toHtml() != "")
+        ui->textEdit->setHtml(ui->textEdit->toHtml() + "\r\n" + message );
+    else
+       ui->textEdit->setHtml(message);
 }
 
 QString    ConversationWindow::getText()
 {
     return (ui->lineEdit->text());
+}
+
+int     ConversationWindow::getNbMembers() const
+{
+    return listClient.size();
+}
+
+QList<NetworkClient *>  &ConversationWindow::getClients()
+{
+    return listClient;
+}
+
+void ConversationWindow::on_AddContact_clicked()
+{
+    AddContactChatWindow    *accw = new AddContactChatWindow(this);
+
+    accw->show();
 }

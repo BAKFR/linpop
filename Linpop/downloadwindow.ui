@@ -51,6 +51,12 @@ Would you donwload it ?</string>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>48</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <weight>75</weight>
@@ -78,14 +84,14 @@ Would you donwload it ?</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="label_error">
       <property name="text">
        <string>An error occured !</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="label_complete">
       <property name="text">
        <string>Your file is now completely downloaded!</string>
