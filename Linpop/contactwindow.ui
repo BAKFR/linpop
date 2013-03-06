@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>236</width>
-    <height>331</height>
+    <width>300</width>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>40</x>
       <y>10</y>
-      <width>181</width>
+      <width>251</width>
       <height>271</height>
      </rect>
     </property>
@@ -43,8 +43,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>236</width>
-     <height>25</height>
+     <width>300</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -64,6 +64,7 @@
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuOptions"/>
+   <addaction name="actionAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDisconnect">
@@ -92,6 +93,11 @@
   <action name="actionHistory">
    <property name="text">
     <string>History</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

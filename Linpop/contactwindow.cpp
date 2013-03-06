@@ -3,6 +3,9 @@
 #include <QTcpSocket>
 #include <QMessageBox>
 #include <QTime>
+#include <QVBoxLayout>
+#include <QLabel>
+
 #include "contactwindow.h"
 #include "conversationwindow.h"
 #include "ui_contactwindow.h"
@@ -55,6 +58,7 @@ QString ContactWindow::getPassword()
 ConversationWindow *ContactWindow::createEmptyConversationWindow()
 {
     ConversationWindow* cw = new ConversationWindow(this);
+    cw->setWindowTitle("random boring conversation");
     this->listConversationWindow.append(cw);
     return cw;
 }
@@ -85,8 +89,7 @@ QString ContactWindow::TestPing(QString ip)
     QTcpSocket  *client = new QTcpSocket;
     NetworkClient *newclient = new NetworkClient;
 
-    client->connectToHost(ip, 4242);
-    if (client->waitForConnected(1000))
+    if (createAndConnectNetworkClientOnIP(ip))
     {
         newclient->initialize(this->_network_object, client);
         return ("./../Images/rond_vert.png");
@@ -290,3 +293,22 @@ void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
     QMessageBox::warning(this, "Contact unreachable", "Unable to reach contact. Check the ip adress before trying connecting again.");
 }
 
+void ContactWindow::on_actionAbout_triggered()
+{
+    QDialog *diag = new QDialog(this);
+    QLayout *l = new QVBoxLayout(diag);
+    QLabel *label = new QLabel(diag);
+    label->setPixmap(QPixmap("./../Images/about.png"));
+    label->setAlignment(Qt::AlignCenter | Qt::AlignHCenter);
+    QLabel *legend = new QLabel("<h2>Created by BAK, Pauline, Kevin.CN,<br />Arnaud and Mirozh !</h2>", diag);
+    legend->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
+
+    l->addWidget(label);
+    l->addWidget(legend);
+    l->setAlignment(legend, Qt::AlignCenter);
+    diag->setModal(true);
+    diag->resize(300, 400);
+    diag->setLayout(l);
+    diag->setWindowTitle("About");
+    diag->show();
+}

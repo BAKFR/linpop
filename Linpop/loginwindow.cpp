@@ -66,6 +66,7 @@ void    LoginWindow::InitLogin()
 void    LoginWindow::OpenContactWindow()
 {
     cw->setLoginWindow(this);
+    cw->setWindowTitle("Linpop ultime pro (demo version)");
     cw->initContactWindow(this->db, ui->user_name->text(), ui->password->text());
     this->hide();
     //db->closeDatabase();

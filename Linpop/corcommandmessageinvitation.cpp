@@ -22,7 +22,7 @@ ProtocolCommand *CORCommandMessageInvitation::build(QByteArray query)
     while (i < args.size())
     {
         p.addParamCommandUser(ProtocolCommandParamUser(args.at(i+1), args.at(i)));
-        i+=2;
+        i += 2;
     }
     InputCommandMessageInvitation *invite =  new InputCommandMessageInvitation();
     invite->setProtocolCommandParameter(p);

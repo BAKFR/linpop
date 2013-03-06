@@ -60,6 +60,8 @@ private slots:
 
     void on_listContact_doubleClicked(QModelIndex);
 
+    void on_actionAbout_triggered();
+
 private:
     Ui::ContactWindow *ui;
     QWidget           *lw;
