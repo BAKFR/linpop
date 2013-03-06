@@ -100,26 +100,30 @@ QString ContactWindow::TestPing(QString ip)
 
 void ContactWindow::addContact(QString name, QString ip)
 {
-    User *u = this->db->getUser(this->login, this->pwd);
-    if (u != NULL)
+    if (name == "" || ip == "")
     {
-        int         iduser = u->getIdUser();
-        if (this->db->getContact(iduser, name, ip) == NULL)
+        User *u = this->db->getUser(this->login, this->pwd);
+        if (u != NULL)
         {
-            Contact     contact = Contact();
-            contact.setContactName(name);
-            contact.setIdUser(iduser);
-            contact.setIp(ip);
-            if (db->addContact(contact) != -1)
+            int         iduser = u->getIdUser();
+            if (this->db->getContact(iduser, name, ip) == NULL)
             {
-                ui->listContact->addItem(name + "\t" + ip);
-                ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+                Contact     contact = Contact();
+                contact.setContactName(name);
+                contact.setIdUser(iduser);
+                contact.setIp(ip);
+                if (db->addContact(contact) != -1)
+                {
+                    ui->listContact->addItem(name + "\t" + ip);
+                    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+                }
+                else
+                    QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact.");
             }
             else
-                QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact.");
+                QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact. This contact already exist");
         }
-        else
-            QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact. This contact already exist");
+        QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact. You should complete Name and IP.");
     }
 
  }
@@ -318,4 +322,11 @@ void ContactWindow::on_actionAbout_triggered()
     diag->setLayout(l);
     diag->setWindowTitle("About");
     diag->show();
+}
+
+void ContactWindow::on_boutonAddContact_clicked()
+{
+    AddContactWindow *acw = new AddContactWindow;
+    acw->setContactWindow(this);
+    acw->show();
 }
