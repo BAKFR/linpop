@@ -69,7 +69,8 @@ SOURCES += main.cpp\
     member.cpp \
     log.cpp \
     user.cpp \
-    modifycontactwindow.cpp
+    modifycontactwindow.cpp \
+    trayicon.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -130,7 +131,8 @@ HEADERS  += loginwindow.h \
     member.h \
     log.h \
     user.h \
-    modifycontactwindow.h
+    modifycontactwindow.h \
+    trayicon.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \

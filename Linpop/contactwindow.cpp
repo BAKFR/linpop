@@ -10,6 +10,7 @@
 #include "contextualmenupopup.h"
 #include "networkclient.h"
 #include "networkobject.h"
+#include "trayicon.h"
 
 ContactWindow::ContactWindow(NetworkObject *obj) :
     ui(new Ui::ContactWindow), _network_object(obj)
@@ -17,7 +18,7 @@ ContactWindow::ContactWindow(NetworkObject *obj) :
     srand(QTime::currentTime().msec());
     ui->setupUi(this);
     ui->listContact->setContextMenuPolicy(Qt::CustomContextMenu);
-
+    Trayicon(this);
 }
 
 ContactWindow::~ContactWindow()
