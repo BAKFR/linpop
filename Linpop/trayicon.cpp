@@ -18,7 +18,7 @@ void    Trayicon::createAction()
     this->_open = new QAction(tr("&Open"), this);
     connect(this->_open, SIGNAL(triggered()), this, SLOT(show()));
 
-    this->_open = new QAction(tr("&Quit"), this);
+    this->_close = new QAction(tr("&Quit"), this);
     connect(this->_close, SIGNAL(triggered()), this, SLOT(show()));
 }
 
