@@ -14,7 +14,7 @@ ProtocolCommand *CORCommandMessageInvitation::build(QByteArray query)
 {
     ProtocolCommandParameter    p;
 
-    QList<QByteArray> args = query.split(':');
+    QList<QByteArray> args = query.split(ProtocolCommand::separator);
 
     p.addParamCommandConv(ProtocolCommandParamConv(args.at(1)));
     p.addParamCommandUser(ProtocolCommandParamUser(args.at(3), args.at(2)));
