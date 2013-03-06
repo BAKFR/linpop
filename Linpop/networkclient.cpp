@@ -14,6 +14,7 @@ NetworkClient::NetworkClient()
 
 void NetworkClient::initialize(NetworkObject *object, QTcpSocket *client)
 {
+    client->setParent(this);
     this->client = client;
     ptrNetworkdObject = object;
 

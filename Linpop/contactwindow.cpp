@@ -33,6 +33,11 @@ ConversationWindow *ContactWindow::createEmptyConversationWindow()
     return cw;
 }
 
+void    ContactWindow::removeConv(ConversationWindow *w)
+{
+    this->listConversationWindow.removeOne(w);
+}
+
 void ContactWindow::setLoginWindow(QWidget *login)
 {
     lw = login;
@@ -175,6 +180,17 @@ ConversationWindow *ContactWindow::getConvById(const QString &id)
         i++;
     }
     return NULL;
+}
+
+int ContactWindow::hasConvByClient(NetworkClient *client)
+{
+    QList<ConversationWindow*>::Iterator it;
+    for(it =  listConversationWindow.begin(); it != listConversationWindow.end(); ++it) {
+        if ((*it)->isNetworkClientInConversation(client)) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void ContactWindow::on_pushButton_clicked()

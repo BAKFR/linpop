@@ -7,13 +7,19 @@ CORCommandMessageDeconnection::CORCommandMessageDeconnection()
 
 bool CORCommandMessageDeconnection::predicate(QByteArray query)
 {
-    (void)query;
-    return false;
+    return query.startsWith("DISCONNECT");
 }
 
-ProtocolCommand* CORCommandMessageDeconnection::build(QByteArray byteArray)
+ProtocolCommand* CORCommandMessageDeconnection::build(QByteArray query)
 {
-    (void)byteArray;
-    return new InputCommandMessageDeconnection();
+    ProtocolCommandParameter    p;
+
+    QList<QByteArray> args = query.split(ProtocolCommand::separator);
+
+    p.addParamCommandConv(ProtocolCommandParamConv(args.at(1)));
+
+    InputCommandMessageDeconnection *icmd =  new InputCommandMessageDeconnection();
+    icmd->setProtocolCommandParameter(p);
+    return icmd;
 }
 

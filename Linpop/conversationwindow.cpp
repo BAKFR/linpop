@@ -18,6 +18,7 @@ ConversationWindow::ConversationWindow(ContactWindow *parent) :
     _upload_window(NULL),
     ui(new Ui::ConversationWindow)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(on_sendButton_clicked()));
 }
@@ -36,6 +37,16 @@ ConversationWindow::~ConversationWindow()
 {
     delete ui;
     delete _upload_window;
+
+    ProtocolInterpretor &refProtocolInterpretor = _contact_window->getNetworkObject()->getProtocolInterpretor();
+
+    ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_DECONNEXION, NULL);
+    ProtocolCommandParameter p;
+    p.addParamCommandConv(ProtocolCommandParamConv(this->IDConv));
+    command->setProtocolCommandParameter(p);
+    broadcast(command);
+
+    _contact_window->removeConv(this);
 }
 
 void ConversationWindow::on_uploadButton_clicked()
@@ -64,6 +75,17 @@ void ConversationWindow::addChatContact(NetworkClient *client)
 {
     listClient.append(client);
     this->ui->contactList->addItem(client->getUsername() + " " + client->getIP());
+}
+
+void ConversationWindow::rmChatContact(NetworkClient *client)
+{
+    for (int i = 0; i < ui->contactList->count(); ++i) {
+        if (ui->contactList->item(i)->text().split(" ").at(1) == client->getIP()) {
+            ui->contactList->removeItemWidget(ui->contactList->item(i));
+            break;
+        }
+    }
+    listClient.removeOne(client);
 }
 
 bool ConversationWindow::isNetworkClientInConversation(NetworkClient *client)

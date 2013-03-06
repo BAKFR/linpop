@@ -27,6 +27,7 @@ public:
     explicit ConversationWindow(ContactWindow *parent);
     void setIDConv(QString IDConv);
     void addChatContact(NetworkClient *client);
+    void rmChatContact(NetworkClient *client);
     bool isNetworkClientInConversation(NetworkClient *client);
     NetworkClient *getClientByIP(QString ip);
     ~ConversationWindow();
