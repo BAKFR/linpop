@@ -118,16 +118,22 @@ void ContactWindow::addContact(QString name, QString ip)
                 {
                     ui->listContact->addItem(name + "\t" + ip);
                     ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+                    return;
                 }
                 else
+                {
                     QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact.");
+                    return;
+                }
             }
             else
+            {
                 QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact. This contact already exist");
+                return;
+            }
         }
         QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact. You should complete Name and IP.");
     }
-
  }
 
 void ContactWindow::deleteContact()
