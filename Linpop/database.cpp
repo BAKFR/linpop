@@ -59,12 +59,16 @@ User                 *Database::getUser(QString &nickname, QString &pwd)
 
     if (query.exec(statement))
     {
+        int fieldIdUser = query.record().indexOf("Id");
         int fieldUserName = query.record().indexOf("Username");
         int fieldPassword = query.record().indexOf("Password");
-        while (query.next())
+
+        if (query.next())
         {
+            int idUser = query.value(fieldIdUser).toInt();
             QString userName = query.value(fieldUserName).toString();
             QString password = query.value(fieldPassword).toString();
+            user->setIdUser(idUser);
             user->setUserName(userName);
             user->setPassword(password);
         }
@@ -75,9 +79,14 @@ User                 *Database::getUser(QString &nickname, QString &pwd)
     return (user);
 }
 
-QList<Contact>      Database::getListContact(int &user)
+QList<Contact>      *Database::getListContact(int &user)
 {
-    QList<Contact>  contactList = QList<Contact>();
+    QList<Contact>  *contactList = NULL;
+    QString         statement;
+    QSqlQuery       query;
+
+    contactList = new QList<Contact>();
+    statement = "SELECT * FROM Contact WHERE ";
 
     return (contactList);
 }

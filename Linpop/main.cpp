@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
     {
         std::cout << testUser->getUserName().toStdString() << std::endl;
         std::cout << testUser->getPassword().toStdString() << std::endl;
+        std::cout << testUser->getIdUser() << std::endl;
     }
     db.closeDatabase();
     std::cout << std::flush;

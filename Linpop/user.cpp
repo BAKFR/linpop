@@ -26,6 +26,11 @@ QString User::getPassword()
     return(this->_password);
 }
 
+int    User::getIdUser()
+{
+    return (this->_idUser);
+}
+
 void    User::setUserName(QString &other)
 {
     this->_userName = other;
@@ -34,6 +39,11 @@ void    User::setUserName(QString &other)
 void    User::setPassword(QString &other)
 {
     this->_password = other;
+}
+
+void    User::setIdUser(int &other)
+{
+    this->_idUser = other;
 }
 
 void    User::setInfo(QString &userName, QString &password)
