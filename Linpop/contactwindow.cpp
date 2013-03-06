@@ -235,7 +235,7 @@ NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
 }
 
 
-void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
+void ContactWindow::on_listContact_doubleClicked(QModelIndex )
 {
 
     QString name = this->getName();

@@ -13,15 +13,58 @@ FileTransfertUpload::FileTransfertUpload(const QFileInfo &info, NetworkObject *n
 
     conv->broadcast(cmd);
 
-//    _total = conv->getNbMembers();
-}
-
-void    FileTransfertUpload::stop()
-{
-
+    _total = conv->getNbMembers();
 }
 
 FileTransfertUpload::~FileTransfertUpload()
 {
 
+}
+
+void FileTransfertUpload::receiveAcceptFile(NetworkClient *client, int port)
+{
+    if (port == 0) {
+        _errors++;
+        emit clientError("Client reject file.");
+        check_nbr();
+    } else {
+        //création de socket
+        //et+
+        QTcpSocket *socket = new QTcpSocket(this);
+
+        socket->connectToHost(client->getTcpSocket()->peerAddress(), port);
+        connect(socket, SIGNAL(connected()), this, SLOT(onSocketConnected()));
+        connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onSocketError(QAbstractSocket::SocketError)));
+        connect(socket, SIGNAL(bytesWritten(qint64)), this, SLOT(onSocketWritten()));
+    }
+}
+
+void    FileTransfertUpload::onSocketConnected()
+{
+    //TODO
+}
+
+void    FileTransfertUpload::onSocketError(QAbstractSocket::SocketError)
+{
+    sender()->deleteLater();
+    _errors++;
+    emit clientError("Client reject file.");
+    check_nbr();
+}
+
+void    FileTransfertUpload::onSocketWritten()
+{
+    //TODO
+}
+
+void    FileTransfertUpload::check_nbr()
+{
+    emit progress(_completed, _errors, _total);
+    if (_completed + _errors >= _total)
+        emit complete(_completed, _errors, _total);
+}
+
+int FileTransfertUpload::getTotal() const
+{
+    return _total;
 }
