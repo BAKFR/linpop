@@ -7,6 +7,7 @@
 #include <QVariant>
 #include <string>
 #include <iostream>
+#include <ostream>∫
 #include "contact.h"
 #include "user.h"
 #include "conversation.h"
@@ -21,8 +22,7 @@ class Database
     int             id_user;
 
 public:
-    Database(QString otherBddname, QString otherUsername,
-             QString otherPwd, int otherId_user);
+    Database(QString &otherBddname);
 
     int                 openDatabase();
     int                 closeDatabase();

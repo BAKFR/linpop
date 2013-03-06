@@ -4,6 +4,7 @@
 #include <QTcpSocket>
 #include <QDebug>
 #include <QHostAddress>
+#include <iostream>
 
 NetworkClient::NetworkClient()
 {
@@ -68,9 +69,10 @@ void NetworkClient::setIP(QString ip)
     this->ip = ip;
 }
 
-void NetworkClient::setUsername(QString username)
+void NetworkClient::setUsername(QString test)
 {
-    this->username = username;
+    QString temp = test;
+    this->username = temp;
 }
 
 QTcpSocket *NetworkClient::getTcpSocket()

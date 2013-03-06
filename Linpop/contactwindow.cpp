@@ -48,25 +48,6 @@ void ContactWindow::setLogin(QString _login)
    this->login = _login;
 }
 
-//Version pauline
-/*
-QString ContactWindow::TestPing(QString ip)
-{
-    //Test ping
-    QTcpSocket  *client = new QTcpSocket;
-    NetworkClient *newclient = new NetworkClient;
-
-    client->connectToHost(ip, 4242);
-    if (client->waitForConnected(1000))
-    {
-        newclient->initialize(this->_network_object, client);
-        return ("./../Images/rond_vert.png");
-    }
-    else
-        return ("./../Images/rond_rouge.png");
-}*/
-
-//version arnaud
 QString ContactWindow::TestPing(QString ip)
 {
     //Test ping
@@ -120,7 +101,7 @@ QString ContactWindow::getName(QString text)
     if (text == "")
         text = ui->listContact->currentItem()->text();
     tmp = text.toStdString();
-    for (unsigned int i = 0; (tmp[i] != '\t' || tmp[i] != ' ') && i < tmp.size(); i++)
+    for (unsigned int i = 0; tmp[i] != '\t' && tmp[i] != ' ' && i < tmp.size(); i++)
         buf += tmp[i];
     name =  QString(buf.c_str());
     return (name);
