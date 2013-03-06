@@ -144,7 +144,7 @@ QString ContactWindow::getName(QString text)
     if (text == "")
         text = ui->listContact->currentItem()->text();
     tmp = text.toStdString();
-    for (unsigned int i = 0; (tmp[i] != '\t' || tmp[i] != ' ') && i < tmp.size(); i++)
+    for (unsigned int i = 0; tmp[i] != '\t' && tmp[i] != ' ' && i < tmp.size(); i++)
         buf += tmp[i];
     name =  QString(buf.c_str());
     return (name);
@@ -266,24 +266,31 @@ NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
 void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
 {
 
+    std::cout << "Erreur 2"<< std::endl;
     QString name = this->getName();
+    std::cout << "Erreur 2"<< std::endl;
     QString ip = this->getIp();
+    std::cout << "Erreur 2"<< std::endl;
 
     NetworkClient *client = this->createAndConnectNetworkClientOnIP(ip);
+    std::cout << "Erreur 1" << std::endl;
     if (client != NULL)
     {
         ProtocolCommand *command = this->getNetworkObject()->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_INVITATION, client);
         ProtocolCommandParameter p;
-
+std::cout << "Erreur 2"<< std::endl;
         QString idConv = generateID();
         p.addParamCommandConv(ProtocolCommandParamConv(idConv));
         p.addParamCommandUser(ProtocolCommandParamUser(this->getLogin(), "INSERT IP HERE"));
         command->setProtocolCommandParameter(p);
+       std::cout << "Erreur 3"<< std::endl;
         if (this->getNetworkObject()->getProtocolInterpretor().executeCommand(command) == true)
         {
+            std::cout << "Erreur 4"<< std::endl;
             ConversationWindow *cw = createEmptyConversationWindow();
             cw->show();
             cw->setIDConv(idConv);
+      std::cout << "Erreur 5"<< std::endl;
             return;
         }
     }
