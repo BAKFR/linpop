@@ -68,6 +68,6 @@ void    LoginWindow::OpenContactWindow()
     cw->setLoginWindow(this);
     cw->initContactWindow(this->db, ui->user_name->text(), ui->password->text());
     this->hide();
-    db->closeDatabase();
+    //db->closeDatabase();
     cw->show();
 }

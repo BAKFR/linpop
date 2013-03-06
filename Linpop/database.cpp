@@ -120,36 +120,32 @@ QList<Contact*>      Database::getListContact(int &user)
 Contact             *Database::getContact(int &idUser, QString &nickname, QString &ip)
 {
     Contact         *contact = NULL;
-//    QSqlQuery       query;
-//    QString         statement;
+    QSqlQuery       query;
+    QString         statement;
 
-//    contact = new contact();
-//    statement = "SELECT * FROM Contact WHERE(Username = '";
-//    statement += nickname + "' AND Ip = '";
-//    statement += ip + "' AND IdUser = " + idUser + ");";
+    contact = new Contact();
+    statement = "SELECT * FROM Contact WHERE(Pseudo = '";
+    statement += nickname + "' AND IP = '";
+    statement += ip + "' AND Id_User = " + QString::number(idUser) + ");";
 
-//    if (query.exec(statement))
-//    {
-//        int fieldIdUser = query.record().indexOf("Id");
-//        int fieldUserName = query.record().indexOf("Username");
-//        int fieldPassword = query.record().indexOf("Password");
+    if (query.exec(statement))
+    {
+        int fieldIdUser = query.record().indexOf("Id_User");
+        int fieldPseudo = query.record().indexOf("Pseudo");
+        int fieldIp = query.record().indexOf("IP");
 
-//        if (query.next())
-//        {
-//            int idUser = query.value(fieldIdUser).toInt();
-//            QString userName = query.value(fieldUserName).toString();
-//            QString password = query.value(fieldPassword).toString();
-//            user->setIdUser(idUser);
-//            user->setUserName(userName);
-//            user->setPassword(password);
-//        }
-//        else
-//            return (NULL);
-//    }
-//    else
-//        return (NULL);
-
-//    return (user);
+        while (query.next())
+        {
+            int idUser = query.value(fieldIdUser).toInt();
+            QString Pseudo = query.value(fieldPseudo).toString();
+            QString Ip = query.value(fieldIp).toString();
+            contact->setContactName(Pseudo);
+            contact->setIdUser(idUser);
+            contact->setIp(Ip);
+            return contact;
+        }
+    }
+    return (NULL);
 }
 
 QList<Conversation> Database::getListConv(int &idUser)

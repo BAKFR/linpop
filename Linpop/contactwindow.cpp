@@ -29,9 +29,9 @@ ContactWindow::~ContactWindow()
 void    ContactWindow::initContactWindow(Database *_db, QString _login, QString _pwd)
 {
     QList<Contact *> tmp;
-    QString          name = this->getLogin();
-    QString          ip = this->getPassword();
-    int              iduser = this->db->getUser(name, ip)->getIdUser();
+    QString          name;
+    QString          ip;
+    int              iduser = this->db->getUser(_login, _pwd)->getIdUser();
     this->db = _db;
     this->login = _login;
     this->pwd = _pwd;
@@ -93,18 +93,23 @@ QString ContactWindow::TestPing(QString ip)
 
 void ContactWindow::addContact(QString name, QString ip)
 {
-    Contact     contact = Contact();
     int         iduser = this->db->getUser(this->login, this->pwd)->getIdUser();
-    contact.setContactName(name);
-    contact.setIdUser(iduser);
-    contact.setIp(ip);
-    if (db->addContact(contact) != -1)
+    if (this->db->getContact(iduser, name, ip) == NULL)
     {
-        ui->listContact->addItem(name + "\t" + ip);
-        ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+        Contact     contact = Contact();
+        contact.setContactName(name);
+        contact.setIdUser(iduser);
+        contact.setIp(ip);
+        if (db->addContact(contact) != -1)
+        {
+            ui->listContact->addItem(name + "\t" + ip);
+            ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+        }
+        else
+            QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact.");
     }
     else
-        QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact.");
+        QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact. This contact already exist");
 
  }
 
