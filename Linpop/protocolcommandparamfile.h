@@ -5,13 +5,13 @@
 class ProtocolCommandParamFile
 {
     QString name;
-    int size;
+    qulonglong size;
 public:
-    ProtocolCommandParamFile(const QString &string, int size);
+    ProtocolCommandParamFile(const QString &string, qulonglong size);
     void setName(QString name);
     QString getName() const;
-    void setSize(int size);
-    int getSize() const;
+    void setSize(qulonglong size);
+    qulonglong getSize() const;
 };
 
 #endif // PROTOCOLCOMMANDPARAMFILE_H

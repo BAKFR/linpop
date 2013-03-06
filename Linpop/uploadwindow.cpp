@@ -18,7 +18,7 @@ UploadWindow::UploadWindow(ConversationWindow *parent, const QString &file) :
     connect(ft_upload, SIGNAL(clientError(QString)), this, SLOT(onClientError(QString)));
     connect(ft_upload, SIGNAL(complete(int,int,int)), this, SLOT(onUploadComplete(int,int,int)));
     connect(ft_upload, SIGNAL(error(QString)), this, SLOT(onUploadError(QString)));
-    connect(ft_upload, SIGNAL(progress(int,int,int)), this, SLOT(onUploadProgress()));
+    connect(ft_upload, SIGNAL(progress(int,int,int)), this, SLOT(onUploadProgress(int, int, int)));
 
     ui->setupUi(this);
     ui->label_data->setText(QString(" 0 / ") + QString::number(ft_upload->getTotal()));

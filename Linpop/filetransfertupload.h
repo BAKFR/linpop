@@ -36,6 +36,7 @@ private:
     int         _completed;
     int         _errors;
 
+    QFile       *_file;
     void check_nbr();
 };
 

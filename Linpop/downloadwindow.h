@@ -17,13 +17,13 @@ class DownloadWindow : public QDialog
     Q_OBJECT
     
 public:
-    explicit DownloadWindow(ConversationWindow *parent, NetworkObject *net_obj, NetworkClient *target, const QString &filename, int size);
+    explicit DownloadWindow(ConversationWindow *parent, NetworkObject *net_obj, NetworkClient *target, const QString &filename, qulonglong size);
     ~DownloadWindow();
     
 public slots:
     void onDownloadStart();
     void onDownloadError(const QString &msg);
-    void onDownloadProgress(int current_size, int total_size);
+    void onDownloadProgress(qulonglong current_size, qulonglong total_size);
     void onDownloadComplete();
 
     void on_buttonBox_accepted();

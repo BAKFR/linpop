@@ -19,7 +19,7 @@ void NetworkClient::initialize(NetworkObject *object, QTcpSocket *client)
 
     this->ip = client->peerAddress().toString();
     connect(this->client, SIGNAL(readyRead()), this, SLOT(onReceivedData()));
-    connect(this->client, SIGNAL(bytesWritten(qint64 bytes)), this, SLOT(onSendData(qint64 bytes)));
+    connect(this->client, SIGNAL(bytesWritten(qint64)), this, SLOT(onSendData(qint64)));
     connect(this->client, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
 }
 

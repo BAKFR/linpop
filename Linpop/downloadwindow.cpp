@@ -10,10 +10,12 @@
  * When ft_download is set, file is downloading (or waiting for download)
  */
 
-DownloadWindow::DownloadWindow(ConversationWindow *parent, NetworkObject *net_obj, NetworkClient *target, const QString &filename, int size) :
+DownloadWindow::DownloadWindow(ConversationWindow *parent, NetworkObject *net_obj, NetworkClient *target, const QString &filename, qulonglong size) :
     QDialog(parent),
     ui(new Ui::DownloadWindow), ft_download(NULL), _conv_id(parent->getIDConv()), _net_obj(net_obj), _size(size)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
+
     _target = target;
 
     ui->setupUi(this);
@@ -26,7 +28,7 @@ DownloadWindow::DownloadWindow(ConversationWindow *parent, NetworkObject *net_ob
 DownloadWindow::~DownloadWindow()
 {
     delete ui;
-    delete ft_download;
+    ft_download->deleteLater();
 }
 
 void    DownloadWindow::onDownloadStart()
@@ -44,7 +46,7 @@ void    DownloadWindow::onDownloadError(const QString &msg)
     ui->label_error->setText(ui->label_error->text() + "\n" + msg);
 }
 
-void    DownloadWindow::onDownloadProgress(int current_size, int total_size)
+void    DownloadWindow::onDownloadProgress(qulonglong current_size, qulonglong total_size)
 {
     ui->label_question->setVisible(false);
     int v = 100 * current_size / total_size;
@@ -70,7 +72,7 @@ void DownloadWindow::on_buttonBox_accepted()
         connect(ft_download, SIGNAL(start()), this, SLOT(onDownloadStart()));
         connect(ft_download, SIGNAL(complete()), this, SLOT(onDownloadComplete()));
         connect(ft_download, SIGNAL(error(QString)), this, SLOT(onDownloadError(QString)));
-        connect(ft_download, SIGNAL(progress(int,int)), this, SLOT(onDownloadProgress(int,int)));
+        connect(ft_download, SIGNAL(progress(qulonglong, qulonglong)), this, SLOT(onDownloadProgress(qulonglong, qulonglong)));
 
         ui->label_question->setVisible(false);
         ui->buttonBox->setStandardButtons(QDialogButtonBox::Abort);
@@ -80,12 +82,11 @@ void DownloadWindow::on_buttonBox_accepted()
 
 void DownloadWindow::on_buttonBox_rejected()
 {
-    if (ft_download) {
-        //user abort download
-        ft_download->stop();
-    } else {
+    if (!ft_download) {
         //user refuse download.
-
         FileTransfertDownload::reject(_net_obj, _conv_id, _target);
     }
+
+    //in all case, we quit.
+    deleteLater();
 }

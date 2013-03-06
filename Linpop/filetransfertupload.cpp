@@ -4,7 +4,7 @@
 #include "protocolcommandparamconv.h"
 
 FileTransfertUpload::FileTransfertUpload(const QFileInfo &info, NetworkObject *net_obj, ConversationWindow *conv)
-    : info(info), _total(0), _completed(0), _errors(0)
+    : info(info), _total(0), _completed(0), _errors(0), _file(NULL)
 {
 
     ProtocolCommand *cmd = net_obj->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_TRANSFERT_FILE, NULL);
@@ -18,7 +18,7 @@ FileTransfertUpload::FileTransfertUpload(const QFileInfo &info, NetworkObject *n
 
 FileTransfertUpload::~FileTransfertUpload()
 {
-
+    delete _file;
 }
 
 void FileTransfertUpload::receiveAcceptFile(NetworkClient *client, int port)
@@ -28,8 +28,6 @@ void FileTransfertUpload::receiveAcceptFile(NetworkClient *client, int port)
         emit clientError("Client reject file.");
         check_nbr();
     } else {
-        //création de socket
-        //et+
         QTcpSocket *socket = new QTcpSocket(this);
 
         socket->connectToHost(client->getTcpSocket()->peerAddress(), port);
@@ -41,7 +39,23 @@ void FileTransfertUpload::receiveAcceptFile(NetworkClient *client, int port)
 
 void    FileTransfertUpload::onSocketConnected()
 {
-    //TODO
+    if (_file == NULL) {
+        _file = new QFile(info.filePath());
+        _file->open(QIODevice::ReadOnly);
+    } else {
+        _file->reset();
+    }
+
+    QTcpSocket *socket = dynamic_cast<QTcpSocket*>(sender());
+    if (_file->error()) {
+        emit error(_file->errorString());
+        socket->deleteLater();
+    }
+    socket->write(_file->readAll());
+    if (_file->error()) {
+        emit error(_file->errorString());
+        socket->deleteLater();
+    }
 }
 
 void    FileTransfertUpload::onSocketError(QAbstractSocket::SocketError)
@@ -54,7 +68,14 @@ void    FileTransfertUpload::onSocketError(QAbstractSocket::SocketError)
 
 void    FileTransfertUpload::onSocketWritten()
 {
-    //TODO
+    QTcpSocket *socket = dynamic_cast<QTcpSocket*>(sender());
+
+    if (socket->bytesToWrite() == 0) {
+        socket->close();
+        socket->deleteLater();
+        _completed++;
+        check_nbr();
+    }
 }
 
 void    FileTransfertUpload::check_nbr()
