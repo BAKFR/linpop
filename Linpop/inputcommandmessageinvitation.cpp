@@ -32,10 +32,8 @@ void InputCommandMessageInvitation::findAndAssociateTheUserNameOfTheInputClient(
 
 void InputCommandMessageInvitation::broadcastCommandJoin(QList<ProtocolCommandParamUser> &list, ProtocolCommand* command_join)
 {
-
     if (protocolInterpretor.executeCommand(command))
     {
-
     }
 }
 
