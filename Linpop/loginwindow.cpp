@@ -51,7 +51,7 @@ void    LoginWindow::InitLogin()
 void    LoginWindow::OpenContactWindow()
 {
     cw->setLoginWindow(this);
-    cw->setLogin(ui->luser_name->text());
+    cw->setLogin(ui->user_name->text());
     this->hide();
     cw->show();
 }

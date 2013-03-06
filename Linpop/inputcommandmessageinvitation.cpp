@@ -18,7 +18,7 @@ InputCommandMessageInvitation::InputCommandMessageInvitation(const InputCommandM
 
 void InputCommandMessageInvitation::findAndAssociateTheUserNameOfTheInputClient(QList<ProtocolCommandParamUser> &list, NetworkClient *networkClient)
 {
-    int i = 0;
+    /*int i = 0;
     while (i < list.size())
     {
         if (list.at(i).getIP() == networkClient->getIP())
@@ -26,6 +26,15 @@ void InputCommandMessageInvitation::findAndAssociateTheUserNameOfTheInputClient(
             networkClient->setUsername(list.at(i).getUsername());
         }
         i++;
+    }*/
+    networkClient->setUsername(list.at(0).getUsername());
+}
+
+void InputCommandMessageInvitation::broadcastCommandJoin(QList<ProtocolCommandParamUser> &list, ProtocolCommand* command_join)
+{
+    if (this->ptrContactWindow->getNetworkObject()->getProtocolInterpretor().executeCommand(command_join))
+    {
+
     }
 }
 
@@ -38,14 +47,13 @@ bool InputCommandMessageInvitation::execute()
 
     findAndAssociateTheUserNameOfTheInputClient(this->getProtocolCommandParameter().getListProtocolCommandParamUser() ,this->ptrInputNetworkClient);
     p.addParamCommandConv(ProtocolCommandParamConv(id_conv));
+    p.addParamCommandUser(ProtocolCommandParamUser(this->getContactWindow()->getLogin(), QString("NO-NEED")));
     command->setProtocolCommandParameter(p);
-    if (protocolInterpretor.executeCommand(command))
-    {
-        ConversationWindow *conversationWindow = this->ptrContactWindow->createEmptyConversationWindow();
-        conversationWindow->setIDConv(id_conv);
-        conversationWindow->addChatContact(this->ptrInputNetworkClient);
-        conversationWindow->show();
-    }
+    broadcastCommandJoin(this->getProtocolCommandParameter().getListProtocolCommandParamUser(), command);
+    ConversationWindow *conversationWindow = this->ptrContactWindow->createEmptyConversationWindow();
+    conversationWindow->setIDConv(id_conv);
+    conversationWindow->addChatContact(this->ptrInputNetworkClient);
+    conversationWindow->show();
     return true;
 }
 
