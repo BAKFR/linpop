@@ -4,7 +4,7 @@
 #include "networkclient.h"
 
 
-char ProtocolCommand::separator = ':';
+char ProtocolCommand::separator = '\0x01';
 
 ProtocolCommand::ProtocolCommand()
     : ptrOutputNetworkClient(NULL), ptrInputNetworkClient(NULL),

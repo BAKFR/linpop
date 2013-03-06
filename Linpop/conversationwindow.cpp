@@ -136,7 +136,7 @@ void    ConversationWindow::on_sendButton_clicked()
 {
     if (ui->lineEdit->text() != "")
     {
-        this->AddText(this->getContactWindow()->getLogin() +" dit :" + ui->lineEdit->text());
+        this->AddText(_contact_window->getLogin() +" dit :" + ui->lineEdit->text());
         ProtocolInterpretor &refProtocolInterpretor = _contact_window->getNetworkObject()->getProtocolInterpretor();
 
         ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_SEND, NULL);
@@ -192,6 +192,34 @@ void ConversationWindow::setUploadWindow(UploadWindow *ptr)
 
 void    ConversationWindow::AddText(QString message)
 {
+    QList<const char*> smileys;
+    smileys.append("8$");
+    smileys.append(":angel:");
+    smileys.append(":devil:");
+    smileys.append(":down:");
+    smileys.append(":up:");
+    smileys.append(":love:");
+    smileys.append(":D");
+    smileys.append("oo");
+    smileys.append("oO");
+    smileys.append(":O");
+    smileys.append("^^");
+    smileys.append("=]");
+    smileys.append("><");
+    smileys.append("-_-");
+    smileys.append(":stop:");
+    smileys.append(":)");
+    smileys.append(":(");
+    smileys.append(":\\");
+    smileys.append(":p");
+    smileys.append(":'(");
+
+    QList<const char*>::Iterator it;
+
+    for (it = smileys.begin(); it != smileys.end(); ++it)
+        message.replace(*it, QString("<img src=\"../Images/smiley/") + *it + ".png\" />");
+
+
     if (ui->textEdit->toHtml() != "")
         ui->textEdit->setHtml(ui->textEdit->toHtml() + "\r\n" + message );
     else
