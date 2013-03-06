@@ -34,7 +34,7 @@ NetworkServer &NetworkObject::getNetworkServer()
 NetworkClient *NetworkObject::createAndConnectNewNetworkClient(QString ip, int port)
 {
     NetworkClient *myClient = new NetworkClient;
-
+return myClient;
 }
 
 void NetworkObject::shutdownServer()
