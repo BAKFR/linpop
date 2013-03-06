@@ -47,15 +47,6 @@ NetworkClient *ProtocolCommand::getOutputNetworkClient()
     return this->ptrOutputNetworkClient;
 }
 
-void ProtocolCommand::onNetworkClientCloseNotification(NetworkClient *client)
-{
-    this->abord();
-}
-
-void ProtocolCommand::abord()
-{
-  this->validity = false;
-}
 
 void ProtocolCommand::notifyNetworkClientCommandExecuted()
 {

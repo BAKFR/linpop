@@ -1,4 +1,3 @@
-#include <iostream>
 #include <QString>
 #include <QTcpSocket>
 #include <QMessageBox>
@@ -103,7 +102,7 @@ QString ContactWindow::TestPing(QString ip)
 
 void ContactWindow::addContact(QString name, QString ip)
 {
-    if (name == "" || ip == "")
+    if (name != "" || ip != "")
     {
         User *u = this->db->getUser(this->login, this->pwd);
         if (u != NULL)
@@ -148,33 +147,25 @@ void ContactWindow::setContact(QString user_name, QString ip)
 QString ContactWindow::getName(QString text)
 {
     QString name;
-    std::string tmp;
-    std::string buf;
 
     if (text == "")
         text = ui->listContact->currentItem()->text();
-    tmp = text.toStdString();
-    for (unsigned int i = 0; tmp[i] != '\t' && tmp[i] != ' ' && i < tmp.size(); i++)
-        buf += tmp[i];
-    name =  QString(buf.c_str());
-    return (name);
+    for (int i = 0; text[i] != '\t' && text[i] != ' ' && i < text.size(); i++)
+        name += text[i];
+    return name;
 }
 
 QString ContactWindow::getIp(QString text)
 {
-    unsigned int i = 0;
+    int i = 0;
     QString ip;
-    std::string tmp;
-    std::string buf;
 
     if (text == "")
         text = ui->listContact->currentItem()->text();
-    tmp = text.toStdString();
-    for (i = 0; tmp[i] != '\t' && tmp[i] != ' ' && i < tmp.size(); i++);
-    for (i = i + 1; i < tmp.size(); i++)
-        buf += tmp[i];
-    ip =  QString(buf.c_str());
-    return (ip);
+    for (i = 0; text[i] != '\t' && text[i] != ' ' && i < text.size(); i++);
+    for (i = i + 1; i < text.size(); i++)
+        ip += text[i];
+    return ip;
 }
 
 void ContactWindow::on_actionDisconnect_triggered()
@@ -283,34 +274,26 @@ NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
 }
 
 
-void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
+void ContactWindow::on_listContact_doubleClicked()
 {
 
-    std::cout << "Erreur 2"<< std::endl;
     QString name = this->getName();
-    std::cout << "Erreur 2"<< std::endl;
     QString ip = this->getIp();
-    std::cout << "Erreur 2"<< std::endl;
 
     NetworkClient *client = this->createAndConnectNetworkClientOnIP(ip);
-    std::cout << "Erreur 1" << std::endl;
     if (client != NULL)
     {
         ProtocolCommand *command = this->getNetworkObject()->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_INVITATION, client);
         ProtocolCommandParameter p;
-std::cout << "Erreur 2"<< std::endl;
         QString idConv = generateID();
         p.addParamCommandConv(ProtocolCommandParamConv(idConv));
         p.addParamCommandUser(ProtocolCommandParamUser(this->getLogin(), "INSERT IP HERE"));
         command->setProtocolCommandParameter(p);
-       std::cout << "Erreur 3"<< std::endl;
         if (this->getNetworkObject()->getProtocolInterpretor().executeCommand(command) == true)
         {
-            std::cout << "Erreur 4"<< std::endl;
             ConversationWindow *cw = createEmptyConversationWindow();
             cw->show();
             cw->setIDConv(idConv);
-      std::cout << "Erreur 5"<< std::endl;
             return;
         }
     }

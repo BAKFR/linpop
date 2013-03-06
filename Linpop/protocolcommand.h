@@ -27,8 +27,6 @@ public:
     void setOutputNetworkClient(NetworkClient *ptrOutputNetworkClient);
     NetworkClient *getInputNetworkClient();
     NetworkClient *getOutputNetworkClient();
-    void onNetworkClientCloseNotification(NetworkClient *client);
-    void abord();
     void notifyNetworkClientCommandExecuted();
     ProtocolCommandExecutionMode getExecutionMode();
     bool getValidity();

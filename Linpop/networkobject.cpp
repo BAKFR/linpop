@@ -34,30 +34,6 @@ NetworkServer &NetworkObject::getNetworkServer()
     return this->networkServer;
 }
 
-NetworkClient *NetworkObject::createAndConnectNewNetworkClient(QString ip, int port)
-{
-    NetworkClient *myClient = new NetworkClient;
-return myClient;
-}
-
-void NetworkObject::shutdownServer()
-{
-    this->networkServer.close();
-}
-
-void NetworkObject::startNewConversation(QString ip, QString username)
-{
-    NetworkClient *nc = this->getNetworkClientByIP(ip);
-    if (nc == NULL)
-    {
-        nc = createAndConnectNewNetworkClient(ip, this->networkServer.getPort());
-    }
-    ConversationWindow *ecw = ptrContactWindow->createEmptyConversationWindow();
-    ProtocolCommand *command = this->protocolInterpretor.createOutputCommand(COMMAND_MESSAGE_INVITATION, nc);
-    ProtocolCommandParamConv conversation(ecw->getIDConv());
-    command->getProtocolCommandParameter().addParamCommandConv(conversation);
-    this->protocolInterpretor.executeCommand(command);
-}
 
 NetworkClient *NetworkObject::getNetworkClientByIP(QString ip)
 {

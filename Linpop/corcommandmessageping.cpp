@@ -10,7 +10,7 @@ bool CORCommandMessagePing::predicate(QByteArray query)
     return query.startsWith("PING");
 }
 
-ProtocolCommand *CORCommandMessagePing::build(QByteArray query)
+ProtocolCommand *CORCommandMessagePing::build(QByteArray)
 {
     return new InputCommandMessagePing();
 }

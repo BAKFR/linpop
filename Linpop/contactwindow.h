@@ -60,7 +60,7 @@ private slots:
     
     void on_pushButton_clicked();
 
-    void on_listContact_doubleClicked(QModelIndex);
+    void on_listContact_doubleClicked();
 
     void on_actionAbout_triggered();
 

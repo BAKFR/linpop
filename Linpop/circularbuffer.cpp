@@ -2,15 +2,6 @@
 #include <QString>
 #include <QByteArray>
 
-CircularBuffer::CircularBuffer(QObject *parent)
-{
-
-}
-
-void CircularBuffer::initialize()
-{
-}
-
 void CircularBuffer::addData(QByteArray data)
 {
     byteArray.append(data);
@@ -26,8 +17,5 @@ QString CircularBuffer::tryToGetCompleteCommand()
         byteArray.remove(0, index + 2);
         return QString::fromUtf8(query);
     }
-    else
-    {
-        return "";
-    }
+    return "";
 }

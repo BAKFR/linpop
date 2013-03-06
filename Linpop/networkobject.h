@@ -20,10 +20,8 @@ public:
     bool initialize(int port);
     NetworkServer &getNetworkServer();
     QList<NetworkClient *>& getListNetworkClient();
-    NetworkClient *createAndConnectNewNetworkClient(QString ip, int port);
     void shutdownServer();
     ContactWindow *getContactWindow();
-    void startNewConversation(QString ip, QString username);
     NetworkClient *getNetworkClientByIP(QString ip);
     NetworkClient *getNetworkClientByUsername(QString username);
     void addNetworkClient(NetworkClient *networkClient);
