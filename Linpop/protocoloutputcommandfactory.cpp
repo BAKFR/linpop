@@ -9,6 +9,7 @@
 #include "outputcommandmessagepong.h"
 #include "outputcommandmessagesend.h"
 #include "outputcommandmessagejoin.h"
+#include "outputcommandmessagewizz.h"
 
 ProtocolOutputCommandFactory::ProtocolOutputCommandFactory()
 {
@@ -48,6 +49,9 @@ ProtocolCommand *ProtocolOutputCommandFactory::build(ProtocolCommandType type, N
         break;
     case COMMAND_MESSAGE_JOIN:
         command = new OutputCommandMessageJoin();
+        break;
+    case COMMAND_MESSAGE_WIZZ:
+        command = new OutputCommandMessageWizz();
         break;
     }
     if (command != NULL)

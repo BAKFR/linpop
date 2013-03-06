@@ -11,6 +11,7 @@
 #include <QListWidget>
 #include <QDebug>
 #include <QLineEdit>
+#include <QTimer>
 
 ConversationWindow::ConversationWindow(ContactWindow *parent) :
     QMainWindow(parent), _contact_window(parent),
@@ -175,4 +176,40 @@ void ConversationWindow::on_AddContact_clicked()
     AddContactChatWindow    *accw = new AddContactChatWindow(this);
 
     accw->show();
+}
+
+void ConversationWindow::on_wizzButton_clicked()
+{
+    ProtocolInterpretor &refProtocolInterpretor = _contact_window->getNetworkObject()->getProtocolInterpretor();
+    ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_WIZZ, NULL);
+    ProtocolCommandParameter p;
+
+    p.addParamCommandConv(ProtocolCommandParamConv(this->IDConv));
+    command->setProtocolCommandParameter(p);
+    broadcast(command);
+}
+
+void ConversationWindow::receiveWizz()
+{
+    activateWindow();
+    raise();
+    QTimer *timer = new QTimer(this);
+    timer->setInterval(5);
+    connect(timer, SIGNAL(timeout()), this, SLOT(onWizzTimeout()));
+    timer->start();
+}
+
+void    ConversationWindow::onWizzTimeout()
+{
+    static int i = 0;
+
+    if (i >= 40) {
+        dynamic_cast<QTimer*>(sender())->deleteLater();
+        i = 0;
+    }
+
+    i++;
+    QPoint p = pos();
+    p.rx() += ((i / 10) % 2) == 0 ? -1 : 1;
+    move(p);
 }

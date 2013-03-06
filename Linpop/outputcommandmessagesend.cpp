@@ -1,4 +1,4 @@
-#include "ouputcommandmessagesend.h"
+#include "outputcommandmessagesend.h"
 
 
 OutputCommandMessageSend::OutputCommandMessageSend()
