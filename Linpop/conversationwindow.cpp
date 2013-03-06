@@ -192,32 +192,32 @@ void ConversationWindow::setUploadWindow(UploadWindow *ptr)
 
 void    ConversationWindow::AddText(QString message)
 {
-    QList<const char*> smileys;
-    smileys.append("8$");
-    smileys.append(":angel:");
-    smileys.append(":devil:");
-    smileys.append(":down:");
-    smileys.append(":up:");
-    smileys.append(":love:");
-    smileys.append(":D");
-    smileys.append("oo");
-    smileys.append("oO");
-    smileys.append(":O");
-    smileys.append("^^");
-    smileys.append("=]");
-    smileys.append("><");
-    smileys.append("-_-");
-    smileys.append(":stop:");
-    smileys.append(":)");
-    smileys.append(":(");
-    smileys.append(":\\");
-    smileys.append(":p");
-    smileys.append(":'(");
+    QList<QPair<QString, QString> > smileys;
+    smileys.append(QPair<QString, QString>("8$", "1.png"));
+    smileys.append(QPair<QString, QString>(":angel:", "angel.png"));
+    smileys.append(QPair<QString, QString>(":devil:", "devil.png"));
+    smileys.append(QPair<QString, QString>(":down:", "up.png"));
+    smileys.append(QPair<QString, QString>(":up:", "down.png"));
+    smileys.append(QPair<QString, QString>(":love:", "love.png"));
+    smileys.append(QPair<QString, QString>(":D", "2.png"));
+    smileys.append(QPair<QString, QString>("oo", "3.png"));
+    smileys.append(QPair<QString, QString>("oO", "4.png"));
+    smileys.append(QPair<QString, QString>(":O", "5.png"));
+    smileys.append(QPair<QString, QString>("><", "6.png"));
+    smileys.append(QPair<QString, QString>("=]", "7.png"));
+    smileys.append(QPair<QString, QString>("^^", "8.png"));
+    smileys.append(QPair<QString, QString>("-_-", "9.png"));
+    smileys.append(QPair<QString, QString>(":stop:", "stop.png"));
+    smileys.append(QPair<QString, QString>(":)", "10.png"));
+    smileys.append(QPair<QString, QString>(":(", "11.png"));
+    smileys.append(QPair<QString, QString>(":\\", "12.png"));
+    smileys.append(QPair<QString, QString>(":p", "13.png"));
+    smileys.append(QPair<QString, QString>(":'(", "14.png"));
 
-    QList<const char*>::Iterator it;
+    QList<QPair<QString, QString> >::Iterator it;
 
     for (it = smileys.begin(); it != smileys.end(); ++it)
-        message.replace(*it, QString("<img src=\"../Images/smiley/") + *it + ".png\" />");
+        message.replace(it->first, QString("<img src=\"../Images/smiley/") + it->second + "\" />");
 
 
     if (ui->textEdit->toHtml() != "")

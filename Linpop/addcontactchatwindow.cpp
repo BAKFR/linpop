@@ -35,6 +35,10 @@ void AddContactChatWindow::addAllConversationMemberInCommandParameter(ProtocolCo
 
 void AddContactChatWindow::on_bAddContact_clicked()
 {
+    if (cw->getClientByIP(ui->ip->text()) != NULL) {
+        QMessageBox::warning(this, "Warning!", "This user is already in this conversation.");
+        return;
+    }
     NetworkClient *newclient = this->cw->getContactWindow()->createAndConnectNetworkClientOnIP(ui->ip->text());
     if (newclient != NULL)
     {
