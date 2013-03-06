@@ -14,11 +14,14 @@ UploadWindow::UploadWindow(ConversationWindow *parent, const QString &file) :
 {
     QFileInfo   info(file);
 
-
-
-
     ft_upload = new FileTransfertUpload(info, parent->getContactWindow()->getNetworkObject(), parent);
+    connect(ft_upload, SIGNAL(clientError(QString)), this, SLOT(onClientError(QString)));
+    connect(ft_upload, SIGNAL(complete(int,int,int)), this, SLOT(onUploadComplete(int,int,int)));
+    connect(ft_upload, SIGNAL(error(QString)), this, SLOT(onUploadError(QString)));
+    connect(ft_upload, SIGNAL(progress(int,int,int)), this, SLOT(onUploadProgress()));
+
     ui->setupUi(this);
+    ui->label_data->setText(QString(" 0 / ") + QString::number(ft_upload->getTotal()));
     ui->label_fileName->setText(info.fileName() + " (" + QString::number(info.size()) + " octets)");
     ui->label_success->setVisible(false);
     ui->label_error->setVisible(false);
@@ -50,7 +53,8 @@ void    UploadWindow::onUploadProgress(int nb_ok, int nb_error, int nb_total)
 
 void    UploadWindow::onUploadError(const QString &error)
 {
-    ui->info_layout->widget()->setVisible(false);
+    ui->label_2->setVisible(false);
+    ui->label_data->setVisible(false);
     ui->label_error->setVisible(true);
     ui->label_error->setText(ui->label_error->text() + "\n" + error);
     ui->buttonBox->setStandardButtons(QDialogButtonBox::Close);
@@ -61,20 +65,8 @@ void    UploadWindow::onClientError(const QString &)
     //TODO display error ?
 }
 
-void UploadWindow::on_buttonBox_rejected()
-{
-    if (ft_upload != NULL)
-        ft_upload->stop();
-}
-
-
-
 void UploadWindow::onAcceptFile(int port, NetworkClient *client)
 {
-    if (port == 0) {   //NO!
-        //what ?
-        //remove socket ?
-    }
-    //TODO
+    if (ft_upload)
+        ft_upload->receiveAcceptFile(client, port);
 }
-

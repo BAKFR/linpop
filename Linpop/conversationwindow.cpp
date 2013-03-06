@@ -20,7 +20,7 @@ ConversationWindow::ConversationWindow(ContactWindow *parent) :
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(on_sendButton_clicked()));
 }
 
-QString ConversationWindow::getIDConv()
+QString ConversationWindow::getIDConv() const
 {
     return this->IDConv;
 }
@@ -41,7 +41,7 @@ void ConversationWindow::on_uploadButton_clicked()
     if (file_window->exec() == 1) {
         //A file is choosen.
 
-        UploadWindow *_upload_window = new UploadWindow(this, file_window->selectedFiles().at(0));
+        _upload_window = new UploadWindow(this, file_window->selectedFiles().at(0));
         _upload_window->show();
     }
     delete file_window;
@@ -145,4 +145,14 @@ void    ConversationWindow::AddText(QString message)
 QString    ConversationWindow::getText()
 {
     return (ui->lineEdit->text());
+}
+
+int     ConversationWindow::getNbMembers() const
+{
+    return listClient.size();
+}
+
+QList<NetworkClient *>  &ConversationWindow::getClients()
+{
+    return listClient;
 }

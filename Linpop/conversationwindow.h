@@ -21,7 +21,7 @@ protected:
     QList<NetworkClient *> listClient;
     UploadWindow    *_upload_window;
 public:
-    QString getIDConv();
+    QString getIDConv() const;
     NetworkClient *getClientByUsername(QString username);
     explicit ConversationWindow(ContactWindow *parent);
     void setIDConv(QString IDConv);
@@ -38,6 +38,9 @@ public:
 
     void    AddText(QString message);
     QString getText();
+
+    int     getNbMembers() const;
+    QList<NetworkClient *>  &getClients();
     
 private:
     Ui::ConversationWindow *ui;

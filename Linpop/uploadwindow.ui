@@ -145,7 +145,7 @@ You can now close this window.</string>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
    <receiver>UploadWindow</receiver>
-   <slot>accept()</slot>
+   <slot>deleteLater()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>248</x>
@@ -161,7 +161,7 @@ You can now close this window.</string>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
    <receiver>UploadWindow</receiver>
-   <slot>reject()</slot>
+   <slot>deleteLater()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>316</x>
