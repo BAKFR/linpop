@@ -1,7 +1,7 @@
 #include "trayicon.h"
 
 Trayicon::Trayicon(QWidget *link):
-    QMainWindow(link)
+    QWidget(link)
 {
     this->createAction();
     this->createTrayicon();
@@ -19,7 +19,7 @@ void    Trayicon::createAction()
     connect(this->_open, SIGNAL(triggered()), this, SLOT(show()));
 
     this->_close = new QAction(tr("&Quit"), this);
-    connect(this->_close, SIGNAL(triggered()), this, SLOT(show()));
+    connect(this->_close, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 void    Trayicon::createTrayicon()
@@ -37,13 +37,13 @@ void    Trayicon::createTrayicon()
                 this->_trayicon,
                 SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
                 this,
-                SLOT(this->trayIconClicked(QSystemTrayIcon::ActivationReason))
+                SLOT(trayIconClicked(QSystemTrayIcon::ActivationReason))
                 );
 }
 
 void    Trayicon::setIcon()
 {
-    //this->_trayicon->setIcon("./iconTest.png");
+    this->_trayicon->setIcon(QIcon("../Images/icon-test.png"));
 }
 
 void    Trayicon::trayIconClicked(QSystemTrayIcon::ActivationReason reason)
