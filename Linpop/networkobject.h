@@ -27,6 +27,7 @@ public:
     NetworkClient *getNetworkClientByIP(QString ip);
     NetworkClient *getNetworkClientByUsername(QString username);
     void addNetworkClient(NetworkClient *networkClient);
+    void rmNetworkClient(NetworkClient *networkClient);
 
     void setContactWindow(ContactWindow *win);
 

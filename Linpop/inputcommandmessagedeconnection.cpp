@@ -1,4 +1,5 @@
 #include "inputcommandmessagedeconnection.h"
+#include "networkobject.h"
 
 InputCommandMessageDeconnection::InputCommandMessageDeconnection()
 {
@@ -11,7 +12,22 @@ InputCommandMessageDeconnection::InputCommandMessageDeconnection(const InputComm
 
 bool InputCommandMessageDeconnection::execute()
 {
-    return true;
+    ConversationWindow *conv_win = ptrContactWindow
+            ->getConvById(protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID());
+    if (conv_win) {
+
+        conv_win->rmChatContact(ptrInputNetworkClient);
+
+        if (!ptrContactWindow->hasConvByClient(ptrInputNetworkClient)) {
+            ptrContactWindow->getNetworkObject()->rmNetworkClient(ptrInputNetworkClient);
+            ptrInputNetworkClient = NULL;
+        }
+
+        return true;
+    } else {
+        qDebug() << "ERROR: we receive msg from a unknown ";
+        return false;
+    }
 }
 
 ProtocolCommand *InputCommandMessageDeconnection::clone()

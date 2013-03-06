@@ -100,7 +100,6 @@ HEADERS  += loginwindow.h \
     outputcommandmessagetransfertfile.h \
     outputcommandmessageacceptfile.h \
     outputcommandmessagedeconnection.h \
-    ouputcommandmessagesend.h \
     outputcommandmessagesend.h \
     outputcommandmessagejoin.h \
     outputcommandmessageinvitation.h \

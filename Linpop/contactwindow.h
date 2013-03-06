@@ -22,8 +22,13 @@ public:
     ConversationWindow *createEmptyConversationWindow();
     ~ContactWindow();
 
+
+    void removeConv(ConversationWindow *w);
     NetworkObject* getNetworkObject();
     ConversationWindow *getConvById(const QString &id);
+
+    int hasConvByClient(NetworkClient *client);
+
     void setLoginWindow(QWidget *);
     void addContact(QString name, QString ip);
     void deleteContact();

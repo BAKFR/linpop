@@ -91,6 +91,12 @@ void NetworkObject::addNetworkClient(NetworkClient *networkClient)
     this->listNetworkClient.append(networkClient);
 }
 
+void NetworkObject::rmNetworkClient(NetworkClient *networkClient)
+{
+    this->listNetworkClient.removeOne(networkClient);
+    delete networkClient;
+}
+
 void NetworkObject::setContactWindow(ContactWindow *win)
 {
     ptrContactWindow = win;
