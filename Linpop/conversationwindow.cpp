@@ -2,6 +2,7 @@
 #include "ui_conversationwindow.h"
 #include "uploadwindow.h"
 #include "contactwindow.h"
+#include "addcontactchatwindow.h"
 
 #include "protocolcommand.h"
 #include "networkobject.h"
@@ -155,4 +156,11 @@ int     ConversationWindow::getNbMembers() const
 QList<NetworkClient *>  &ConversationWindow::getClients()
 {
     return listClient;
+}
+
+void ConversationWindow::on_AddContact_clicked()
+{
+    AddContactChatWindow    *accw = new AddContactChatWindow(this);
+
+    accw->show();
 }
