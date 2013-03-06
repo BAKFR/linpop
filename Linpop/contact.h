@@ -19,7 +19,12 @@ public:
     int     getIdUser();
     QString getContactName();
     QString getIp();
+    void    setIdUser(int &idUser);
+    void    setIdContact(int &idContact);
+    void    setContactName(QString &contactName);
+    void    setIp(QString &ip);
     void    setInfo(int idUser, int idContact, QString contactName, QString ip);
+
 };
 
 #endif // CONTACT_H

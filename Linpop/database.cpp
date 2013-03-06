@@ -72,6 +72,8 @@ User                 *Database::getUser(QString &nickname, QString &pwd)
             user->setUserName(userName);
             user->setPassword(password);
         }
+        else
+            return (NULL);
     }
     else
         return (NULL);
@@ -86,7 +88,19 @@ QList<Contact>      *Database::getListContact(int &user)
     QSqlQuery       query;
 
     contactList = new QList<Contact>();
-    statement = "SELECT * FROM Contact WHERE ";
+    statement = "SELECT * FROM Contact";
+    statement += " WHERE (Id_User = " + QString::number(user) + ");";
+
+    if (query.exec(statement))
+    {
+
+        while (query.next())
+        {
+
+        }
+    }
+    else
+        return (NULL);
 
     return (contactList);
 }

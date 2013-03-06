@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 //    db.addContact(contact);
 //    db.addMember(member);
 
-    QString     userName = "Philippe";
+    QString     userName = "KAKA";
     QString     password = "PWNEDBYNOOB";
 
     User        *testUser = db.getUser(userName, password);
