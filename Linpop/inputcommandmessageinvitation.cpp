@@ -37,7 +37,9 @@ void InputCommandMessageInvitation::broadcastCommandJoin(QList<ProtocolCommandPa
     ProtocolCommand *temp = NULL;
     QString ip_client_to_notify_join;
     NetworkClient *remote_client_to_notify_join = NULL;
-    if (this->ptrContactWindow->getNetworkObject()->getProtocolInterpretor().executeCommand(command_join))
+    ConversationWindow *ptrConversationWindow = this->getContactWindow()->getConvById(command_join->getProtocolCommandParameter().getListProtocolCommandParamConv().at(0).getConvID());
+
+    if (this->ptrContactWindow->getNetworkObject()->getProtocolInterpretor().executeCommand(command_join) && ptrConversationWindow != NULL)
     {
         int i = 1;
         while (i < list.size())
@@ -49,6 +51,7 @@ void InputCommandMessageInvitation::broadcastCommandJoin(QList<ProtocolCommandPa
                 temp = command_join_clone->clone();
                 remote_client_to_notify_join->setUsername(list.at(i).getUsername());
                 command_join_clone->setOutputNetworkClient(remote_client_to_notify_join);
+                ptrConversationWindow->addChatContact(remote_client_to_notify_join);
                 this->ptrContactWindow->getNetworkObject()->getProtocolInterpretor().executeCommand(command_join_clone);
                 command_join_clone = temp;
             }
@@ -68,9 +71,9 @@ bool InputCommandMessageInvitation::execute()
     p.addParamCommandConv(ProtocolCommandParamConv(id_conv));
     p.addParamCommandUser(ProtocolCommandParamUser(this->getContactWindow()->getLogin(), QString("NO-NEED")));
     command->setProtocolCommandParameter(p);
-    broadcastCommandJoin(this->getProtocolCommandParameter().getListProtocolCommandParamUser(), command);
     ConversationWindow *conversationWindow = this->ptrContactWindow->createEmptyConversationWindow();
     conversationWindow->setIDConv(id_conv);
+    broadcastCommandJoin(this->getProtocolCommandParameter().getListProtocolCommandParamUser(), command);
     conversationWindow->addChatContact(this->ptrInputNetworkClient);
     conversationWindow->show();
     return true;
