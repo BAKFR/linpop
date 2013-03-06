@@ -120,7 +120,7 @@ QString ContactWindow::getName(QString text)
     if (text == "")
         text = ui->listContact->currentItem()->text();
     tmp = text.toStdString();
-    for (unsigned int i = 0; tmp[i] != '\t' && tmp[i] != ' ' && i < tmp.size(); i++)
+    for (unsigned int i = 0; (tmp[i] != '\t' || tmp[i] != ' ') && i < tmp.size(); i++)
         buf += tmp[i];
     name =  QString(buf.c_str());
     return (name);
@@ -235,13 +235,13 @@ NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
 }
 
 
-void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
+void ContactWindow::on_listContact_doubleClicked(QModelIndex )
 {
+
     QString name = this->getName();
     QString ip = this->getIp();
 
     NetworkClient *client = this->createAndConnectNetworkClientOnIP(ip);
-
     if (client != NULL)
     {
         client->setUsername(name);
@@ -250,7 +250,7 @@ void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
 
         QString idConv = generateID();
         p.addParamCommandConv(ProtocolCommandParamConv(idConv));
-        p.addParamCommandUser(ProtocolCommandParamUser(name, ip));
+        p.addParamCommandUser(ProtocolCommandParamUser(this->getLogin(), QString("127.0.0.1")));
         command->setProtocolCommandParameter(p);
         if (this->getNetworkObject()->getProtocolInterpretor().executeCommand(command) == true)
         {

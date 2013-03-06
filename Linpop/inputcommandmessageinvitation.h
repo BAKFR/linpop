@@ -7,6 +7,7 @@ class InputCommandMessageInvitation : public ProtocolCommand
 {
 private:
     void findAndAssociateTheUserNameOfTheInputClient(QList<ProtocolCommandParamUser> &list, NetworkClient *networkClient);
+    void    broadcastCommandJoin(QList<ProtocolCommandParamUser> &list, ProtocolCommand* command_join);
 public:
     InputCommandMessageInvitation();
     InputCommandMessageInvitation(const InputCommandMessageInvitation &ref);

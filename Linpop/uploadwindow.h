@@ -34,9 +34,6 @@ public slots:
         onUploadComplete(1, 2, 3);
     }
 
-    //Cancel upload (or just close window)
-    void on_buttonBox_rejected();
-
 private:
     ConversationWindow *_conv_win;
     Ui::UploadWindow *ui;
