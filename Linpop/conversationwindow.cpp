@@ -13,6 +13,11 @@
 #include <QDebug>
 #include <QLineEdit>
 #include <QTimer>
+#include <QDragEnterEvent>
+#include <QDragLeaveEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
+#include <QUrl>
 
 ConversationWindow::ConversationWindow(ContactWindow *parent) :
     QMainWindow(parent), _contact_window(parent),
@@ -282,4 +287,39 @@ void    ConversationWindow::onWizzTimeout()
     QPoint p = pos();
     p.rx() += ((i / 10) % 2) == 0 ? -1 : 1;
     move(p);
+}
+
+
+void ConversationWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (!_upload_window)
+        event->acceptProposedAction();
+}
+
+void ConversationWindow::dragLeaveEvent(QDragLeaveEvent *event)
+{
+    event->accept();
+}
+
+void ConversationWindow::dragMoveEvent(QDragMoveEvent *event)
+{
+    if (!_upload_window)
+        event->acceptProposedAction();
+}
+
+void ConversationWindow::dropEvent(QDropEvent *event)
+{
+    const QMimeData* mimeData = event->mimeData();
+
+    if (_upload_window)
+        return;
+
+    if (mimeData->hasUrls() && mimeData->urls().count() == 1
+            && mimeData->urls().at(0).isLocalFile())
+    {
+        event->acceptProposedAction();
+
+        _upload_window = new UploadWindow(this, mimeData->urls().at(0).toLocalFile());
+        _upload_window->show();
+    }
 }

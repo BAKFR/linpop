@@ -58,6 +58,12 @@ public slots:
 private slots:
     void on_AddContact_clicked();
     void onWizzTimeout();
+
+protected:
+    void dragEnterEvent(QDragEnterEvent *);
+    void dragLeaveEvent(QDragLeaveEvent *);
+    void dragMoveEvent(QDragMoveEvent *);
+    void dropEvent(QDropEvent *);
 };
 
 #endif // CONVERSATIONWINDOW_H
