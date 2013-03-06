@@ -37,7 +37,8 @@ void ContactWindow::setLoginWindow(QWidget *login)
     lw = login;
 }
 
-QString ContactWindow::TestPing(QString ip)
+//Version pauline
+/*QString ContactWindow::TestPing(QString ip)
 {
     //Test ping
     QTcpSocket  *client = new QTcpSocket;
@@ -51,7 +52,25 @@ QString ContactWindow::TestPing(QString ip)
     }
     else
         return ("./../Images/rond_rouge.png");
+}*/
+
+//version arnaud
+QString ContactWindow::TestPing(QString ip)
+{
+    //Test ping
+    NetworkClient *newclient = this->createAndConnectNetworkClientOnIP(ip);
+
+    if (newclient)
+    {
+        return ("./../Images/rond_vert.png");
+    }
+    else
+    {
+        return ("./../Images/rond_rouge.png");
+    }
 }
+
+
 
 void ContactWindow::addContact(QString name, QString ip)
 {
@@ -183,17 +202,24 @@ QString ContactWindow::generateID()
 //A rajouter dans le header et penser a ajouter le port dans NetworkServer aussi.
 NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
 {
-    QTcpSocket  *client = new QTcpSocket;
-    NetworkClient *newclient = new NetworkClient;
+    NetworkClient *newclient = no->getNetworkClientByIP(ip);
 
-    client->connectToHost(ip, 5000);
-    if (client->waitForConnected(1000))
+    if (newclient != NULL)
     {
-        newclient->initialize(this->_network_object, client);
         return newclient;
     }
-    delete newclient;
-    return NULL;
+    else
+    {
+        QTcpSocket  *client = new QTcpSocket;
+        client->connectToHost(ip, 5000);
+        if (client->waitForConnected(1000))
+        {
+            newclient = new NetworkClient;
+            newclient->initialize(this->_network_object, client);
+            return newclient;
+        }
+        return NULL;
+    }
 }
 
 
@@ -204,6 +230,7 @@ void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
     QString ip = this->getIp();
 
     NetworkClient *client = this->createAndConnectNetworkClientOnIP(ip);
+    client->setUsername(name);
     if (client != NULL)
     {
         ProtocolCommand *command = this->getNetworkObject()->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_INVITATION, client);
