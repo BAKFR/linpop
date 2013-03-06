@@ -64,6 +64,8 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_boutonAddContact_clicked();
+
 private:
     Ui::ContactWindow *ui;
     QWidget           *lw;
