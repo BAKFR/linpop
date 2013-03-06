@@ -269,14 +269,13 @@ void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
 
         QString idConv = generateID();
         p.addParamCommandConv(ProtocolCommandParamConv(idConv));
-        p.addParamCommandUser(ProtocolCommandParamUser(name, ip));
+        p.addParamCommandUser(ProtocolCommandParamUser(this->getLogin(), "INSERT IP HERE"));
         command->setProtocolCommandParameter(p);
         if (this->getNetworkObject()->getProtocolInterpretor().executeCommand(command) == true)
         {
             ConversationWindow *cw = createEmptyConversationWindow();
             cw->show();
             cw->setIDConv(idConv);
-            //cw->addChatContact(client);
             return;
         }
     }
