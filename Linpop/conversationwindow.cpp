@@ -86,6 +86,8 @@ NetworkClient *ConversationWindow::getClientByIP(QString ip)
 
 void    ConversationWindow::on_sendButton_clicked()
 {
+    if (ui->lineEdit->text() != "")
+        this->AddText(this->getContactWindow()->getLogin() +" dit :" + ui->lineEdit->text());
     ProtocolInterpretor &refProtocolInterpretor = _contact_window->getNetworkObject()->getProtocolInterpretor();
 
     ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_SEND, NULL);
@@ -140,7 +142,7 @@ void ConversationWindow::setUploadWindow(UploadWindow *ptr)
 
 void    ConversationWindow::AddText(QString message)
 {
-    ui->textEdit->setHtml(message + " \r\n" + ui->textEdit->toHtml());
+    ui->textEdit->setHtml(ui->textEdit->toHtml() + " \r\n" + message );
 }
 
 QString    ConversationWindow::getText()
