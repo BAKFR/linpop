@@ -242,15 +242,15 @@ void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
     QString ip = this->getIp();
 
     NetworkClient *client = this->createAndConnectNetworkClientOnIP(ip);
-    client->setUsername(name);
     if (client != NULL)
     {
+        client->setUsername(name);
         ProtocolCommand *command = this->getNetworkObject()->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_INVITATION, client);
         ProtocolCommandParameter p;
 
         QString idConv = generateID();
         p.addParamCommandConv(ProtocolCommandParamConv(idConv));
-        p.addParamCommandUser(ProtocolCommandParamUser(name, ip));
+        p.addParamCommandUser(ProtocolCommandParamUser(this->getLogin(), QString("127.0.0.1")));
         command->setProtocolCommandParameter(p);
         if (this->getNetworkObject()->getProtocolInterpretor().executeCommand(command) == true)
         {
