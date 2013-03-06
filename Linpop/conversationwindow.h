@@ -31,6 +31,7 @@ public:
     bool isNetworkClientInConversation(NetworkClient *client);
     NetworkClient *getClientByIP(QString ip);
     ~ConversationWindow();
+    void rebuildContactList();
 
     ContactWindow *getContactWindow();
     UploadWindow *getUploadWindow();

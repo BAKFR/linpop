@@ -75,18 +75,37 @@ void ConversationWindow::addChatContact(NetworkClient *client)
 {
     listClient.append(client);
     this->ui->contactList->addItem(client->getUsername() + " " + client->getIP());
+    ui->lineEdit->setEnabled(true);
+    ui->sendButton->setEnabled(true);
+    ui->uploadButton->setEnabled(true);
+    ui->wizzButton->setEnabled(true);
 }
 
 void ConversationWindow::rmChatContact(NetworkClient *client)
 {
-    for (int i = 0; i < ui->contactList->count(); ++i) {
-        if (ui->contactList->item(i)->text().split(" ").at(1) == client->getIP()) {
-            ui->contactList->removeItemWidget(ui->contactList->item(i));
-            break;
-        }
-    }
     listClient.removeOne(client);
+    rebuildContactList();
+    if (listClient.count() == 0) {
+        ui->lineEdit->setEnabled(false);
+        ui->sendButton->setEnabled(false);
+        ui->uploadButton->setEnabled(false);
+        ui->wizzButton->setEnabled(false);
+    }
 }
+
+
+
+void ConversationWindow::rebuildContactList() {
+    QList<NetworkClient*>::Iterator it;
+
+    ui->contactList->clear();
+    for (it = listClient.begin(); it != listClient.end(); ++it) {
+        ui->contactList->addItem((*it)->getUsername() + " " + (*it)->getIP());
+    }
+}
+
+
+
 
 bool ConversationWindow::isNetworkClientInConversation(NetworkClient *client)
 {
