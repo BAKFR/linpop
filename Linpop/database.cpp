@@ -81,21 +81,35 @@ User                 *Database::getUser(QString &nickname, QString &pwd)
     return (user);
 }
 
-QList<Contact>      *Database::getListContact(int &user)
+QList<Contact*>      *Database::getListContact(int &user)
 {
-    QList<Contact>  *contactList = NULL;
+    QList<Contact*>  *contactList = NULL;
     QString         statement;
     QSqlQuery       query;
 
-    contactList = new QList<Contact>();
+    contactList = new QList<Contact*>();
     statement = "SELECT * FROM Contact";
     statement += " WHERE (Id_User = " + QString::number(user) + ");";
 
     if (query.exec(statement))
     {
+        int fieldIdUser = query.record().indexOf("Id_User");
+        int fieldIdContact = query.record().indexOf("Id");
+        int fieldContactName = query.record().indexOf("Pseudo");
+        int fieldIp = query.record().indexOf("Ip");
 
         while (query.next())
         {
+            int idUser = query.value(fieldIdUser).toInt();
+            int idContact = query.value(fieldIdContact).toInt();
+            QString contactName = query.value(fieldContactName).toString();
+            QString ip = query.value(fieldIp).toString();
+            Contact*    newContact = new Contact();
+            newContact->setIdContact(idContact);
+            newContact->setIdUser(idUser);
+            newContact->setContactName(contactName);
+            newContact->setIp(ip);
+            *contactList << newContact;
 
         }
     }
