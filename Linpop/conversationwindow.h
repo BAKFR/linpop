@@ -22,6 +22,7 @@ protected:
     UploadWindow    *_upload_window;
 public:
     QString getIDConv() const;
+    QList<NetworkClient *> getListClient();
     NetworkClient *getClientByUsername(QString username);
     explicit ConversationWindow(ContactWindow *parent);
     void setIDConv(QString IDConv);

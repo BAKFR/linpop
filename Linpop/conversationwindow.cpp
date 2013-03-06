@@ -21,6 +21,11 @@ ConversationWindow::ConversationWindow(ContactWindow *parent) :
     connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(on_sendButton_clicked()));
 }
 
+QList<NetworkClient *> ConversationWindow::getListClient()
+{
+    return this->listClient;
+}
+
 QString ConversationWindow::getIDConv() const
 {
     return this->IDConv;

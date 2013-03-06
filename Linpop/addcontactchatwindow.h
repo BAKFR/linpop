@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "conversationwindow.h"
+#include "protocolcommandparameter.h"
 
 namespace Ui {
 class AddContactChatWindow;
@@ -14,6 +15,7 @@ class AddContactChatWindow : public QDialog
     
 public:
     explicit AddContactChatWindow(ConversationWindow *, QWidget *parent = 0);
+    void addAllConversationMemberInCommandParameter(ProtocolCommandParameter &p);
     ~AddContactChatWindow();
     
 private slots:
