@@ -31,17 +31,21 @@ void    ContactWindow::initContactWindow(Database *_db, QString _login, QString 
     QList<Contact *> tmp;
     QString          name;
     QString          ip;
-    int              iduser = this->db->getUser(_login, _pwd)->getIdUser();
-    this->db = _db;
-    this->login = _login;
-    this->pwd = _pwd;
-    tmp = this->db->getListContact(iduser);
-    for (unsigned int i = 0; i < tmp.size(); i++)
+    User              *u = this->db->getUser(_login, _pwd);
+    if (u != NULL)
     {
-        name = tmp[i]->getContactName();
-        ip = tmp[i]->getIp();
-        ui->listContact->addItem(name + "\t" + ip);
-        ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+        int              iduser = u->getIdUser();
+        this->db = _db;
+        this->login = _login;
+        this->pwd = _pwd;
+        tmp = this->db->getListContact(iduser);
+        for (unsigned int i = 0; i < tmp.size(); i++)
+        {
+            name = tmp[i]->getContactName();
+            ip = tmp[i]->getIp();
+            ui->listContact->addItem(name + "\t" + ip);
+            ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+        }
     }
 }
 QString ContactWindow::getPassword()
@@ -93,23 +97,27 @@ QString ContactWindow::TestPing(QString ip)
 
 void ContactWindow::addContact(QString name, QString ip)
 {
-    int         iduser = this->db->getUser(this->login, this->pwd)->getIdUser();
-    if (this->db->getContact(iduser, name, ip) == NULL)
+    User *u = this->db->getUser(this->login, this->pwd);
+    if (u != NULL)
     {
-        Contact     contact = Contact();
-        contact.setContactName(name);
-        contact.setIdUser(iduser);
-        contact.setIp(ip);
-        if (db->addContact(contact) != -1)
+        int         iduser = u->getIdUser();
+        if (this->db->getContact(iduser, name, ip) == NULL)
         {
-            ui->listContact->addItem(name + "\t" + ip);
-            ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+            Contact     contact = Contact();
+            contact.setContactName(name);
+            contact.setIdUser(iduser);
+            contact.setIp(ip);
+            if (db->addContact(contact) != -1)
+            {
+                ui->listContact->addItem(name + "\t" + ip);
+                ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+            }
+            else
+                QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact.");
         }
         else
-            QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact.");
+            QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact. This contact already exist");
     }
-    else
-        QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact. This contact already exist");
 
  }
 
