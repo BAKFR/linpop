@@ -10,12 +10,9 @@ int main(int argc, char *argv[])
     LoginWindow  lw;
 
     // TEST DATABASE ON
-    QString     dbName = "/Users/Siegfried/Projects/PTraining2/newLinpop/linpop/bdd_linpop_test.db";
-    QString     userName = "JP";
-    QString     pwd = "DANUBE";
-    int         id = 1;
+    QString     dbName = "/Users/Siegfried/Projects/PTraining2/newLinpop/linpop/bdd_linpop.db";
 
-    Database    db = Database(dbName, userName, pwd, id);
+    Database    db = Database(dbName);
     User        user1 = User("Philippe", "PWNEDBYNOOB");
     Contact     contact = Contact();
     Member      member = Member();

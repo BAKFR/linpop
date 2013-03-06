@@ -22,8 +22,7 @@ class Database
     int             id_user;
 
 public:
-    Database(QString &otherBddname, QString &otherUsername,
-             QString &otherPwd, int &otherId_user);
+    Database(QString &otherBddname);
 
     int                 openDatabase();
     int                 closeDatabase();

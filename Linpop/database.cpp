@@ -1,12 +1,11 @@
 #include "database.h"
 
-Database::Database(QString &otherBddname, QString &otherUsername,
-                   QString &otherPwd, int &otherId_user)
+Database::Database(QString &otherBddname)
 {
     this->bddname = otherBddname;
-    this->pwd = otherPwd;
-    this->username = otherUsername;
-    this->id_user = otherId_user;
+    this->pwd = "";
+    this->username = "";
+    this->id_user = 0;
 }
 
 int         Database::openDatabase()
