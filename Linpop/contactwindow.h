@@ -32,6 +32,8 @@ public:
     QString getIp(QString text = "");
     QString generateID();
     NetworkClient *createAndConnectNetworkClientOnIP(QString ip);
+    QString getLogin();
+    void    setLogin(QString);
 private slots:
 
     void on_actionDisconnect_triggered();
@@ -55,6 +57,7 @@ private:
     QWidget           *lw;
     NetworkObject       *_network_object;
     QList<ConversationWindow *> listConversationWindow;
+    QString            login;
     //DatabaseObject  *db;
 };
 

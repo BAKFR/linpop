@@ -37,8 +37,20 @@ void ContactWindow::setLoginWindow(QWidget *login)
     lw = login;
 }
 
+
+QString ContactWindow::getLogin()
+{
+    return (this->login);
+}
+
+void ContactWindow::setLogin(QString _login)
+{
+   this->login = _login;
+}
+
 //Version pauline
-/*QString ContactWindow::TestPing(QString ip)
+/*
+QString ContactWindow::TestPing(QString ip)
 {
     //Test ping
     QTcpSocket  *client = new QTcpSocket;
