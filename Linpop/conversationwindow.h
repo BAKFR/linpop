@@ -2,10 +2,12 @@
 #define CONVERSATIONWINDOW_H
 
 #include <QMainWindow>
-#include "networkclient.h"
+
+
 class ContactWindow;
 class ProtocolCommand;
 class UploadWindow;
+class NetworkClient;
 
 namespace Ui {
 class ConversationWindow;

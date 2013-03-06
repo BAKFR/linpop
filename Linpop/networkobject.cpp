@@ -2,7 +2,10 @@
 #include "protocolcommandtype.h"
 #include "protocolcommandparamconv.h"
 #include "contactwindow.h"
-#include <iostream>
+#include "networkclient.h"
+#include "conversationwindow.h"
+
+//#include <iostream>
 
 NetworkObject::NetworkObject(ContactWindow *ptrContactWindow)
     : protocolInterpretor()
@@ -94,7 +97,7 @@ void NetworkObject::addNetworkClient(NetworkClient *networkClient)
 void NetworkObject::rmNetworkClient(NetworkClient *networkClient)
 {
     this->listNetworkClient.removeOne(networkClient);
-    delete networkClient;
+    networkClient->deleteLater();
 }
 
 void NetworkObject::setContactWindow(ContactWindow *win)

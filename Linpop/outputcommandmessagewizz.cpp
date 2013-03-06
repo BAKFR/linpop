@@ -1,4 +1,6 @@
 #include "outputcommandmessagewizz.h"
+#include "networkclient.h"
+#include <QDebug>
 
 
 OutputCommandMessageWizz::OutputCommandMessageWizz()

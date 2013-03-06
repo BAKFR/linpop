@@ -11,7 +11,7 @@
 class ProtocolCommand;
 class NetworkObject;
 
-class NetworkClient : QObject
+class NetworkClient : public QObject
 {
     Q_OBJECT
    protected:

@@ -1,4 +1,7 @@
 #include "inputcommandmessagejoin.h"
+#include "contactwindow.h"
+#include "conversationwindow.h"
+#include "networkclient.h"
 
 InputCommandMessageJoin::InputCommandMessageJoin()
 {

@@ -1,5 +1,7 @@
 #include "inputcommandmessagedeconnection.h"
 #include "networkobject.h"
+#include "contactwindow.h"
+#include "conversationwindow.h"
 
 InputCommandMessageDeconnection::InputCommandMessageDeconnection()
 {

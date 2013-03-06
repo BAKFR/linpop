@@ -1,4 +1,5 @@
 #include "outputcommandmessageping.h"
+#include "networkclient.h"
 
 OutputCommandMessagePing::OutputCommandMessagePing()
 {

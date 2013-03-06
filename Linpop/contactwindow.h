@@ -1,8 +1,6 @@
 #ifndef CONTACTWINDOW_H
 #define CONTACTWINDOW_H
 
-#include "conversationwindow.h"
-#include "database.h"
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QModelIndex>
@@ -11,7 +9,10 @@ namespace Ui {
 class ContactWindow;
 }
 
+class ConversationWindow;
 class NetworkObject;
+class NetworkClient;
+class Database;
 
 class ContactWindow : public QMainWindow
 {
@@ -28,6 +29,7 @@ public:
     ConversationWindow *getConvById(const QString &id);
 
     int hasConvByClient(NetworkClient *client);
+    void clientQuit(NetworkClient *client);
 
     void setLoginWindow(QWidget *);
     void addContact(QString name, QString ip);

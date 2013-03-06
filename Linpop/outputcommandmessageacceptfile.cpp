@@ -1,4 +1,5 @@
 #include "outputcommandmessageacceptfile.h"
+#include "networkclient.h"
 
 OutputCommandMessageAcceptFile::OutputCommandMessageAcceptFile()
 {

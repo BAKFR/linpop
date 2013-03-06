@@ -1,4 +1,5 @@
 #include "outputcommandmessagetransfertfile.h"
+#include "networkclient.h"
 
 OutputCommandMessageTransfertFile::OutputCommandMessageTransfertFile()
 {

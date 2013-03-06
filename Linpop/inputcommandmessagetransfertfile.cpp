@@ -1,6 +1,7 @@
 #include "inputcommandmessagetransfertfile.h"
 
 #include "downloadwindow.h"
+#include "contactwindow.h"
 
 InputCommandMessageTransfertFile::InputCommandMessageTransfertFile()
 {

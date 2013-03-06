@@ -1,4 +1,5 @@
 #include "outputcommandmessagepong.h"
+#include "networkclient.h"
 
 OutputCommandMessagePong::OutputCommandMessagePong()
 {

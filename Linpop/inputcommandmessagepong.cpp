@@ -1,4 +1,5 @@
 #include "inputcommandmessagepong.h"
+#include <QDebug>
 
 InputCommandMessagePong::InputCommandMessagePong()
 {

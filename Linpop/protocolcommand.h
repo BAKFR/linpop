@@ -3,10 +3,9 @@
 
 #include "protocolcommandexecutionmode.h"
 #include "protocolcommandparameter.h"
-#include "networkclient.h"
-#include "contactwindow.h"
 
-//class NetworkClient;
+class NetworkClient;
+class ContactWindow;
 
 class ProtocolCommand
 {

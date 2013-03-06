@@ -14,6 +14,8 @@
 #include "networkclient.h"
 #include "networkobject.h"
 #include "trayicon.h"
+#include "database.h"
+
 
 ContactWindow::ContactWindow(NetworkObject *obj) :
     ui(new Ui::ContactWindow), _network_object(obj)
@@ -42,7 +44,7 @@ void    ContactWindow::initContactWindow(Database *_db, QString _login, QString 
         this->login = _login;
         this->pwd = _pwd;
         tmp = this->db->getListContact(iduser);
-        for (unsigned int i = 0; i < tmp.size(); i++)
+        for (int i = 0; i < tmp.size(); i++)
         {
             name = tmp[i]->getContactName();
             ip = tmp[i]->getIp();
@@ -55,6 +57,7 @@ QString ContactWindow::getPassword()
 {
     return (this->pwd);
 }
+
 ConversationWindow *ContactWindow::createEmptyConversationWindow()
 {
     ConversationWindow* cw = new ConversationWindow(this);
@@ -233,6 +236,16 @@ int ContactWindow::hasConvByClient(NetworkClient *client)
         }
     }
     return 0;
+}
+
+void ContactWindow::clientQuit(NetworkClient *client)
+{
+    QList<ConversationWindow*>::Iterator it;
+    for(it =  listConversationWindow.begin(); it != listConversationWindow.end(); ++it) {
+        if ((*it)->isNetworkClientInConversation(client)) {
+            (*it)->rmChatContact(client);
+        }
+    }
 }
 
 void ContactWindow::on_pushButton_clicked()

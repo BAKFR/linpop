@@ -1,4 +1,5 @@
 #include "outputcommandmessagejoin.h"
+#include "networkclient.h"
 
 OutputCommandMessageJoin::OutputCommandMessageJoin()
 {

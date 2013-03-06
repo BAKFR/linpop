@@ -1,4 +1,8 @@
 #include "inputcommandmessagesend.h"
+#include "contactwindow.h"
+#include "conversationwindow.h"
+#include "networkclient.h"
+#include <QDebug>
 
 InputCommandMessageSend::InputCommandMessageSend()
 {

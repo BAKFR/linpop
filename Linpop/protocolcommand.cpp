@@ -1,5 +1,9 @@
 #include "protocolcommand.h"
 
+#include "contactwindow.h"
+#include "networkclient.h"
+
+
 char ProtocolCommand::separator = ':';
 
 ProtocolCommand::ProtocolCommand()

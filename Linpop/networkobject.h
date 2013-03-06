@@ -3,10 +3,10 @@
 
 #include <QList>
 #include "protocolinterpretor.h"
-#include "networkclient.h"
 #include "networkserver.h"
-#include "contactwindow.h"
 
+class ContactWindow;
+class NetworkClient;
 
 class NetworkObject
 {

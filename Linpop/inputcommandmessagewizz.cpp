@@ -1,4 +1,7 @@
 #include "inputcommandmessagewizz.h"
+#include "contactwindow.h"
+#include "conversationwindow.h"
+#include <QDebug>
 
 InputCommandMessageWizz::InputCommandMessageWizz()
 {

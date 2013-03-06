@@ -1,4 +1,7 @@
 #include "outputcommandmessagedeconnection.h"
+#include "networkclient.h"
+
+#include <QDebug>
 
 OutputCommandMessageDeconnection::OutputCommandMessageDeconnection()
 {

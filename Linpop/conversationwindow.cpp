@@ -3,6 +3,7 @@
 #include "uploadwindow.h"
 #include "contactwindow.h"
 #include "addcontactchatwindow.h"
+#include "networkclient.h"
 
 #include "protocolcommand.h"
 #include "networkobject.h"

@@ -1,4 +1,5 @@
 #include "outputcommandmessageinvitation.h"
+#include "networkclient.h"
 
 OutputCommandMessageInvitation::OutputCommandMessageInvitation()
 {

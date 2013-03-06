@@ -1,6 +1,8 @@
 #include "inputcommandmessageacceptfile.h"
 
 #include "uploadwindow.h"
+#include "contactwindow.h"
+#include "conversationwindow.h"
 
 InputCommandMessageAcceptFile::InputCommandMessageAcceptFile()
 {

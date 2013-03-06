@@ -8,7 +8,7 @@
 #include <QVariant>
 #include <string>
 #include <iostream>
-#include <ostream>∫
+#include <ostream>
 #include "contact.h"
 #include "user.h"
 #include "conversation.h"

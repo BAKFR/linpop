@@ -1,6 +1,8 @@
 #include "networkclient.h"
 #include "protocolcommand.h"
 #include "networkobject.h"
+#include "contactwindow.h"
+
 #include <QTcpSocket>
 #include <QDebug>
 #include <QHostAddress>
@@ -52,7 +54,9 @@ void NetworkClient::onSendData(qint64 bytes)
 void NetworkClient::onDisconnected()
 {
     qDebug()<<"Un client vient de se deconnecter !";
-    this->ptrNetworkdObject->getListNetworkClient().removeAll(this);
+    ptrNetworkdObject->getContactWindow()->clientQuit(this);
+
+    this->ptrNetworkdObject->rmNetworkClient(this);
 }
 
 QString NetworkClient::getIP()

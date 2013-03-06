@@ -1,5 +1,6 @@
 #include "outputcommandmessagesend.h"
-
+#include "networkclient.h"
+#include <QDebug>
 
 OutputCommandMessageSend::OutputCommandMessageSend()
 {

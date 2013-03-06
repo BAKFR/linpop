@@ -2,6 +2,7 @@
 #include "protocolcommand.h"
 #include "protocolcommandtype.h"
 #include "networkobject.h"
+#include "contactwindow.h"
 
 InputCommandMessagePing::InputCommandMessagePing()
 {
