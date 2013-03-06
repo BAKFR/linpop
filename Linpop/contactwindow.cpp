@@ -120,7 +120,7 @@ QString ContactWindow::getName(QString text)
     if (text == "")
         text = ui->listContact->currentItem()->text();
     tmp = text.toStdString();
-    for (unsigned int i = 0; (tmp[i] != '\t' || tmp[i] != ' ') && i < tmp.size(); i++)
+    for (unsigned int i = 0; tmp[i] != '\t' && tmp[i] != ' ' && i < tmp.size(); i++)
         buf += tmp[i];
     name =  QString(buf.c_str());
     return (name);
@@ -237,14 +237,14 @@ NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
 
 void ContactWindow::on_listContact_doubleClicked(QModelIndex idx)
 {
-
     QString name = this->getName();
     QString ip = this->getIp();
 
     NetworkClient *client = this->createAndConnectNetworkClientOnIP(ip);
-    client->setUsername(name);
+
     if (client != NULL)
     {
+        client->setUsername(name);
         ProtocolCommand *command = this->getNetworkObject()->getProtocolInterpretor().createOutputCommand(COMMAND_MESSAGE_INVITATION, client);
         ProtocolCommandParameter p;
 
