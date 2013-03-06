@@ -12,6 +12,7 @@ public:
     InputCommandMessageInvitation();
     InputCommandMessageInvitation(const InputCommandMessageInvitation &ref);
     bool execute();
+    void broadcastCommandJoin(QList<ProtocolCommandParamUser> &list, ProtocolCommand* command_join);
     ProtocolCommand *clone();
 };
 

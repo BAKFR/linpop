@@ -32,11 +32,10 @@ void InputCommandMessageInvitation::findAndAssociateTheUserNameOfTheInputClient(
 
 void InputCommandMessageInvitation::broadcastCommandJoin(QList<ProtocolCommandParamUser> &list, ProtocolCommand* command_join)
 {
+    if (this->ptrContactWindow->getNetworkObject()->getProtocolInterpretor().executeCommand(command_join))
+    {
 
-    //if (protocolInterpretor.executeCommand(command))
-   // {
-
-   // }
+    }
 }
 
 bool InputCommandMessageInvitation::execute()
