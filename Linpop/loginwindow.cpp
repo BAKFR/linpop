@@ -40,8 +40,10 @@ void LoginWindow::on_bCreateAccount_clicked()
     else if (db->getUser(name, pwd) == NULL)
     {
         User u(name, pwd);
-        db->addUser(u);
-        OpenContactWindow();
+        if (db->addUser(u) != 1)
+            OpenContactWindow();
+        else
+            QMessageBox::warning(this, "Unable to create user", "Unable to create user. Problem with database.");
     } 
     else
         QMessageBox::warning(this, "User already exist", "Unable to create user. User already exist.");
@@ -64,7 +66,7 @@ void    LoginWindow::InitLogin()
 void    LoginWindow::OpenContactWindow()
 {
     cw->setLoginWindow(this);
-    cw->setLogin(ui->user_name->text());
+    cw->initContactWindow(this->db, ui->user_name->text(), ui->password->text());
     this->hide();
     db->closeDatabase();
     cw->show();

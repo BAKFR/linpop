@@ -29,8 +29,8 @@ public:
     int                 closeDatabase();
 
     User                *getUser(QString &nickname, QString &pwd);
-    QList<Contact*>      *getListContact(int &user);
-    Contact             getContact(int &idUser, int &idContact);
+    QList<Contact*>     getListContact(int &user);
+    Contact             *getContact(int &idUser, QString &nickname, QString &ip);
     QList<Conversation> getListConv(int &idUser);
     Conversation        getConv(int &idUser, int &idConv);
     QList<Member>       getListMember(int &idConv);

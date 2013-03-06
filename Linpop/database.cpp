@@ -81,13 +81,13 @@ User                 *Database::getUser(QString &nickname, QString &pwd)
     return (user);
 }
 
-QList<Contact*>      *Database::getListContact(int &user)
+QList<Contact*>      Database::getListContact(int &user)
 {
-    QList<Contact*>  *contactList = NULL;
+    QList<Contact*> contactList;
     QString         statement;
     QSqlQuery       query;
 
-    contactList = new QList<Contact*>();
+    contactList = QList<Contact*>();
     statement = "SELECT * FROM Contact";
     statement += " WHERE (Id_User = " + QString::number(user) + ");";
 
@@ -109,21 +109,47 @@ QList<Contact*>      *Database::getListContact(int &user)
             newContact->setIdUser(idUser);
             newContact->setContactName(contactName);
             newContact->setIp(ip);
-            *contactList << newContact;
+            contactList << newContact;
 
         }
     }
-    else
-        return (NULL);
 
     return (contactList);
 }
 
-Contact             Database::getContact(int &idUser, int &idContact)
+Contact             *Database::getContact(int &idUser, QString &nickname, QString &ip)
 {
-    Contact         contact = Contact();
+    Contact         *contact = NULL;
+//    QSqlQuery       query;
+//    QString         statement;
 
-    return (contact);
+//    contact = new contact();
+//    statement = "SELECT * FROM Contact WHERE(Username = '";
+//    statement += nickname + "' AND Ip = '";
+//    statement += ip + "' AND IdUser = " + idUser + ");";
+
+//    if (query.exec(statement))
+//    {
+//        int fieldIdUser = query.record().indexOf("Id");
+//        int fieldUserName = query.record().indexOf("Username");
+//        int fieldPassword = query.record().indexOf("Password");
+
+//        if (query.next())
+//        {
+//            int idUser = query.value(fieldIdUser).toInt();
+//            QString userName = query.value(fieldUserName).toString();
+//            QString password = query.value(fieldPassword).toString();
+//            user->setIdUser(idUser);
+//            user->setUserName(userName);
+//            user->setPassword(password);
+//        }
+//        else
+//            return (NULL);
+//    }
+//    else
+//        return (NULL);
+
+//    return (user);
 }
 
 QList<Conversation> Database::getListConv(int &idUser)

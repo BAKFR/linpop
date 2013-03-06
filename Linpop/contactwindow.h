@@ -2,6 +2,7 @@
 #define CONTACTWINDOW_H
 
 #include "conversationwindow.h"
+#include "database.h"
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QModelIndex>
@@ -33,7 +34,9 @@ public:
     QString generateID();
     NetworkClient *createAndConnectNetworkClientOnIP(QString ip);
     QString getLogin();
+    QString getPassword();
     void    setLogin(QString);
+    void    initContactWindow(Database *,QString, QString);
 private slots:
 
     void on_actionDisconnect_triggered();
@@ -58,7 +61,8 @@ private:
     NetworkObject       *_network_object;
     QList<ConversationWindow *> listConversationWindow;
     QString            login;
-    //DatabaseObject  *db;
+    QString            pwd;
+    Database  *db;
 };
 
 #endif // CONTACTWINDOW_H

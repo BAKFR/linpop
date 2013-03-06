@@ -26,6 +26,28 @@ ContactWindow::~ContactWindow()
     delete ui;
 }
 
+void    ContactWindow::initContactWindow(Database *_db, QString _login, QString _pwd)
+{
+    QList<Contact *> tmp;
+    QString          name = this->getLogin();
+    QString          ip = this->getPassword();
+    int              iduser = this->db->getUser(name, ip)->getIdUser();
+    this->db = _db;
+    this->login = _login;
+    this->pwd = _pwd;
+    tmp = this->db->getListContact(iduser);
+    for (unsigned int i = 0; i < tmp.size(); i++)
+    {
+        name = tmp[i]->getContactName();
+        ip = tmp[i]->getIp();
+        ui->listContact->addItem(name + "\t" + ip);
+        ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+    }
+}
+QString ContactWindow::getPassword()
+{
+    return (this->pwd);
+}
 ConversationWindow *ContactWindow::createEmptyConversationWindow()
 {
     ConversationWindow* cw = new ConversationWindow(this);
@@ -66,14 +88,18 @@ QString ContactWindow::TestPing(QString ip)
 
 void ContactWindow::addContact(QString name, QString ip)
 {
-    //if (db->addContact(name, ip) == true)
-    //{
-    ui->listContact->addItem(name + "\t" + ip);
-    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon("./../Images/rond_rouge.png"));
-    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
-    //}
-    //else
-    //Erreur
+    Contact     contact = Contact();
+    int         iduser = this->db->getUser(this->login, this->pwd)->getIdUser();
+    contact.setContactName(name);
+    contact.setIdUser(iduser);
+    contact.setIp(ip);
+    if (db->addContact(contact) != -1)
+    {
+        ui->listContact->addItem(name + "\t" + ip);
+        ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
+    }
+    else
+        QMessageBox::warning(this, "Unable to add a contact", "Unable to create a contact.");
 
  }
 
