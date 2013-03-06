@@ -4,6 +4,7 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
+#include <QtSql/QSqlRecord>
 #include <QVariant>
 #include <string>
 #include <iostream>
@@ -27,7 +28,7 @@ public:
     int                 openDatabase();
     int                 closeDatabase();
 
-    User                getUser(QString &nickname, QString &pwd);
+    User                *getUser(QString &nickname, QString &pwd);
     QList<Contact>      getListContact(int &user);
     Contact             getContact(int &idUser, int &idContact);
     QList<Conversation> getListConv(int &idUser);

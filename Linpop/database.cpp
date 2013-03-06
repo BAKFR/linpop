@@ -46,9 +46,31 @@ int         Database::closeDatabase()
     return (error);
 }
 
-User                 Database::getUser(QString &nickname, QString &pwd)
+User                 *Database::getUser(QString &nickname, QString &pwd)
 {
-    User            user = User();
+    User            *user = NULL;
+    QSqlQuery       query;
+    QString         statement;
+
+    user = new User();
+    statement = "SELECT * FROM User WHERE(Username = '";
+    statement += nickname + "' AND Password = '";
+    statement += pwd + "');";
+
+    if (query.exec(statement))
+    {
+        int fieldUserName = query.record().indexOf("Username");
+        int fieldPassword = query.record().indexOf("Password");
+        while (query.next())
+        {
+            QString userName = query.value(fieldUserName).toString();
+            QString password = query.value(fieldPassword).toString();
+            user->setUserName(userName);
+            user->setPassword(password);
+        }
+    }
+    else
+        return (NULL);
 
     return (user);
 }

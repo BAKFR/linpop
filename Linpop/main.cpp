@@ -21,9 +21,19 @@ int main(int argc, char *argv[])
     member.setInfo(4, 1, "Pauline", "192.168.55.32", 3);
 
     db.openDatabase();
-    db.addUser(user1);
+//    db.addUser(user1);
 //    db.addContact(contact);
 //    db.addMember(member);
+
+    QString     userName = "Philippe";
+    QString     password = "PWNEDBYNOOB";
+
+    User        *testUser = db.getUser(userName, password);
+    if (testUser != NULL)
+    {
+        std::cout << testUser->getUserName().toStdString() << std::endl;
+        std::cout << testUser->getPassword().toStdString() << std::endl;
+    }
     db.closeDatabase();
     std::cout << std::flush;
     // TEST DATABASE OFF
