@@ -43,14 +43,18 @@ public:
     int     getNbMembers() const;
     QList<NetworkClient *>  &getClients();
     
+    void receiveWizz();
 private:
     Ui::ConversationWindow *ui;
 
 public slots:
     void    on_uploadButton_clicked();
     void    on_sendButton_clicked();
+    void    on_wizzButton_clicked();
+
 private slots:
     void on_AddContact_clicked();
+    void onWizzTimeout();
 };
 
 #endif // CONVERSATIONWINDOW_H

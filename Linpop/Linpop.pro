@@ -43,6 +43,7 @@ SOURCES += main.cpp\
     outputcommandmessageping.cpp \
     outputcommandmessagepong.cpp \
     outputcommandmessagesend.cpp \
+    outputcommandmessagewizz.cpp \
     filetransfertupload.cpp \
     filetransfertdownload.cpp \
     contextualmenupopup.cpp \
@@ -53,12 +54,14 @@ SOURCES += main.cpp\
     corcommandmessageinvitation.cpp \
     corcommandmessageping.cpp \
     corcommandmessagesend.cpp \
+    corcommandmessagewizz.cpp \
     corcommandmessagetransfertfile.cpp \
     inputcommandmessageacceptfile.cpp \
     inputcommandmessagetransfertfile.cpp \
     inputcommandmessageping.cpp \
     inputcommandmessagejoin.cpp \
     inputcommandmessagesend.cpp \
+    inputcommandmessagewizz.cpp \
     inputcommandmessagedeconnection.cpp \
     inputcommandmessageinvitation.cpp \
     inputcommandmessagepong.cpp \
@@ -130,7 +133,10 @@ HEADERS  += loginwindow.h \
     member.h \
     log.h \
     user.h \
-    modifycontactwindow.h
+    modifycontactwindow.h \
+    inputcommandmessagewizz.h \
+    outputcommandmessagewizz.h \
+    corcommandmessagewizz.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \

@@ -44,6 +44,7 @@ void AddContactChatWindow::on_bAddContact_clicked()
         p.addParamCommandConv(ProtocolCommandParamConv(this->cw->getIDConv()));
         p.addParamCommandUser(ProtocolCommandParamUser(this->cw->getContactWindow()->getLogin(), "NO-NEED"));
         addAllConversationMemberInCommandParameter(p);
+        command_invite->setProtocolCommandParameter(p);
         if (this->cw->getContactWindow()->getNetworkObject()->getProtocolInterpretor().executeCommand(command_invite))
         {
             return;
