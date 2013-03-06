@@ -11,7 +11,9 @@ OutputCommandMessageJoin::OutputCommandMessageJoin(const OutputCommandMessageJoi
 
 bool OutputCommandMessageJoin::execute()
 {
-    QString command = QString("JOIN") + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID()+"\r\n";
+    QString command = QString("JOIN") + ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID();
+    command +=  ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamUser().at(0).getIP();
+    command +=  ProtocolCommand::separator + protocolCommandParameter.getListProtocolCommandParamUser().at(0).getUsername() +"\r\n";
     return ptrOutputNetworkClient->getTcpSocket()->write(command.toUtf8()) > 0;
 }
 

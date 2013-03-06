@@ -17,6 +17,7 @@ ProtocolCommand *CORCommandMessageJoin::build(QByteArray query)
     QList<QByteArray> args = query.split(ProtocolCommand::separator);
 
     p.addParamCommandConv(ProtocolCommandParamConv(args.at(1)));
+    p.addParamCommandUser(ProtocolCommandParamUser(args.at(3), args.at(2)));
 
     InputCommandMessageJoin *join =  new InputCommandMessageJoin();
     join->setProtocolCommandParameter(p);
