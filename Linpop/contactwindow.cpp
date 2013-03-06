@@ -37,6 +37,16 @@ void ContactWindow::setLoginWindow(QWidget *login)
     lw = login;
 }
 
+QString ContactWindow::getLogin()
+{
+    return (this->login);
+}
+
+void ContactWindow::setLogin(QString _login)
+{
+   this->login = _login;
+}
+
 QString ContactWindow::TestPing(QString ip)
 {
     //Test ping
