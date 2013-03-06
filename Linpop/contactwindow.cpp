@@ -214,7 +214,7 @@ QString ContactWindow::generateID()
 //A rajouter dans le header et penser a ajouter le port dans NetworkServer aussi.
 NetworkClient *ContactWindow::createAndConnectNetworkClientOnIP(QString ip)
 {
-    NetworkClient *newclient = no->getNetworkClientByIP(ip);
+    NetworkClient *newclient = this->_network_object->getNetworkClientByIP(ip);
 
     if (newclient != NULL)
     {
