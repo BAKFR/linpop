@@ -2,6 +2,7 @@
 #include "ui_conversationwindow.h"
 #include "uploadwindow.h"
 #include "contactwindow.h"
+#include "addcontactchatwindow.h"
 
 #include "protocolcommand.h"
 #include "networkobject.h"
@@ -145,4 +146,11 @@ void    ConversationWindow::AddText(QString message)
 QString    ConversationWindow::getText()
 {
     return (ui->lineEdit->text());
+}
+
+void ConversationWindow::on_AddContact_clicked()
+{
+    AddContactChatWindow    *accw = new AddContactChatWindow(this);
+
+    accw->show();
 }
