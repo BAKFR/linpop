@@ -62,9 +62,15 @@
     <addaction name="actionSettings"/>
     <addaction name="actionHistory"/>
    </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuOptions"/>
-   <addaction name="actionAbout"/>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDisconnect">

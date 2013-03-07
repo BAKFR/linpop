@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/smiley/1.png</file>
+        <file>Images/smiley/2.png</file>
+        <file>Images/smiley/3.png</file>
+        <file>Images/smiley/4.png</file>
+        <file>Images/smiley/5.png</file>
+        <file>Images/smiley/6.png</file>
+        <file>Images/smiley/7.png</file>
+        <file>Images/smiley/8.png</file>
+        <file>Images/smiley/9.png</file>
+        <file>Images/smiley/10.png</file>
+        <file>Images/smiley/11.png</file>
+        <file>Images/smiley/12.png</file>
+        <file>Images/smiley/13.png</file>
+        <file>Images/smiley/14.png</file>
+        <file>Images/smiley/angel.png</file>
+        <file>Images/smiley/devil.png</file>
+        <file>Images/smiley/down.png</file>
+        <file>Images/smiley/love.png</file>
+        <file>Images/smiley/stop.png</file>
+        <file>Images/smiley/up.png</file>
+        <file>Images/about.png</file>
+        <file>Images/icon-test.png</file>
+        <file>Images/rond_rouge.png</file>
+        <file>Images/rond_vert.png</file>
+    </qresource>
+</RCC>

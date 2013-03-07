@@ -43,7 +43,7 @@ void    Trayicon::createTrayicon()
 
 void    Trayicon::setIcon()
 {
-    this->_trayicon->setIcon(QIcon("../Images/icon-test.png"));
+    this->_trayicon->setIcon(QIcon(":/Images/icon-test.png"));
 }
 
 void    Trayicon::trayIconClicked(QSystemTrayIcon::ActivationReason reason)
