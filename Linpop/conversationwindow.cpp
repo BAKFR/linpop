@@ -85,6 +85,8 @@ ContactWindow *ConversationWindow::getContactWindow()
 void ConversationWindow::addChatContact(NetworkClient *client)
 {
     listClient.append(client);
+    if (_audio_conv)
+        _audio_conv->newClient(client);
     this->ui->contactList->addItem(client->getUsername() + " " + client->getIP());
     ui->lineEdit->setEnabled(true);
     ui->sendButton->setEnabled(true);
