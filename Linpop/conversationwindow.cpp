@@ -18,6 +18,7 @@
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QUrl>
+#include <QMimeData>
 
 ConversationWindow::ConversationWindow(ContactWindow *parent) :
     QMainWindow(parent), _contact_window(parent),
