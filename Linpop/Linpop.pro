@@ -74,8 +74,10 @@ SOURCES += main.cpp\
     user.cpp \
     modifycontactwindow.cpp \
     trayicon.cpp \
+    mainwindowtrayicon.cpp	\
     audioinput.cpp \
     audiooutput.cpp
+
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -140,6 +142,7 @@ HEADERS  += loginwindow.h \
     outputcommandmessagewizz.h \
     corcommandmessagewizz.h \
     trayicon.h \
+    mainwindowtrayicon.h \
     audioinput.h \
     audiooutput.h
 
@@ -153,7 +156,8 @@ FORMS    += loginwindow.ui \
     addcontactchatwindow.ui \
     mainwindow.ui \
     contextualmenupopup.ui \
-    modifycontactwindow.ui
+    modifycontactwindow.ui \
+    mainwindowtrayicon.ui
 
 RESOURCES += \
     ressources.qrc
