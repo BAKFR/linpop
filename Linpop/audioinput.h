@@ -5,6 +5,7 @@
 #include <QTcpSocket>
 #include <QString>
 #include <QAudioOutput>
+#include <QAudioFormat>
 
 
 class AudioInput : public QObject
