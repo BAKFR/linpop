@@ -5,6 +5,11 @@
 #include <QTcpSocket>
 #include <QModelIndex>
 
+#include <QWidget>
+#include <QSystemTrayIcon>
+#include <QMenu>
+#include <QCloseEvent>
+
 namespace Ui {
 class ContactWindow;
 }
@@ -74,6 +79,23 @@ private:
     QString            login;
     QString            pwd;
     Database  *db;
+
+
+private:
+    void createActions();
+    void createTrayIcon();
+    void setIcon();
+    void closeEvent(QCloseEvent *); // Overriding the window's close event
+
+
+    QSystemTrayIcon *_trayIcon;
+    QMenu *_trayIconMenu;
+
+    QAction *_open;
+    QAction *_close;
+
+private slots:
+    void trayIconClicked(QSystemTrayIcon::ActivationReason);
 };
 
 #endif // CONTACTWINDOW_H

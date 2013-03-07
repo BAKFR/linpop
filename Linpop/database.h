@@ -31,19 +31,11 @@ public:
     User                *getUser(QString &nickname, QString &pwd);
     QList<Contact*>     getListContact(int &user);
     Contact             *getContact(int &idUser, QString &nickname, QString &ip);
-    QList<Conversation> getListConv(int &idUser);
-    Conversation        getConv(int &idUser, int &idConv);
-    QList<Member>       getListMember(int &idConv);
-    Member              getMember(int &idMember, int &idConv);
-//    Log                 getLog(int &idConv);
-    int                 updateLog(Conversation &conv);
     int                 addUser(User &user);
     int                 addContact(Contact &contact);
     int                 addMember(Member &member);
-//    int                 addLog(Log &log);
-    int                 addConv(Conversation &conv);
-    int                 deleteContact(Contact &contact);
-    int                 getUser(Contact &contact, QString &nickname);
+    QList<QString>      getHistory();
+    int                 setHistory(int idConv, QString line);
 
     QString getBddName();
     QString getUserName();

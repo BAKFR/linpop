@@ -1,6 +1,7 @@
 #ifndef TRAYICON_H
 #define TRAYICON_H
 
+#include <QMainWindow>
 #include <QSystemTrayIcon>
 #include <QWidget>
 #include <QApplication>
@@ -10,33 +11,29 @@
 
 #include "contactwindow.h"
 
-namespace Ui{
-    class Trayicon;
-}
-
-class Trayicon : public QWidget
+class Trayicon : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit Trayicon(QWidget *parent = 0);
+    ~Trayicon();
+
 private:
+    void createAction();
+    void createTrayicon();
+    void setIcon();
+    void closeEvent(QCloseEvent *); // Overriding the window's close event
+
+    QSystemTrayIcon *_trayicon;
+    QMenu *_trayiconMenu;
+
     QAction *_open;
     QAction *_close;
 
-    QSystemTrayIcon *_trayicon;
-    QMenu           *_trayiconMenu;
-
-public Q_SLOTS:
-    void    trayIconClicked(QSystemTrayIcon::ActivationReason);
-
-public:
-    Trayicon(QWidget *link);
-    ~Trayicon();
-
-public:
-    void    createTrayicon();
-    void    createAction();
-    void    setIcon();
-    void    closeEvent(QCloseEvent *);
+    QWidget *_c;
+private slots:
+    void trayIconClicked(QSystemTrayIcon::ActivationReason);
 };
 
 #endif // TRAYICON_H
