@@ -10,15 +10,16 @@ AudioInput::AudioInput(QObject *parent, const QString &ip, quint16 port) :
 }
 
 AudioInput::~AudioInput() {
-
+    if (_audio_output)
+        _audio_output->stop();
 }
 
 void AudioInput::onSocketConnected() {
 
     QAudioFormat format;
     // Set up the format, eg.
-    format.setFrequency(8000);
-    format.setChannels(1);
+//    format.setFrequency(8000);
+//    format.setChannels(1);
     format.setSampleSize(8);
     format.setCodec("audio/pcm");
     format.setByteOrder(QAudioFormat::LittleEndian);
@@ -34,19 +35,22 @@ void AudioInput::onSocketConnected() {
     _audio_output = new QAudioOutput(format, this);
     connect(_audio_output, SIGNAL(stateChanged(QAudio::State)), SLOT(onAudioChange(QAudio::State)));
 
-    QTimer::singleShot(3000,this,SLOT(startAudio()));
-
-
+    QTimer::singleShot(1000,this,SLOT(startAudio()));
 }
 
 void AudioInput::onSocketError() {
+    qDebug() << "ERROR SOCKET" << _socket.errorString();
+    _audio_output->stop();
     deleteLater();
 }
 
 void AudioInput::onAudioChange(QAudio::State state) {
     qDebug() << ":)" << state;
     if (state == QAudio::StoppedState) {
-        deleteLater();
+        if (_socket.isReadable())
+            QTimer::singleShot(1000,this,SLOT(startAudio()));
+        else
+           deleteLater();
     }
 }
 
