@@ -338,5 +338,5 @@ void ConversationWindow::on_audioButton_clicked()
 {
     new AudioOutput(this);
     int i = QInputDialog::getInt(this, "port", "port ?");
-    new AudioInput(this, "127.0.0.1", i);
+    new AudioInput(this, listClient.at(0)->getIP(), i);
 }
