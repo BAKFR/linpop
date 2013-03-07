@@ -13,7 +13,7 @@ class ContextualMenuPopup : public QWidget
     Q_OBJECT
     
 public:
-    explicit ContextualMenuPopup(QWidget *parent = 0);
+    explicit ContextualMenuPopup(Database *, QWidget *parent = 0);
     ~ContextualMenuPopup();
 
     void    InitMenu(QPoint globalpos, ContactWindow *);
@@ -30,6 +30,7 @@ private:
     QAction *del;
     QPoint  globalpoint;
     ContactWindow   *cw;
+    Database *db;
 };
 
 #endif // CONTEXTUALMENUPOPUP_H
