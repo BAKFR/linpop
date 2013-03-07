@@ -142,6 +142,22 @@ p, li { white-space: pre-wrap; }
      <string>W</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="audioButton">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>460</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>A</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
