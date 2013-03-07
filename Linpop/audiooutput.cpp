@@ -22,8 +22,8 @@ void AudioOutput::onServerConnection() {
 
     QAudioFormat format;
     // set up the format you want, eg.
-//    format.setFrequency(8000);
-//    format.setChannels(1);
+    format.setSampleRate(8000);
+    format.setChannelCount(1);
     format.setSampleSize(8);
     format.setCodec("audio/pcm");
     format.setByteOrder(QAudioFormat::LittleEndian);
@@ -36,8 +36,6 @@ void AudioOutput::onServerConnection() {
     }
     _audio_input = new QAudioInput(format, this);
     connect(_audio_input, SIGNAL(stateChanged(QAudio::State)), this, SLOT(onAudioChange(QAudio::State)));
-
-    //QTimer::singleShot(3000, this, SLOT(stopRecording()));
 
     _audio_input->start(socket);
     // Records audio for 3000ms

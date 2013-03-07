@@ -11,15 +11,16 @@ AudioInput::AudioInput(QObject *parent, const QString &ip, quint16 port) :
 
 AudioInput::~AudioInput() {
     if (_audio_output)
-        _audio_output->stop();
+        _audio_output->deleteLater();
+    qDebug() << "WHAT";
 }
 
 void AudioInput::onSocketConnected() {
 
     QAudioFormat format;
     // Set up the format, eg.
-//    format.setFrequency(8000);
-//    format.setChannels(1);
+    format.setSampleRate(8000);
+    format.setChannelCount(1);
     format.setSampleSize(8);
     format.setCodec("audio/pcm");
     format.setByteOrder(QAudioFormat::LittleEndian);
@@ -28,11 +29,11 @@ void AudioInput::onSocketConnected() {
     qDebug() << QAudioDeviceInfo::defaultOutputDevice().deviceName();
     QAudioDeviceInfo info(QAudioDeviceInfo::defaultOutputDevice());
     if (!info.isFormatSupported(format)) {
-        qWarning()<<"raw audio format not supported by backend, cannot play audio.";
+        qWarning() << "raw audio format not supported by backend, cannot play audio.";
         return;
     }
 
-    _audio_output = new QAudioOutput(format, this);
+    _audio_output = new QAudioOutput(format, NULL);
     connect(_audio_output, SIGNAL(stateChanged(QAudio::State)), SLOT(onAudioChange(QAudio::State)));
 
     QTimer::singleShot(1000,this,SLOT(startAudio()));
@@ -40,7 +41,6 @@ void AudioInput::onSocketConnected() {
 
 void AudioInput::onSocketError() {
     qDebug() << "ERROR SOCKET" << _socket.errorString();
-    _audio_output->stop();
     deleteLater();
 }
 
