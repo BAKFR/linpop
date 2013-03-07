@@ -143,7 +143,7 @@ void    ConversationWindow::on_sendButton_clicked()
 {
     if (ui->lineEdit->text() != "")
     {
-        this->AddText(_contact_window->getLogin() +" dit :" + ui->lineEdit->text());
+        this->AddText(_contact_window->getLogin() +" dit: " + ui->lineEdit->text());
         ProtocolInterpretor &refProtocolInterpretor = _contact_window->getNetworkObject()->getProtocolInterpretor();
 
         ProtocolCommand *command = refProtocolInterpretor.createOutputCommand(COMMAND_MESSAGE_SEND, NULL);
@@ -231,6 +231,9 @@ void    ConversationWindow::AddText(QString message)
         ui->textEdit->setHtml(ui->textEdit->toHtml() + "\r\n" + message );
     else
        ui->textEdit->setHtml(message);
+    QTextCursor cursor(ui->textEdit->textCursor());
+    cursor.movePosition(QTextCursor::End);
+    ui->textEdit->setTextCursor(cursor);
 }
 
 QString    ConversationWindow::getText()
