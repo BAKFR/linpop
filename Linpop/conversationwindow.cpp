@@ -8,6 +8,10 @@
 #include "protocolcommand.h"
 #include "networkobject.h"
 
+
+#include "audioinput.h"
+#include "audiooutput.h"
+
 #include <QFileDialog>
 #include <QListWidget>
 #include <QDebug>
@@ -87,6 +91,7 @@ void ConversationWindow::addChatContact(NetworkClient *client)
     ui->sendButton->setEnabled(true);
     ui->uploadButton->setEnabled(true);
     ui->wizzButton->setEnabled(true);
+    ui->audioButton->setEnabled(true);
 }
 
 void ConversationWindow::rmChatContact(NetworkClient *client)
@@ -98,6 +103,7 @@ void ConversationWindow::rmChatContact(NetworkClient *client)
         ui->sendButton->setEnabled(false);
         ui->uploadButton->setEnabled(false);
         ui->wizzButton->setEnabled(false);
+        ui->audioButton->setEnabled(false);
     }
 }
 
@@ -329,14 +335,24 @@ void ConversationWindow::dropEvent(QDropEvent *event)
     }
 }
 
-#include "audioinput.h"
-#include "audiooutput.h"
-
 #include <QInputDialog>
 
 void ConversationWindow::on_audioButton_clicked()
 {
+    /*
+     * START AUDIO SERVER
+     * SEND AUDIO INVIT TO ALL
+     * --> ILS PEUVENT NOUS ECOUTER
+     *
+     * ET C4EST TOUT!
+     *
+     *
+     *
+     *
+     *
+     */
+
     new AudioOutput(this);
-    int i = QInputDialog::getInt(this, "port", "port ?");
+    int i = QInputDialog::getInt(this, "port", "Tappez 5001 et validez apres que votre correspondant ai appuye sur [A]");
     new AudioInput(this, listClient.at(0)->getIP(), i);
 }

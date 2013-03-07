@@ -2,6 +2,7 @@
 #include "contactwindow.h"
 #include "conversationwindow.h"
 #include "networkclient.h"
+#include "database.h"
 #include <QDebug>
 
 InputCommandMessageSend::InputCommandMessageSend()
@@ -22,6 +23,7 @@ bool InputCommandMessageSend::execute()
     if (conv_win) {
         message = this->ptrInputNetworkClient->getUsername() + QString(" dit: ") + protocolCommandParameter.getListProtocolCommandParamText().at(0).getText();
         conv_win->AddText(message);
+        this->ptrContactWindow->getDatabase()->setHistory(protocolCommandParameter.getListProtocolCommandParamConv().at(0).getConvID().toInt(), message);
         return true;
     } else {
         qDebug() << "ERROR: we receive msg from a unknown ";

@@ -14,6 +14,7 @@
 #include "networkobject.h"
 #include "trayicon.h"
 #include "database.h"
+#include "historywindow.h"
 
 
 ContactWindow::ContactWindow(NetworkObject *obj) :
@@ -22,7 +23,6 @@ ContactWindow::ContactWindow(NetworkObject *obj) :
     srand(QTime::currentTime().msec());
     ui->setupUi(this);
     ui->listContact->setContextMenuPolicy(Qt::CustomContextMenu);
-    Trayicon(this);
 }
 
 ContactWindow::~ContactWindow()
@@ -51,6 +51,11 @@ void    ContactWindow::initContactWindow(Database *_db, QString _login, QString 
             ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(TestPing(ip)));
         }
     }
+
+    createActions();
+    createTrayIcon();
+    setIcon();
+    _trayIcon->show();
 }
 QString ContactWindow::getPassword()
 {
@@ -199,19 +204,26 @@ void ContactWindow::on_actionSettings_triggered()
 
 void ContactWindow::on_actionHistory_triggered()
 {
+    HistoryWindow *hw = new HistoryWindow(this->db);
 
+    hw->show();
 }
 
 void ContactWindow::on_listContact_customContextMenuRequested(const QPoint &pos)
 {
     QPoint globalpos = this->mapToGlobal(pos);
-    ContextualMenuPopup cmp;
+    ContextualMenuPopup cmp(this->db);
     cmp.InitMenu(globalpos, this);
 }
 
 NetworkObject *ContactWindow::getNetworkObject()
 {
     return _network_object;
+}
+
+Database    *ContactWindow::getDatabase()
+{
+    return (this->db);
 }
 
 ConversationWindow *ContactWindow::getConvById(const QString &id)
@@ -332,3 +344,61 @@ void ContactWindow::on_boutonAddContact_clicked()
     acw->setContactWindow(this);
     acw->show();
 }
+
+
+
+void ContactWindow::createActions()
+{
+    _open = new QAction(tr("&Open"), this);
+    connect(_open, SIGNAL(triggered()), this, SLOT(show()));
+
+
+    _close = new QAction(tr("&Quit"), this);
+    connect(_close, SIGNAL(triggered()), qApp, SLOT(quit()));
+}
+
+void ContactWindow::createTrayIcon()
+{
+    _trayIconMenu = new QMenu(this);
+
+
+    _trayIconMenu->addAction(_open);
+    _trayIconMenu->addSeparator();
+    _trayIconMenu->addAction(_close);
+
+
+    _trayIcon = new QSystemTrayIcon(this);
+    _trayIcon->setContextMenu(_trayIconMenu);
+
+
+    connect(
+            _trayIcon,
+            SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            this,
+            SLOT(trayIconClicked(QSystemTrayIcon::ActivationReason))
+           );
+}
+
+void ContactWindow::setIcon()
+{
+    _trayIcon->setIcon(QIcon("./../Images/smiley/2.png"));
+}
+
+void ContactWindow::trayIconClicked(QSystemTrayIcon::ActivationReason reason)
+{
+    if(reason == QSystemTrayIcon::Trigger)
+        this->show();
+}
+
+void ContactWindow::closeEvent(QCloseEvent *event)
+{
+    if (_trayIcon->isVisible()) {
+        _trayIcon->showMessage(tr("Still here!!!"),
+        tr("This application is still running. To quit please click this icon and select Quit"));
+        hide();
+
+
+        event->ignore(); // Don't let the event propagate to the base class
+    }
+}
+

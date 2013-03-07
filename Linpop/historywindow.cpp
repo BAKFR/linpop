@@ -1,19 +1,14 @@
 #include "historywindow.h"
 #include "ui_historywindow.h"
 
-/*HistoryWindow::HistoryWindow(QWidget *parent, Database db, int idUser) :
-    QMainWindow(parent),
-    _db(db),
-    _idUser(idUser),
-    ui(new Ui::HistoryWindow)
-{
-    ui->setupUi(this);
-}*/
-HistoryWindow::HistoryWindow(QWidget *parent) :
+
+HistoryWindow::HistoryWindow(Database *_db, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::HistoryWindow)
 {
     ui->setupUi(this);
+    this->db = _db;
+    this->getText();
 }
 
 HistoryWindow::~HistoryWindow()
@@ -21,13 +16,16 @@ HistoryWindow::~HistoryWindow()
     delete ui;
 }
 
-void        HistoryWindow::show(int idContact)
+void    HistoryWindow::getText()
 {
-    idContact = idContact;
-    //_db.getConversation(this->idUser, idContact);
+    QList<QString > tmp = this->db->getHistory();
+
+    ui->textHistory->setHtml("");
+    for (unsigned int i = 0; i < tmp.size(); i++)
+    {
+        if (i == 0)
+            ui->textHistory->setHtml(tmp[i]);
+        ui->textHistory->setHtml(ui->textHistory->toHtml() + "\r\n" + tmp[i]);
+    }
 }
 
-void        HistoryWindow::show()
-{
-    //_db.getConversations(this->idUser);
-}
