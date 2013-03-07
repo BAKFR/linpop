@@ -53,8 +53,7 @@ void LoginWindow::on_bCreateAccount_clicked()
 void    LoginWindow::InitLogin()
 {
     //Initialise les ptr
-//    QString path = "./../bdd_linpop.db";
-    QString path = "/Users/Siegfried/Projects/PTraining2/ReNewLinpop/linpop/bdd_linpop.db";
+    QString path = "./../bdd_linpop.db";
     this->no = new NetworkObject;
     this->cw = new ContactWindow(no);
     no->setContactWindow(this->cw);
