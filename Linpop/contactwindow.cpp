@@ -14,7 +14,6 @@
 #include "networkobject.h"
 #include "trayicon.h"
 #include "database.h"
-#include "mainwindowtrayicon.h"
 #include "historywindow.h"
 
 
