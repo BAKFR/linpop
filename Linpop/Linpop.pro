@@ -154,3 +154,6 @@ FORMS    += loginwindow.ui \
     mainwindow.ui \
     contextualmenupopup.ui \
     modifycontactwindow.ui
+
+RESOURCES += \
+    ressources.qrc

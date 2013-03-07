@@ -224,7 +224,7 @@ void    ConversationWindow::AddText(QString message)
     QList<QPair<QString, QString> >::Iterator it;
 
     for (it = smileys.begin(); it != smileys.end(); ++it)
-        message.replace(it->first, QString("<img src=\"../Images/smiley/") + it->second + "\" />");
+        message.replace(it->first, QString("<img src=\":/Images/smiley/") + it->second + "\" />");
 
 
     if (ui->textEdit->toHtml() != "")

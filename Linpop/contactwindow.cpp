@@ -94,10 +94,10 @@ QString ContactWindow::TestPing(QString ip)
     if (createAndConnectNetworkClientOnIP(ip))
     {
         newclient->initialize(this->_network_object, client);
-        return ("./../Images/rond_vert.png");
+        return (":/Images/rond_vert.png");
     }
     else
-        return ("./../Images/rond_rouge.png");
+        return (":/Images/rond_rouge.png");
 }
 
 void ContactWindow::addContact(QString name, QString ip)
@@ -146,7 +146,7 @@ void ContactWindow::setContact(QString user_name, QString ip)
 {
    // db->setContact(db.getContact(ui->listContact->currentItem()->text()), user_name, ip);
     ui->listContact->currentItem()->setText(user_name + "\t" + ip);
-    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon("./../Images/rond_rouge.png"));
+    ui->listContact->item(ui->listContact->count() -1)->setIcon(QIcon(":/Images/rond_rouge.png"));
     ui->listContact->currentItem()->setIcon(QIcon(TestPing(ip)));
 }
 
@@ -311,7 +311,7 @@ void ContactWindow::on_actionAbout_triggered()
     QDialog *diag = new QDialog(this);
     QLayout *l = new QVBoxLayout(diag);
     QLabel *label = new QLabel(diag);
-    label->setPixmap(QPixmap("./../Images/about.png"));
+    label->setPixmap(QPixmap(":/Images/about.png"));
     label->setAlignment(Qt::AlignCenter | Qt::AlignHCenter);
     QLabel *legend = new QLabel("<h2>Created by BAK, Pauline, Kevin.CN,<br />Arnaud and Mirozh !</h2>", diag);
     legend->setAlignment(Qt::AlignBottom | Qt::AlignCenter);
