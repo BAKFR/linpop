@@ -2,7 +2,7 @@
 #define HISTORYWINDOW_H
 
 #include <QMainWindow>
-//#include "database.h"
+#include "database.h"
 
 namespace Ui {
 class HistoryWindow;
@@ -11,18 +11,16 @@ class HistoryWindow;
 class HistoryWindow : public QMainWindow
 {
     Q_OBJECT
-    //Database    _db;
-    int         _iduser;
     
 public:
-    explicit HistoryWindow(QWidget *parent = 0);
-    //explicit HistoryWindow(QWidget *parent = 0, Database db, int idUser);
+    explicit HistoryWindow(Database *, QWidget *parent = 0);
     ~HistoryWindow();
-    void        show(int idContact);
-    void        show();
+
+    void    getText();
     
 private:
     Ui::HistoryWindow *ui;
+    Database          *db;
 };
 
 #endif // HISTORYWINDOW_H

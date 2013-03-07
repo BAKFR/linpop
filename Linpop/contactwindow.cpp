@@ -15,6 +15,8 @@
 #include "trayicon.h"
 #include "database.h"
 #include "mainwindowtrayicon.h"
+#include "historywindow.h"
+
 
 ContactWindow::ContactWindow(NetworkObject *obj) :
     ui(new Ui::ContactWindow), _network_object(obj)
@@ -203,19 +205,26 @@ void ContactWindow::on_actionSettings_triggered()
 
 void ContactWindow::on_actionHistory_triggered()
 {
+    HistoryWindow *hw = new HistoryWindow(this->db);
 
+    hw->show();
 }
 
 void ContactWindow::on_listContact_customContextMenuRequested(const QPoint &pos)
 {
     QPoint globalpos = this->mapToGlobal(pos);
-    ContextualMenuPopup cmp;
+    ContextualMenuPopup cmp(this->db);
     cmp.InitMenu(globalpos, this);
 }
 
 NetworkObject *ContactWindow::getNetworkObject()
 {
     return _network_object;
+}
+
+Database    *ContactWindow::getDatabase()
+{
+    return (this->db);
 }
 
 ConversationWindow *ContactWindow::getConvById(const QString &id)

@@ -28,7 +28,7 @@ public:
     ConversationWindow *createEmptyConversationWindow();
     ~ContactWindow();
 
-
+    Database    *getDatabase();
     void removeConv(ConversationWindow *w);
     NetworkObject* getNetworkObject();
     ConversationWindow *getConvById(const QString &id);

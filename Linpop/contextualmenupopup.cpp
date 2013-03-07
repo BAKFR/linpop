@@ -3,12 +3,15 @@
 #include <QMenu>
 #include <iostream>
 #include "modifycontactwindow.h"
+#include "historywindow.h"
+#include "database.h"
 
-ContextualMenuPopup::ContextualMenuPopup(QWidget *parent) :
+ContextualMenuPopup::ContextualMenuPopup(Database *_db, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ContextualMenuPopup)
 {
     ui->setupUi(this);
+    this->db = _db;
 }
 
 void    ContextualMenuPopup::InitMenu(QPoint globalpos, ContactWindow *_cw)
@@ -30,7 +33,9 @@ void    ContextualMenuPopup::InitMenu(QPoint globalpos, ContactWindow *_cw)
 
 void    ContextualMenuPopup::History()
 {
-    std::cout << "History" << std::endl;
+    HistoryWindow *hw = new HistoryWindow(this->db);
+
+    hw->show();
 }
 
 void    ContextualMenuPopup::SetContact()
