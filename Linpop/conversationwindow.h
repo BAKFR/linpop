@@ -54,6 +54,7 @@ public slots:
     void    on_uploadButton_clicked();
     void    on_sendButton_clicked();
     void    on_wizzButton_clicked();
+    void    on_audioButton_clicked();
 
 private slots:
     void on_AddContact_clicked();

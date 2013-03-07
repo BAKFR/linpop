@@ -19,6 +19,7 @@
 #include <QDropEvent>
 #include <QUrl>
 
+
 ConversationWindow::ConversationWindow(ContactWindow *parent) :
     QMainWindow(parent), _contact_window(parent),
     _upload_window(NULL),
@@ -322,4 +323,13 @@ void ConversationWindow::dropEvent(QDropEvent *event)
         _upload_window = new UploadWindow(this, mimeData->urls().at(0).toLocalFile());
         _upload_window->show();
     }
+}
+
+#include "audioinput.h"
+#include "audiooutput.h"
+
+void ConversationWindow::on_audioButton_clicked()
+{
+    new AudioOutput(this);
+    new AudioInput(this, "127.0.0.1", 5001);
 }

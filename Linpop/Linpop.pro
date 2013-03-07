@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network sql
+QT       += core gui network sql multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -73,7 +73,9 @@ SOURCES += main.cpp\
     log.cpp \
     user.cpp \
     modifycontactwindow.cpp \
-    trayicon.cpp
+    trayicon.cpp \
+    audioinput.cpp \
+    audiooutput.cpp
 
 HEADERS  += loginwindow.h \
     contactwindow.h \
@@ -137,7 +139,9 @@ HEADERS  += loginwindow.h \
     inputcommandmessagewizz.h \
     outputcommandmessagewizz.h \
     corcommandmessagewizz.h \
-    trayicon.h
+    trayicon.h \
+    audioinput.h \
+    audiooutput.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \

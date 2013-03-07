@@ -17,7 +17,7 @@ ProtocolCommand *CORCommandMessageSend::build(QByteArray query)
     QList<QByteArray> args = query.split(ProtocolCommand::separator);
 
     p.addParamCommandConv(ProtocolCommandParamConv(args.at(1)));
-    p.addParamCommandText(ProtocolCommandParamText(args.at(2)));
+    p.addParamCommandText(ProtocolCommandParamText(QString::fromUtf8(args.at(2))));
 
     InputCommandMessageSend *icms =  new InputCommandMessageSend();
     icms->setProtocolCommandParameter(p);
