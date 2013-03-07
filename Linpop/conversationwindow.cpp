@@ -328,13 +328,15 @@ void ConversationWindow::dropEvent(QDropEvent *event)
         _upload_window->show();
     }
 }
-/*
+
 #include "audioinput.h"
 #include "audiooutput.h"
-*/
+
+#include <QInputDialog>
+
 void ConversationWindow::on_audioButton_clicked()
-{/*
+{
     new AudioOutput(this);
-    new AudioInput(this, "127.0.0.1", 5001);
-*/
+    int i = QInputDialog::getInt(this, "port", "port ?");
+    new AudioInput(this, listClient.at(0)->getIP(), i);
 }
