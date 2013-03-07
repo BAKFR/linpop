@@ -75,7 +75,11 @@ SOURCES += main.cpp\
     modifycontactwindow.cpp \
     trayicon.cpp \
     audioinput.cpp \
-    audiooutput.cpp
+    audiooutput.cpp \
+    outputcommandmessageaudio.cpp \
+    inputcommandmessageaudio.cpp \
+    corcommandmessageaudio.cpp \
+    audioconv.cpp
 
 
 HEADERS  += loginwindow.h \
@@ -142,7 +146,11 @@ HEADERS  += loginwindow.h \
     corcommandmessagewizz.h \
     trayicon.h \
     audioinput.h \
-    audiooutput.h
+    audiooutput.h \
+    outputcommandmessageaudio.h \
+    inputcommandmessageaudio.h \
+    corcommandmessageaudio.h \
+    audioconv.h
 
 FORMS    += loginwindow.ui \
     contactwindow.ui \

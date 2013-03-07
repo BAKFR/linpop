@@ -8,9 +8,7 @@
 #include "protocolcommand.h"
 #include "networkobject.h"
 
-
-#include "audioinput.h"
-#include "audiooutput.h"
+#include "audioconv.h"
 
 #include <QFileDialog>
 #include <QListWidget>
@@ -23,11 +21,12 @@
 #include <QDropEvent>
 #include <QUrl>
 #include <QMimeData>
+#include <QMessageBox>
 
 
 ConversationWindow::ConversationWindow(ContactWindow *parent) :
     QMainWindow(parent), _contact_window(parent),
-    _upload_window(NULL),
+    _upload_window(NULL), _audio_conv(NULL),
     ui(new Ui::ConversationWindow)
 {
     setAttribute(Qt::WA_DeleteOnClose);
@@ -335,24 +334,24 @@ void ConversationWindow::dropEvent(QDropEvent *event)
     }
 }
 
-#include <QInputDialog>
-
 void ConversationWindow::on_audioButton_clicked()
 {
-    /*
-     * START AUDIO SERVER
-     * SEND AUDIO INVIT TO ALL
-     * --> ILS PEUVENT NOUS ECOUTER
-     *
-     * ET C4EST TOUT!
-     *
-     *
-     *
-     *
-     *
-     */
+    if (_audio_conv)
+        return;
 
-    new AudioOutput(this);
-    int i = QInputDialog::getInt(this, "port", "Tappez 5001 et validez apres que votre correspondant ai appuye sur [A]");
-    new AudioInput(this, listClient.at(0)->getIP(), i);
+    _audio_conv = new AudioConv(this);
+}
+
+void ConversationWindow::startAudio(NetworkClient *client, int port)
+{
+    if (!_audio_conv) {
+        if (QMessageBox::question(this, "Audio", "Would you start an audio conversation ?",
+                                  QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes) {
+            on_audioButton_clicked();
+        }
+    }
+
+    if (_audio_conv) {
+        _audio_conv->addClient(client, port);
+    }
 }

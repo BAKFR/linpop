@@ -11,6 +11,7 @@
 #include "corcommandmessagesend.h"
 #include "corcommandmessagetransfertfile.h"
 #include "corcommandmessagewizz.h"
+#include "corcommandmessageaudio.h"
 
 #include <QByteArray>
 
@@ -36,6 +37,8 @@ ProtocolInputCommandBuilder::ProtocolInputCommandBuilder()
     maillon = new CORCommandMessageTransfertFile();
     this->addCOR(maillon);
     maillon = new CORCommandMessageWizz();
+    this->addCOR(maillon);
+    maillon = new CORCommandMessageAudio();
     this->addCOR(maillon);
 }
 

@@ -11,6 +11,7 @@ class AudioOutput : public QObject
 public:
     explicit AudioOutput(QObject *parent = 0);
     ~AudioOutput();
+    int getPort();
 signals:
     
 public slots:

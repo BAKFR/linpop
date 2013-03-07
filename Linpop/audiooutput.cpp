@@ -5,12 +5,16 @@ AudioOutput::AudioOutput(QObject *parent) :
     QObject(parent), _server(), _audio_input(NULL)
 {
     connect(&_server, SIGNAL(newConnection()), this, SLOT(onServerConnection()));
-    _server.listen(QHostAddress::Any, 5001);
+    _server.listen();
    qDebug() <<  _server.serverPort();
 }
 
 AudioOutput::~AudioOutput() {
 
+}
+
+int AudioOutput::getPort() {
+    return _server.serverPort();
 }
 
 void AudioOutput::onServerConnection() {
@@ -44,7 +48,6 @@ void AudioOutput::onServerConnection() {
 
 void AudioOutput::onAudioChange(QAudio::State state)
 {
-    qDebug() << "micro: " << state;
     if (state == QAudio::StoppedState)
         deleteLater();
 }

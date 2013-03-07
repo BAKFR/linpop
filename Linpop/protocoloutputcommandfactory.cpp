@@ -10,6 +10,7 @@
 #include "outputcommandmessagesend.h"
 #include "outputcommandmessagejoin.h"
 #include "outputcommandmessagewizz.h"
+#include "outputcommandmessageaudio.h"
 
 ProtocolOutputCommandFactory::ProtocolOutputCommandFactory()
 {
@@ -52,6 +53,9 @@ ProtocolCommand *ProtocolOutputCommandFactory::build(ProtocolCommandType type, N
         break;
     case COMMAND_MESSAGE_WIZZ:
         command = new OutputCommandMessageWizz();
+        break;
+    case COMMAND_MESSAGE_AUDIO:
+        command = new OutputCommandMessageAudio();
         break;
     }
     if (command != NULL)

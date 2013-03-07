@@ -8,6 +8,7 @@ class ContactWindow;
 class ProtocolCommand;
 class UploadWindow;
 class NetworkClient;
+class AudioConv;
 
 namespace Ui {
 class ConversationWindow;
@@ -21,6 +22,8 @@ protected:
     ContactWindow   *_contact_window;
     QList<NetworkClient *> listClient;
     UploadWindow    *_upload_window;
+
+    AudioConv       *_audio_conv;
 public:
     QString getIDConv() const;
     QList<NetworkClient *> getListClient();
@@ -47,6 +50,8 @@ public:
     QList<NetworkClient *>  &getClients();
     
     void receiveWizz();
+
+    void startAudio(NetworkClient *client, int port);
 private:
     Ui::ConversationWindow *ui;
 
