@@ -324,12 +324,13 @@ void ConversationWindow::dropEvent(QDropEvent *event)
         _upload_window->show();
     }
 }
-
+/*
 #include "audioinput.h"
 #include "audiooutput.h"
-
+*/
 void ConversationWindow::on_audioButton_clicked()
-{
+{/*
     new AudioOutput(this);
     new AudioInput(this, "127.0.0.1", 5001);
+*/
 }
