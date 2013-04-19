@@ -381,7 +381,7 @@ void ContactWindow::createTrayIcon()
 
 void ContactWindow::setIcon()
 {
-    _trayIcon->setIcon(QIcon("./../Images/smiley/2.png"));
+    _trayIcon->setIcon(QIcon("./../Images/icon-test.png"));
 }
 
 void ContactWindow::trayIconClicked(QSystemTrayIcon::ActivationReason reason)
